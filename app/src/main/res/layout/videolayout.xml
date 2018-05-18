@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.VideoPlayActivity"
+    >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--
+                       在videoview  外添加RelativeLayout
+                       在把 alignParent  设为true
+                       时  视频填充父控件
+                -->
+                <VideoView
+                    android:id="@+id/player"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+
+            <MediaController
+                android:id="@+id/mymediacontroller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </MediaController>
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                />
+        </FrameLayout>
+
+
+</LinearLayout>

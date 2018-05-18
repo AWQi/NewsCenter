@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--
+         android:enabled="true"
+        app:showAsAction="always"
+    -->
+    <item android:id="@+id/main_bottom_mainpage"
+        android:title="首页"
+        android:icon="@drawable/mainpage"/>
+
+    <item android:id="@+id/main_bottom_partitions"
+        android:title="分区"
+        android:icon="@drawable/partitions"/>
+
+    <item android:id="@+id/main_bottom_dynamic"
+        android:title="动态"
+        android:icon="@drawable/dynamic"/>
+
+
+</menu>

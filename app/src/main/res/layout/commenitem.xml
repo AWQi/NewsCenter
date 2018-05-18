@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.dell.newscenter.myview.base.CircleImageView
+            android:id="@+id/commen_user"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/psb"/>
+        <Button
+            android:id="@+id/commen_attent"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="+关注"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/commen_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="评论"
+        />
+</LinearLayout>

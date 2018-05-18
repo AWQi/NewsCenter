@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GuideActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+    <!-- 放到底部  设置  距底部 80dp  水平居中-->
+    <!-- 设置 左右边距  保证居中-->
+    <!--  设置selector  设置点击变色效果-->
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/btn_start_bg_selector"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="开始体验"
+        android:textColor="@drawable/btn_start_textcolor_selector"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp">
+
+        <LinearLayout
+            android:id="@+id/ll_point_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+        <!--  滑动的红点 -->
+        <!--  设置 动态margin ，来计算 红点的滑动-->
+        <!--  手势滑动屏幕的百分比 =  红点在灰点之间滑动的百分比-->
+        <ImageView
+            android:id="@+id/red_point"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/red_point" />
+    </RelativeLayout>
+</RelativeLayout>

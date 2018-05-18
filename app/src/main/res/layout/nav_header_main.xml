@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="@color/colorAccent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    tools:background="?android:attr/textColorLinkInverse">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.example.dell.newscenter.myview.base.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/psb" />
+
+            <com.example.dell.newscenter.myview.base.CircleImageView
+                android:id="@+id/qrcode"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:src="@drawable/qr_code" />
+
+            <com.example.dell.newscenter.myview.base.CircleImageView
+                android:id="@+id/wallet"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:layout_toStartOf="@+id/qrcode"
+                android:clickable="true"
+                android:src="@drawable/wallet" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:text="昵称"
+                android:textSize="20sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:layout_marginLeft="10dp"
+                android:text="等级"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="0" />
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="动态" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="0"
+                 />
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="粉丝"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="0"
+                 />
+
+            <TextView
+                style="@style/nav_header_interaction_style"
+                android:text="关注"
+
+                 />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

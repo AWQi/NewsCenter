@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dell.newscenter">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+<!--
+    android:name=".utils.ApplicationUtil"
+    指定app启动时自动初始化的一个application 可以用于获取保存一些全局的信息
+-->
+    <application
+        android:name=".utils.ApplicationUtil"
+        android:allowBackup="true"
+        android:icon="@drawable/newlogo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+        <activity android:name=".activity.WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.GuideActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.VideoPlayActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+           />
+    </application>
+
+</manifest>

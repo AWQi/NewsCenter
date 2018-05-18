@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+<FrameLayout
+    android:id="@+id/center_LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.example.dell.newscenter.myview.mainactivity.PartitionsLayout
+        android:id="@+id/partitionslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+    </com.example.dell.newscenter.myview.mainactivity.PartitionsLayout>
+    <com.example.dell.newscenter.myview.mainactivity.FragmentLayout
+        android:id="@+id/myfragmentlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+    </com.example.dell.newscenter.myview.mainactivity.FragmentLayout>
+
+    <com.example.dell.newscenter.myview.mainactivity.DynamicLayout
+        android:id="@+id/dynamiclayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.example.dell.newscenter.myview.mainactivity.DynamicLayout>
+
+</FrameLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorAccent"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#000000"
+
+        app:menu="@menu/main_bottom_menu">
+        <!--    app:itemIconTint="#FFFFFF"设置图标的颜色
+        app:itemTextColor="#FFFFFF"设置文字的颜色
+        app:itemBackground="@color/colorPrimary" 设置背景色-->
+
+
+    </android.support.design.widget.BottomNavigationView>
+</RelativeLayout>

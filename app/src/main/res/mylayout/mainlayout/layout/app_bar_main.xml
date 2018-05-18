@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+     <!--  上方 工具栏 -->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccent"
+
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.example.dell.newscenter.myview.base.CircleImageView
+                    android:id="@+id/main_head_portrait"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/nav_header_desc"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    app:srcCompat="@drawable/psb" />
+
+                <SearchView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/main_toolbar_download_imageview"
+                    android:autofillHints="请输入要搜索的内容"
+                    android:orientation="vertical"
+                    android:searchHintIcon="@drawable/searchricon"></SearchView>
+
+                <ImageView
+                    android:id="@+id/main_toolbar_download_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    app:srcCompat="@android:drawable/stat_sys_download_done" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+    <!--  悬浮  按钮-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/shooting" />
+
+</android.support.design.widget.CoordinatorLayout>
