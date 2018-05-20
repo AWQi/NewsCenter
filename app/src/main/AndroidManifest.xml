@@ -34,6 +34,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
            />
+        <activity android:name=".activity.MyFansActivity"/>
+        <activity android:name=".activity.MyAttentionActivity"/>
+        <activity android:name=".activity.MyDynamicActivity"/>
     </application>
 
 </manifest>
