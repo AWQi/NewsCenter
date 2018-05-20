@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,38 +58,14 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />
-     <!-- 悬浮菜单-->
-    <com.example.dell.newscenter.myview.base.FloatingActionsMenu
-        android:id="@+id/fam"
+    <!--  悬浮  按钮-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="100dp">
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/shooting"/>
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/live" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/writedynamic"/>
-    </com.example.dell.newscenter.myview.base.FloatingActionsMenu>
-
-    <!--&lt;!&ndash;  悬浮  按钮&ndash;&gt;-->
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_marginRight="20dp"-->
-        <!--android:layout_marginBottom="100dp"-->
-        <!--app:srcCompat="@drawable/shooting" />-->
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/shooting" />
 
 </android.support.design.widget.CoordinatorLayout>

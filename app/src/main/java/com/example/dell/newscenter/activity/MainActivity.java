@@ -1,14 +1,11 @@
 package com.example.dell.newscenter.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.text.Layout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,15 +17,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.myview.base.CircleImageView;
-import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.PartitionsLayout;
-import com.example.dell.newscenter.utils.ApplicationUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,34 +59,20 @@ public class MainActivity extends AppCompatActivity
         /*  底部的布局*/
         main_bottom = findViewById(R.id.main_bottom);
 
-        /**
-         * 悬浮菜单
-         *
-         */
-        FloatingActionsMenu fam = findViewById(R.id.fam);
-        fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
-            @Override
-            public void onItemMenuClick(View view, int position) {
-                if (position==1){
-                    //  do  something
-                }else if (position==2){
-                    // do something
-                }
-            }
-        });
+
 
         /**
          *
          *  悬浮框
          */
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         /**
          *
          *   侧滑栏布局
@@ -102,41 +82,15 @@ public class MainActivity extends AppCompatActivity
          drawer.addDrawerListener(toggle);
          toggle.syncState();
          */
-        drawer = findViewById(R.id.drawer_layout);
+          drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //   注释掉则默认的三杠点击进入侧滑 变为  向右划屏幕 打开侧滑栏
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+                drawer.addDrawerListener(toggle);
+                toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        /**
-         *   侧滑栏中的  关注，动态，粉丝
-         *
-         */
-        View  navigationHeadView  = navigationView.getHeaderView(0);
-        navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,MyDynamicActivity.class);
-                startActivity(intent);
-            }
-        });
-        navigationHeadView.findViewById(R.id.myAttentionEntrance).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,MyAttentionActivity.class);
-                startActivity(intent);
-            }
-        });
-        navigationHeadView.findViewById(R.id.myFansEntrance).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,MyFansActivity.class);
-                startActivity(intent);
-            }
-        });
         /**
          *   上边  那一栏
          */
@@ -189,7 +143,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     /**
      *   右上角 menu监听器
      * @param item
@@ -197,7 +150,6 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
