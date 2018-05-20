@@ -6,6 +6,7 @@
     android:layout_height="220dp"
     android:background="@color/colorAccent"
     android:gravity="top"
+    android:id="@+id/nav_head_main"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:background="?android:attr/textColorLinkInverse">
@@ -25,7 +26,7 @@
             android:orientation="horizontal">
 
             <com.example.dell.newscenter.myview.base.CircleImageView
-                android:id="@+id/imageView"
+                android:id="@+id/headImage"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/nav_header_desc"
@@ -91,12 +92,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/myDynamicEntrance"
                 style="@style/nav_header_interaction_style"
-                android:text="0" />
+                android:text="0"
+                />
 
             <TextView
                 style="@style/nav_header_interaction_style"
-                android:text="动态" />
+                android:text="动态"
+                />
 
         </LinearLayout>
 
@@ -107,6 +111,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/myFansEntrance"
                 style="@style/nav_header_interaction_style"
                 android:text="0"
                  />
@@ -124,6 +129,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/myAttentionEntrance"
                 style="@style/nav_header_interaction_style"
                 android:text="0"
                  />
