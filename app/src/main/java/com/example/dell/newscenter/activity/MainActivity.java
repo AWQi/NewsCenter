@@ -68,7 +68,11 @@ public class MainActivity extends AppCompatActivity
         fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
             @Override
             public void onItemMenuClick(View view, int position) {
-
+                if (position==1){
+                    //  do  something
+                }else if (position==2){
+                    // do something
+                }
             }
         });
 
