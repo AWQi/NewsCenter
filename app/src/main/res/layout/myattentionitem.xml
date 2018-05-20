@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <com.example.dell.newscenter.myview.base.CircleImageView
+            android:id="@+id/myAttentionHeadCV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/psb"/>
+        <TextView
+            android:id="@+id/myAttentionTV"
+            android:layout_toRightOf="@+id/myAttentionHeadCV"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="AWQi"/>
+        <Button
+            android:id="@+id/myAttentionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="取消关注"/>
+    </RelativeLayout>

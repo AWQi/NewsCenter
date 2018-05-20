@@ -97,10 +97,24 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         /**
-         *   侧滑栏中的  关注，动态，粉丝
+         *   侧滑栏中的 head 中的  头像 钱包 二维码 关注，动态，粉丝
          *
          */
         View  navigationHeadView  = navigationView.getHeaderView(0);
+        navigationHeadView.findViewById(R.id.headImage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,InfoEditActivity.class);
+                startActivity(intent);
+            }
+        });
+        navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,MyDynamicActivity.class);
+                startActivity(intent);
+            }
+        });
         navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

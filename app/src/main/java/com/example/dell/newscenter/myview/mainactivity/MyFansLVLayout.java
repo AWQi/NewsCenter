@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.adapter;
+package com.example.dell.newscenter.myview.mainactivity;
 
 
 import android.content.Context;
@@ -65,21 +65,32 @@ public class MyFansLVLayout extends ListView {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             User user = (User) getItem(position);
-            View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-            ImageView fansImage = view.findViewById(R.id.myFansItemIV);
-            TextView fansTextView = view.findViewById(R.id.myFansItemTV);
-            Log.d(TAG, "fansImage.getWidth(): "+fansImage.getWidth());
-            Log.d(TAG, "fansImage.getMaxHeight(): "+fansImage.getHeight());
-
+            View view;
+             ViewHolder viewHolder;
+            if (convertView==null){
+                view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
+                viewHolder = new ViewHolder();
+                viewHolder.fansImage = view.findViewById(R.id.myFansItemIV);
+                viewHolder.fansTextView= view.findViewById(R.id.myFansItemTV);
+                view.setTag(viewHolder);  //将viewHilder 存储在  view中
+            }else {
+                view = convertView;
+                viewHolder = (ViewHolder) view.getTag(); // 从view中取出
+            }
             int width = ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getWidth();
             int height =ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getHeight();
             Glide.with(context)
                     .load(user.getHeadUrl())
                     .override(width,height)
                     .fitCenter()
-                    .into(fansImage);
-            fansTextView.setText(user.getName());
+                    .into(viewHolder.fansImage);
+            viewHolder.fansTextView.setText(user.getName());
             return view;
+        }
+
+        class  ViewHolder{
+            ImageView fansImage;
+            TextView fansTextView;
         }
     }
 }
