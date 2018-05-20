@@ -53,7 +53,7 @@
             android:name=".myview.InfoActivity.InfoEditActivity"
             android:label="修改信息"
             android:theme="@style/MyAppTheme" />
-        <activity android:name=".myview.InfoActivity.UserInfo"
+        <activity android:name=".myview.InfoActivity.UserInfoActivity"
             android:label="个人主页"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -22,6 +22,7 @@ import com.example.dell.newscenter.myview.InfoActivity.InfoEditActivity;
 import com.example.dell.newscenter.myview.InfoActivity.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.MyFansActivity;
+import com.example.dell.newscenter.myview.InfoActivity.UserInfoActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity
         navigationHeadView.findViewById(R.id.headImage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,InfoEditActivity.class);
+                Intent intent = new Intent(MainActivity.this,UserInfoActivity.class);
                 startActivity(intent);
             }
         });

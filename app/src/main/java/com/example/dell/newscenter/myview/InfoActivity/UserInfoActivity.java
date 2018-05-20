@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.dell.newscenter.R;
 
-public class UserInfo extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
