@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.myview.base.CircleImageView;
+import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.PartitionsLayout;
@@ -65,19 +66,29 @@ public class MainActivity extends AppCompatActivity
         main_bottom = findViewById(R.id.main_bottom);
 
 
-
         /**
+         * 悬浮菜单
          *
-         *  悬浮框
          */
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionsMenu fam = findViewById(R.id.fam);
+        fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemMenuClick(View view, int position) {
+
             }
         });
+//        /**
+//         *
+//         *  悬浮框
+//         */
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         /**
          *
          *   侧滑栏布局

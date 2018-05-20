@@ -37,10 +37,25 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.MyFansActivity"  android:label="我的粉丝" android:theme="@style/MyAppTheme" />
-        <activity android:name=".activity.MyAttentionActivity" android:label="我的关注" android:theme="@style/MyAppTheme"/>
-        <activity android:name=".activity.MyDynamicActivity" android:label="我的动态" android:theme="@style/MyAppTheme"/>
-        <activity android:name=".activity.InfoEditActivity"  android:label="个人信息" android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".activity.MyFansActivity"
+            android:label="我的粉丝"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.MyAttentionActivity"
+            android:label="我的关注"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.MyDynamicActivity"
+            android:label="我的动态"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.InfoEditActivity"
+            android:label="修改信息"
+            android:theme="@style/MyAppTheme" />
+        <activity android:name=".activity.UserInfo"
+            android:label="个人主页"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
