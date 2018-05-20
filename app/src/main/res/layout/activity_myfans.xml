@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.dell.newscenter.myview.mainactivity.MyFansLVLayout
+    <com.example.dell.newscenter.myview.InfoActivity.MyFansLVLayout
         android:id="@+id/myFansLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight = "1dp"
         android:divider="@android:color/darker_gray" >
-    </com.example.dell.newscenter.myview.mainactivity.MyFansLVLayout>
+    </com.example.dell.newscenter.myview.InfoActivity.MyFansLVLayout>
 </android.support.constraint.ConstraintLayout>

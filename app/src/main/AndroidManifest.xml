@@ -33,27 +33,27 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.VideoPlayActivity"
+            android:name=".myview.videoplayactivity.VideoPlayActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.MyFansActivity"
+            android:name=".myview.InfoActivity.MyFansActivity"
             android:label="我的粉丝"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.MyAttentionActivity"
+            android:name=".myview.InfoActivity.MyAttentionActivity"
             android:label="我的关注"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.MyDynamicActivity"
+            android:name=".myview.InfoActivity.MyDynamicActivity"
             android:label="我的动态"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.InfoEditActivity"
+            android:name=".myview.InfoActivity.InfoEditActivity"
             android:label="修改信息"
             android:theme="@style/MyAppTheme" />
-        <activity android:name=".activity.UserInfo"
+        <activity android:name=".myview.InfoActivity.UserInfo"
             android:label="个人主页"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

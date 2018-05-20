@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.mainactivity;
+package com.example.dell.newscenter.myview.InfoActivity;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

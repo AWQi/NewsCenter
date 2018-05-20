@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_info"
-
     android:fitsSystemWindows="true"
-    tools:context=".activity.UserInfo">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+    tools:context=".myview.InfoActivity.UserInfo">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/InfoLL"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+        android:id="@+id/userInfoNameTV"
+        android:layout_below="@+id/userInfoHeadCV"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="AWQI"/>
+        <ImageView
+         android:id="@+id/userInfoGenderIV"
+         android:layout_gravity="center"
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+         android:src="@drawable/gender"/>
+    </LinearLayout>
+    <com.example.dell.newscenter.myview.base.CircleImageView
+        android:layout_above="@+id/InfoLL"
+        android:layout_alignStart="@+id/InfoLL"
+        android:id="@+id/userInfoHeadCV"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/psb" />
+
+    <TextView
+        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="收藏，粉丝，关注，追番"/>
+
+
+</RelativeLayout>

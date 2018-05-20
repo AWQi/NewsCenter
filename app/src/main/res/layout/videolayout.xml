@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.VideoPlayActivity"
+    tools:context=".myview.videoplayactivity.VideoPlayActivity"
     >
         <FrameLayout
             android:layout_width="match_parent"

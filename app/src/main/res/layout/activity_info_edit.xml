@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.InfoEditActivity">
+    tools:context=".myview.InfoActivity.InfoEditActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.activity;
+package com.example.dell.newscenter.myview.videoplayactivity;
 
 import android.app.LocalActivityManager;
 import android.graphics.Color;

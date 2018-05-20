@@ -2,7 +2,6 @@ package com.example.dell.newscenter.myview.videoplayactivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -15,24 +14,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.activity.VideoPlayActivity;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.utils.ActivityUtil;
-import com.example.dell.newscenter.utils.HttpImageDownloadUtil;
-import com.example.dell.newscenter.utils.HttpUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class RelevantreCommendationsLayout extends LinearLayout{
 private Context context = null;

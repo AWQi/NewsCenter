@@ -1,26 +1,18 @@
 package com.example.dell.newscenter.myview.videoplayactivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.activity.VideoPlayActivity;
 import com.example.dell.newscenter.bean.Commen;
-import com.example.dell.newscenter.bean.Project;
-import com.example.dell.newscenter.utils.ActivityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
