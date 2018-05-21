@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dell.newscenter.R;
+import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatInfoMenu;
@@ -26,18 +27,24 @@ private Button inforEditorBtn = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+    // 获取  intent 中的   user对象
+        Intent intent = this.getIntent();
+        final User user = (User)intent.getParcelableExtra("user");
+        boolean isEditAble = intent.getBooleanExtra("isEditAble",false);
+
 
         userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
-        ActivityUtil.loadNetImage(UserInfoActivity.this, ApplicationUtil.getUser().getHeadUrl(),userInfoHeadCV);
+        ActivityUtil.loadNetImage(UserInfoActivity.this,user.getHeadUrl(),userInfoHeadCV);
         userInfoNameTV = findViewById(R.id.userInfoNameTV);
-        userInfoNameTV.setText(ApplicationUtil.getUser().getName());
+        userInfoNameTV.setText(user.getName());
         userInfoGenderIV = findViewById(R.id.userInfoGenderIV);
-        userInfoGenderIV.setImageResource(ApplicationUtil.genderId[ApplicationUtil.getUser().getGender()]);
+        userInfoGenderIV.setImageResource(ApplicationUtil.genderId[user.getGender()]);
 
 
 
 
         inforEditorBtn = findViewById(R.id.infoEditorBtn);
+        inforEditorBtn.setClickable(isEditAble);
         inforEditorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +57,7 @@ private Button inforEditorBtn = null;
             @Override
             public void onItemMenuClick(View view, int position) {
                 Intent intent  = new Intent();
+                intent.putExtra("user",user);
                 switch (position){
                     case 0: intent.setClass(UserInfoActivity.this,MyCollectionActivity.class);break;
                     case 1: intent.setClass(UserInfoActivity.this,MyFansActivity.class);break;

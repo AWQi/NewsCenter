@@ -128,6 +128,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,UserInfoActivity.class);
+                intent.putExtra("user",ApplicationUtil.getUser());
+                intent.putExtra("isEditAble",true);
                 startActivity(intent);
             }
         });

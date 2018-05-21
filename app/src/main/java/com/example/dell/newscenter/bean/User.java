@@ -1,6 +1,9 @@
 package com.example.dell.newscenter.bean;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private int id;
     private String name ;
     private String pwd;
@@ -74,5 +77,51 @@ public class User {
                 ", headUrl='" + headUrl + '\'' +
                 ", secrecy='" + gender + '\'' +
                 '}';
+    }
+
+    protected User(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        pwd = in.readString();
+        tel = in.readString();
+        headUrl = in.readString();
+        gender = in.readInt();
+    }
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    /**
+     *  读取数据
+     */
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+     *
+     *          写入数据
+     * @param parcel
+     * @param i
+     */
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(pwd);
+        parcel.writeString(tel);
+        parcel.writeString(headUrl);
+        parcel.writeInt(gender);
+
     }
 }
