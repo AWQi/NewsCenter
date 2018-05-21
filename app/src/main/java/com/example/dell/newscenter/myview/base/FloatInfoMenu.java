@@ -104,6 +104,7 @@ public class FloatInfoMenu extends ViewGroup{
                 rotateAnimatior.setRepeatCount(Animation.INFINITE);
                 rotateAnimatior.setInterpolator(new LinearInterpolator());
                 view.startAnimation(rotateAnimatior);
+
             }
         }).start();
 
