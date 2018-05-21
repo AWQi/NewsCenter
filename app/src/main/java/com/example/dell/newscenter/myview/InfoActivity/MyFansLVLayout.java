@@ -77,13 +77,8 @@ public class MyFansLVLayout extends ListView {
                 view = convertView;
                 viewHolder = (ViewHolder) view.getTag(); // 从view中取出
             }
-            int width = ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getWidth();
-            int height =ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getHeight();
-            Glide.with(context)
-                    .load(user.getHeadUrl())
-                    .override(width,height)
-                    .fitCenter()
-                    .into(viewHolder.fansImage);
+            Log.d(TAG, "HeadUrl "+user.getHeadUrl());
+            ActivityUtil.loadNetImage(context,user.getHeadUrl(),viewHolder.fansImage);
             viewHolder.fansTextView.setText(user.getName());
             return view;
         }

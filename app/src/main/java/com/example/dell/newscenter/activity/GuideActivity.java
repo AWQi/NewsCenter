@@ -88,7 +88,7 @@ private  int widthdpi;
                 //  1、  保存曾经进入过主页面
                 CacheUtils.setBoolean(GuideActivity.this, WelcomeActivity.START_MAIN,true);
                 // 2、   跳转主页面
-                Intent intent = new Intent(GuideActivity.this,MainActivity.class);
+                Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
                 startActivity(intent);
                 //  3、 关闭引导页面
                  finish();

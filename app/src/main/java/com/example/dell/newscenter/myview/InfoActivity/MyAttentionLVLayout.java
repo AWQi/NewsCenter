@@ -16,9 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.example.dell.newscenter.R;
+import com.example.dell.newscenter.activity.MainActivity;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
+import com.example.dell.newscenter.utils.ApplicationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,12 +70,8 @@ public class MyAttentionLVLayout extends ListView{
                 view = convertView;
                 viewHolder = (ViewHolder) view.getTag();
             }
-            int width = ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getWidth();
-            int height =ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getHeight();
-            Glide.with(context).load(user.getHeadUrl())
-                    .override(width,height)
-                    .fitCenter()
-                    .into(viewHolder.myAttentionHeadCV);
+
+            ActivityUtil.loadNetImage(context,user.getHeadUrl(),viewHolder.myAttentionHeadCV);
             viewHolder.myAttentionTV.setText(user.getName());
 //            viewHolder.myAttentionBtn.setText();
             return view;

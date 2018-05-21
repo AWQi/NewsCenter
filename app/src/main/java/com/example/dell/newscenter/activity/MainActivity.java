@@ -1,5 +1,6 @@
 package com.example.dell.newscenter.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.myview.InfoActivity.InfoEditActivity;
 import com.example.dell.newscenter.myview.InfoActivity.MyAttentionActivity;
@@ -29,6 +33,8 @@ import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.PartitionsLayout;
+import com.example.dell.newscenter.utils.ActivityUtil;
+import com.example.dell.newscenter.utils.ApplicationUtil;
 
 import org.w3c.dom.Text;
 
@@ -113,9 +119,12 @@ public class MainActivity extends AppCompatActivity
          *   侧滑栏中的 head 部分 头像 钱包 二维码 关注，动态，粉丝
          *
          */
-        // 头像
+       /*   头部的layout    */
         View  navigationHeadView  = navigationView.getHeaderView(0);
-        navigationHeadView.findViewById(R.id.headImage).setOnClickListener(new View.OnClickListener() {
+        // 头像
+        ImageView headImage = navigationHeadView.findViewById(R.id.headImage);
+        ActivityUtil.loadNetImage(MainActivity.this,ApplicationUtil.getUser().getHeadUrl(),headImage);
+        headImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,UserInfoActivity.class);
@@ -124,7 +133,7 @@ public class MainActivity extends AppCompatActivity
         });
         // 昵称
         TextView nameTV = navigationHeadView.findViewById(R.id.nameTV);
-        nameTV.setText("AWQI");
+        nameTV.setText(ApplicationUtil.getUser().getName());
         // 等级
         TextView gradeTV = navigationHeadView.findViewById(R.id.gradeTV);
         gradeTV.setText("LV3");
@@ -180,6 +189,11 @@ public class MainActivity extends AppCompatActivity
          */
 //        toolbar.setLogo(R.drawable.ic_menu_send);
         setSupportActionBar(toolbar);//
+        Glide.with(MainActivity.this)
+                .load(ApplicationUtil.getUser().getHeadUrl())
+                .override(ActivityUtil.getWidth(MainActivity.this),ActivityUtil.getHeight(MainActivity.this))
+                .fitCenter()
+                .into(main_head_portrait);
         main_head_portrait.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {

@@ -22,12 +22,12 @@ public class User {
         this.tel = tel;
         this.gender = gender;
     }
-
-    //   手机号  密码登录
-    public User(String pwd, String tel) {
-        this.pwd = pwd;
-        this.tel = tel;
+    // fans  处调试使用
+    public User(String name, String headUrl) {
+        this.name = name;
+        this.headUrl = headUrl;
     }
+
     public void setTel(String tel) {
         this.tel = tel;
     }

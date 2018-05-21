@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText pwdTV;
     private View mProgressView;
     private View mLoginFormView;
-
+    private String tel ;
+    private String pwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity  {
         // Set up the login form.
         telET = findViewById(R.id.telET);
         pwdTV =  findViewById(R.id.pwdTV);
-
+        //  登录
         Button loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -66,7 +67,9 @@ public class LoginActivity extends AppCompatActivity  {
 
             }
         });
-        loginBtn.performClick();
+//        loginBtn.performClick();
+
+
         Button registerBtn = findViewById(R.id.registerBtn);
         registerBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -84,10 +87,14 @@ public class LoginActivity extends AppCompatActivity  {
      *
      */
     private void attemptLogin() {
+        //
+        tel = telET.getText().toString();
+        pwd = pwdTV.getText().toString();
         // 发送请求验证信息  返回 user 的json 字符
+
         //  解析  user 到 bean
 
-        User user  = new User(1,"AWQI","18734741443","//img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg","男");
+        User user  = new User(1,"AWQI","18734741443","http://img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg","男");
         if (user.getId()!=0){  // 若正确  则获取到id不为0
             //  存储到ApplicationUtil .user
             ApplicationUtil.setUser(user);

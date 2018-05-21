@@ -82,7 +82,7 @@ private Button  registerCommitBtn;
                 if (isRegular==null){
                     gender = ((RadioButton)registerGenderRG.getFocusedChild()).getText().toString();
                     //  封装信息到 Bean
-                    User user = new User(name,pwd,Integer.parseInt(tel),gender);
+                    User user = new User(name,pwd,tel,gender);
                     // 发送信息到 服务端
                     // 获取返回结果是否成功
 

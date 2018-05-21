@@ -14,7 +14,7 @@
         android:layout_weight="4"
         android:scaleType="centerCrop"
         android:layout_centerInParent="true"
-        android:src="@drawable/welcome" />
+        android:src="@drawable/wel" />
     <!--.XCRoundRectImageView  自定义  圆角图片-->
     <!-- android:scaleType="center"  中部裁剪填充-->
 <!--    <com.example.dell.newscenter.myview.base.XCRoundRectImageView
@@ -24,7 +24,7 @@
         android:layout_weight="4"
         android:scaleType="center"
         android:layout_centerInParent="true"
-        android:src="@drawable/welcome" />-->
+        android:src="@drawable/wel" />-->
     <TextView
         android:id="@+id/project_title"
         android:layout_width="match_parent"

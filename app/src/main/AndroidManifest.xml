@@ -68,7 +68,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="用户注册" />
+            android:label="用户登录"
+            android:theme="@style/MyAppTheme"/>
         <activity android:name=".activity.RegisterActivity"></activity>
     </application>
 

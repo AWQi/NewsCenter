@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,8 +9,6 @@
     android:layout_margin="10dp"
     可以在item 内部在添加  layout  设置margin
 -->
-
-
     <com.example.dell.newscenter.myview.base.CircleImageView
         android:id="@+id/myFansItemIV"
         android:layout_width="50dp"
@@ -20,10 +18,10 @@
         />
     <TextView
         android:id="@+id/myFansItemTV"
+        android:layout_toRightOf="@+id/myFansItemIV"
         android:layout_marginLeft="10dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:text="AWQI"/>
-</LinearLayout>
+</RelativeLayout>

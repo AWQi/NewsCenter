@@ -9,15 +9,24 @@ import android.widget.Button;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
+import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatInfoMenu;
+import com.example.dell.newscenter.utils.ActivityUtil;
+import com.example.dell.newscenter.utils.ApplicationUtil;
 
 public class UserInfoActivity extends AppCompatActivity {
+private CircleImageView  userInfoHeadCV  = null;
 private FloatInfoMenu floatInfoMenu = null;
 private Button inforEditorBtn = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+
+//        userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
+//        ActivityUtil.loadNetImage(UserInfoActivity.this, ApplicationUtil.getUser().getHeadUrl(),userInfoHeadCV);
+
+
         inforEditorBtn = findViewById(R.id.infoEditorBtn);
         inforEditorBtn.setOnClickListener(new View.OnClickListener() {
             @Override

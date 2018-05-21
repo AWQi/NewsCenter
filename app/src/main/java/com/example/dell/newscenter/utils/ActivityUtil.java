@@ -3,6 +3,11 @@ package com.example.dell.newscenter.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.example.dell.newscenter.activity.MainActivity;
 
 public class ActivityUtil {
     /**
@@ -21,4 +26,18 @@ public class ActivityUtil {
 
         return null;
     }
+   public static int  getWidth(Context context){
+       return ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getWidth();
+
+   }
+   public static  int getHeight(Context context){
+       return ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getHeight();
+   }
+   public  static  void  loadNetImage(Context context,String url,ImageView view){
+       Glide.with(context)
+               .load(url)
+               .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
+               .fitCenter()
+               .into(view);
+   }
 }
