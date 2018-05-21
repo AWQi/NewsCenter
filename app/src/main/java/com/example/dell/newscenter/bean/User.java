@@ -6,9 +6,9 @@ public class User {
     private String pwd;
     private String tel;
     private String headUrl;
-    private String gender ;
+    private int gender ;
 
-    public User(int id, String name, String tel, String headUrl, String gender) {
+    public User(int id, String name, String tel, String headUrl, int gender) {
         this.id = id;
         this.name = name;
         this.tel = tel;
@@ -16,7 +16,7 @@ public class User {
         this.gender = gender;
     }
 
-    public User(String name, String pwd, String tel, String gender) {
+    public User(String name, String pwd, String tel, int gender) {
         this.name = name;
         this.pwd = pwd;
         this.tel = tel;
@@ -43,7 +43,7 @@ public class User {
     public void setHeadUrl(String headUrl) {
         this.headUrl = headUrl;
     }
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
     public int getId() {
@@ -58,7 +58,7 @@ public class User {
     public String getHeadUrl() {
         return headUrl;
     }
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
     public String getTel() {
@@ -72,7 +72,7 @@ public class User {
                 ", pwd='" + pwd + '\'' +
                 ", tel=" + tel +
                 ", headUrl='" + headUrl + '\'' +
-                ", gender='" + gender + '\'' +
+                ", secrecy='" + gender + '\'' +
                 '}';
     }
 }

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
@@ -16,6 +18,8 @@ import com.example.dell.newscenter.utils.ApplicationUtil;
 
 public class UserInfoActivity extends AppCompatActivity {
 private CircleImageView  userInfoHeadCV  = null;
+private TextView userInfoNameTV = null;
+private ImageView userInfoGenderIV = null;
 private FloatInfoMenu floatInfoMenu = null;
 private Button inforEditorBtn = null;
     @Override
@@ -23,8 +27,14 @@ private Button inforEditorBtn = null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-//        userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
-//        ActivityUtil.loadNetImage(UserInfoActivity.this, ApplicationUtil.getUser().getHeadUrl(),userInfoHeadCV);
+        userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
+        ActivityUtil.loadNetImage(UserInfoActivity.this, ApplicationUtil.getUser().getHeadUrl(),userInfoHeadCV);
+        userInfoNameTV = findViewById(R.id.userInfoNameTV);
+        userInfoNameTV.setText(ApplicationUtil.getUser().getName());
+        userInfoGenderIV = findViewById(R.id.userInfoGenderIV);
+        userInfoGenderIV.setImageResource(ApplicationUtil.genderId[ApplicationUtil.getUser().getGender()]);
+
+
 
 
         inforEditorBtn = findViewById(R.id.infoEditorBtn);

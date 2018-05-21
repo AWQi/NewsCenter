@@ -30,7 +30,7 @@ private Button  registerCommitBtn;
  private  String rePwd = null;
  private  String getVerificationCode = null;
  private  String verificationCode = null;
- private  String gender;
+ private  int gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ private Button  registerCommitBtn;
             public void onClick(View v) {
                 String isRegular = checkInf();
                 if (isRegular==null){
-                    gender = ((RadioButton)registerGenderRG.getFocusedChild()).getText().toString();
+                    gender = registerGenderRG.indexOfChild(registerGenderRG.getFocusedChild());
                     //  封装信息到 Bean
                     User user = new User(name,pwd,tel,gender);
                     // 发送信息到 服务端
