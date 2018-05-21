@@ -3,32 +3,28 @@ package com.example.dell.newscenter.myview.base;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
 
-import com.example.dell.newscenter.R;
-
-import java.lang.annotation.Annotation;
 
 
 public class FloatInfoMenu extends ViewGroup{
     private Context context;
     private static final String TAG = "FloatInfoMenu";
     //  子控件之间的距离
-    public   final  static  int RADIUS = 400;
+    public   final  static  int RADIUS = 300;
     // 子菜单点击回调接口
     public interface  OnItemMenuClickListener{
         void  onItemMenuClick(View view, int position);// 此方法内对点击作出响应，需实例化
     }
     //  调用接口封装到方法
-    private FloatingActionsMenu.OnItemMenuClickListener onItemMenuClickListener;
-    public void setOnItemMenuClickListener(FloatingActionsMenu.OnItemMenuClickListener onItemMenuClickListener){
+    public FloatInfoMenu.OnItemMenuClickListener onItemMenuClickListener;
+    public void setOnItemMenuClickListener(FloatInfoMenu.OnItemMenuClickListener onItemMenuClickListener){
         this.onItemMenuClickListener = onItemMenuClickListener;
     }
     public FloatInfoMenu(Context context) {
@@ -92,18 +88,37 @@ public class FloatInfoMenu extends ViewGroup{
                         }
                     }
                 });
+                startChildRotationAnimation(childAt);
             }
-            this.startAnimation(getRotationAnimation());
+            startMenuRotationAnimation(this);
 
         }
     }
 
-    public  RotateAnimation getRotationAnimation(){
-        RotateAnimation rotateAnimatior = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
-        rotateAnimatior.setDuration(20000);
-        rotateAnimatior.setRepeatCount(Animation.INFINITE);
-        rotateAnimatior.setInterpolator(new LinearInterpolator());
-        return rotateAnimatior;
-    }
+    public void startMenuRotationAnimation(final View view){
+        new  Thread(new Runnable() {
+            @Override
+            public void run() {
+                RotateAnimation rotateAnimatior = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                rotateAnimatior.setDuration(20000);
+                rotateAnimatior.setRepeatCount(Animation.INFINITE);
+                rotateAnimatior.setInterpolator(new LinearInterpolator());
+                view.startAnimation(rotateAnimatior);
+            }
+        }).start();
 
+    }
+    public  void startChildRotationAnimation(final View view){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RotateAnimation rotateAnimatior = new RotateAnimation(0,-360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                rotateAnimatior.setDuration(20000);
+                rotateAnimatior.setRepeatCount(Animation.INFINITE);
+                rotateAnimatior.setInterpolator(new LinearInterpolator());
+                view.startAnimation(rotateAnimatior);
+            }
+        }).start();
+
+    }
 }

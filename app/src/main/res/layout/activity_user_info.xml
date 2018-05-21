@@ -10,6 +10,7 @@
     tools:context=".myview.InfoActivity.UserInfoActivity">
     <!--android:background="#00000000" 透明背景-->
     <Button
+        android:id="@+id/infoEditorBtn"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="#00000000"
@@ -49,33 +50,39 @@
     </LinearLayout>
 
     <com.example.dell.newscenter.myview.base.FloatInfoMenu
+        android:id="@+id/floatInfoMenu"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <com.example.dell.newscenter.myview.base.CircleImageView
+        <com.example.dell.newscenter.myview.base.CircleTextView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/psb"/>
-        <com.example.dell.newscenter.myview.base.CircleImageView
+            android:gravity="center"
+            android:text="收藏"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+        <com.example.dell.newscenter.myview.base.CircleTextView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/psb"/>
+            android:gravity="center"
+            android:text="粉丝"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
 
-        <com.example.dell.newscenter.myview.base.CircleImageView
+        <com.example.dell.newscenter.myview.base.CircleTextView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/psb" />
-
-        <com.example.dell.newscenter.myview.base.CircleImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/psb"/>
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+    <com.example.dell.newscenter.myview.base.CircleTextView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="动态"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp" />
     </com.example.dell.newscenter.myview.base.FloatInfoMenu>
-    <TextView
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="收藏，粉丝，关注，追番"/>
 
 </RelativeLayout>
