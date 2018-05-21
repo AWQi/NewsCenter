@@ -6,6 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
+
+import com.example.dell.newscenter.R;
+
+import java.lang.annotation.Annotation;
 
 
 public class FloatInfoMenu extends ViewGroup{
@@ -70,9 +79,6 @@ public class FloatInfoMenu extends ViewGroup{
                 //  layout中心与圆心的  x  y  差 确定每个圆心的 坐标
                 int x = (int) ((measureWidth/2.0)+RADIUS*Math.cos(rr));
                 int y =   (int) ((measureHeidth/2.0)+RADIUS*Math.sin(rr));
-                Log.d(TAG, "rr: "+rr);
-                Log.d(TAG, "x: "+x);
-                Log.d(TAG, "y: "+y);
                 int bottom = y+childHeight/2;
                 int top = y-childHeight/2;
                 int left = x-childWidth/2;
@@ -86,17 +92,18 @@ public class FloatInfoMenu extends ViewGroup{
                         }
                     }
                 });
-                setRotationAnimation(childAt);
             }
+            this.startAnimation(getRotationAnimation());
+
         }
     }
 
-    public  void setRotationAnimation(View view){
-
+    public  RotateAnimation getRotationAnimation(){
+        RotateAnimation rotateAnimatior = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimatior.setDuration(20000);
+        rotateAnimatior.setRepeatCount(Animation.INFINITE);
+        rotateAnimatior.setInterpolator(new LinearInterpolator());
+        return rotateAnimatior;
     }
-
-
-
-
 
 }
