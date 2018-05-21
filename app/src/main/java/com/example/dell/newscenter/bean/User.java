@@ -4,20 +4,31 @@ public class User {
     private int id;
     private String name ;
     private String pwd;
-    private int tel;
+    private String tel;
     private String headUrl;
     private String gender ;
 
-    //   手机号  密码登录
-    public User(String name, String headUrl){
+    public User(int id, String name, String tel, String headUrl, String gender) {
+        this.id = id;
         this.name = name;
+        this.tel = tel;
         this.headUrl = headUrl;
+        this.gender = gender;
     }
-    public User(String pwd, int tel) {
+
+    public User(String name, String pwd, String tel, String gender) {
+        this.name = name;
+        this.pwd = pwd;
+        this.tel = tel;
+        this.gender = gender;
+    }
+
+    //   手机号  密码登录
+    public User(String pwd, String tel) {
         this.pwd = pwd;
         this.tel = tel;
     }
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
     public void setId(int id) {
@@ -50,7 +61,7 @@ public class User {
     public String getGender() {
         return gender;
     }
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
     @Override

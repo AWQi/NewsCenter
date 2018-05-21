@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.myview.InfoActivity.InfoEditActivity;
@@ -28,6 +29,8 @@ import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.PartitionsLayout;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -107,9 +110,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         /**
-         *   侧滑栏中的 head 中的  头像 钱包 二维码 关注，动态，粉丝
+         *   侧滑栏中的 head 部分 头像 钱包 二维码 关注，动态，粉丝
          *
          */
+        // 头像
         View  navigationHeadView  = navigationView.getHeaderView(0);
         navigationHeadView.findViewById(R.id.headImage).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +122,27 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        // 昵称
+        TextView nameTV = navigationHeadView.findViewById(R.id.nameTV);
+        nameTV.setText("AWQI");
+        // 等级
+        TextView gradeTV = navigationHeadView.findViewById(R.id.gradeTV);
+        gradeTV.setText("LV3");
+        // 钱包
+        navigationHeadView.findViewById(R.id.wallet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        // 二维码
+        navigationHeadView.findViewById(R.id.qrcode).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        // 动态
         navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +150,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
         navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +158,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        // 关注
         navigationHeadView.findViewById(R.id.myAttentionEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +166,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        // 粉丝
         navigationHeadView.findViewById(R.id.myFansEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,6 +174,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
         /**
          *   上边  那一栏
          */

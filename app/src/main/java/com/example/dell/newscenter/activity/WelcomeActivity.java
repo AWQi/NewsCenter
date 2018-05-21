@@ -66,7 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent;
                 if (isStartMain){
                     //  如果进入过主页面 ，直接进入主页面
-                     intent = new Intent(WelcomeActivity.this,MainActivity.class);
+                     intent = new Intent(WelcomeActivity.this,LoginActivity.class);
                 }else {
                     //  如果没有进入过主页面，进入引导页面
                      intent = new Intent(WelcomeActivity.this,GuideActivity.class);
