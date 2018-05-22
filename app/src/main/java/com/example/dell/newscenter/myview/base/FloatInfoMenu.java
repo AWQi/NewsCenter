@@ -1,5 +1,6 @@
 package com.example.dell.newscenter.myview.base;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.view.animation.RotateAnimation;
 
 public class FloatInfoMenu extends ViewGroup{
     private Context context;
+    private ObjectAnimator menuObjectAnimator = null;
+    private ObjectAnimator childObjectAnimator = null;
     private static final String TAG = "FloatInfoMenu";
     //  子控件之间的距离
     public   final  static  int RADIUS = 300;
@@ -95,31 +98,35 @@ public class FloatInfoMenu extends ViewGroup{
         }
     }
 
-    public void startMenuRotationAnimation(final View view){
-        new  Thread(new Runnable() {
-            @Override
-            public void run() {
-                RotateAnimation rotateAnimatior = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
-                rotateAnimatior.setDuration(20000);
-                rotateAnimatior.setRepeatCount(Animation.INFINITE);
-                rotateAnimatior.setInterpolator(new LinearInterpolator());
-                view.startAnimation(rotateAnimatior);
+    public void startMenuRotationAnimation(View view){
+        /*   使用 ObjectAnimation   是切实的改变了  view 的属性   所以  其操作的控件前不可以加final  如： 开多线程 传参  */
 
-            }
-        }).start();
+                menuObjectAnimator = ObjectAnimator.ofFloat(view,"rotation",0.0f,360.0f);
+                menuObjectAnimator.setDuration(20000);
+                menuObjectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+                menuObjectAnimator.start();
 
+        /*  Rotation  只是 视觉上的改变  所以不适合 对动画过程中的控件进行操作 ，强行点击会出现卡顿*/
+
+//                RotateAnimation rotateAnimator = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+//                rotateAnimator.setDuration(20000);
+//                rotateAnimator.setRepeatCount(Animation.INFINITE);
+//                rotateAnimator.setInterpolator(new LinearInterpolator());
+//                view.startAnimation(rotateAnimator);
     }
-    public  void startChildRotationAnimation(final View view){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                RotateAnimation rotateAnimatior = new RotateAnimation(0,-360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
-                rotateAnimatior.setDuration(20000);
-                rotateAnimatior.setRepeatCount(Animation.INFINITE);
-                rotateAnimatior.setInterpolator(new LinearInterpolator());
-                view.startAnimation(rotateAnimatior);
-            }
-        }).start();
+    public  void startChildRotationAnimation( View view){
+
+                childObjectAnimator= ObjectAnimator.ofFloat(view,"rotation",0.0f,-360.0f);
+                childObjectAnimator.setDuration(20000);
+                childObjectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+                childObjectAnimator.start();
+
+
+//                RotateAnimation rotateAnimatior = new RotateAnimation(0,-360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+//                rotateAnimatior.setDuration(20000);
+//                rotateAnimatior.setRepeatCount(Animation.INFINITE);
+//                rotateAnimatior.setInterpolator(new LinearInterpolator());
+//                view.startAnimation(rotateAnimatior);
 
     }
 }
