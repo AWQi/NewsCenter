@@ -1,6 +1,5 @@
 package com.example.dell.newscenter.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,22 +20,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.myview.InfoActivity.InfoEditActivity;
-import com.example.dell.newscenter.myview.InfoActivity.MyAttentionActivity;
-import com.example.dell.newscenter.myview.InfoActivity.MyDynamicActivity;
-import com.example.dell.newscenter.myview.InfoActivity.MyFansActivity;
+import com.example.dell.newscenter.myview.InfoActivity.history.HistoryActivity;
+import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
+import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
+import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
+import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
+import com.example.dell.newscenter.myview.InfoActivity.OfflineCacheActivity;
 import com.example.dell.newscenter.myview.InfoActivity.UserInfoActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
-import com.example.dell.newscenter.myview.mainactivity.DynamicLayout;
-import com.example.dell.newscenter.myview.mainactivity.FragmentLayout;
-import com.example.dell.newscenter.myview.mainactivity.PartitionsLayout;
+import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
+import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
+import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -275,22 +273,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Intent intent = new Intent();
         int id = item.getItemId();
 
         if (id == R.id.mainpage) {
 
         } else if (id == R.id.history) {
-
+            intent.setClass(MainActivity.this, HistoryActivity.class);
         } else if (id == R.id.offlinecache) {
-
+            intent.setClass(MainActivity.this, OfflineCacheActivity.class);
         } else if (id == R.id.collection) {
-
+                intent.setClass(MainActivity.this, MyCollectionActivity.class);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
         }
-
+            startActivity(intent);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

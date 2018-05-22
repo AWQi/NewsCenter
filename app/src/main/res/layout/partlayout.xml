@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <com.example.dell.newscenter.myview.mainactivity.MyRecyclerViewPart
+  <com.example.dell.newscenter.myview.mainactivity.partitions.RecyclerViewPart
 
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       >
-  </com.example.dell.newscenter.myview.mainactivity.MyRecyclerViewPart>
+  </com.example.dell.newscenter.myview.mainactivity.partitions.RecyclerViewPart>
 </LinearLayout>

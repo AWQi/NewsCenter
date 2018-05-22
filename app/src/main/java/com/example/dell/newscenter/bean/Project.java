@@ -12,6 +12,8 @@ private String videoURL;
 private int praiseNum;
 private int commentsNum;
 private String kind;
+private int authorId;
+private String authorName;
 
     public Project() {
     }
@@ -31,6 +33,18 @@ private String kind;
         this.kind = kind;
     }
 
+    public Project(int id, String title, String imageURL, String videoURL, int praiseNum, int commentsNum, String kind, int authorId, String authorName) {
+        this.id = id;
+        this.title = title;
+        this.imageURL = imageURL;
+        this.videoURL = videoURL;
+        this.praiseNum = praiseNum;
+        this.commentsNum = commentsNum;
+        this.kind = kind;
+        this.authorId = authorId;
+        this.authorName = authorName;
+    }
+
     protected Project(Parcel in) {
         id = in.readInt();
         title = in.readString();
@@ -38,6 +52,8 @@ private String kind;
         videoURL = in.readString();
         praiseNum = in.readInt();
         commentsNum = in.readInt();
+        authorId = in.readInt();
+        authorName = in.readString();
     }
 
     public static final Creator<Project> CREATOR = new Creator<Project>() {
@@ -100,7 +116,12 @@ private String kind;
     public String getKind() {
         return kind;
     }
-
+    public int getAuthorId() {
+        return authorId;
+    }
+    public String getAuthorName() {
+        return authorName;
+    }
     @Override
     public String toString() {
         return "Project{" +

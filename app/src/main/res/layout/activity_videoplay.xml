@@ -16,7 +16,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:background="@android:color/white">
             <!-- 。。。。。。-->
-            <com.example.dell.newscenter.myview.videoplayactivity.VideoLayout
+            <com.example.dell.newscenter.myview.videoplayactivity.video.VideoLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax" />
@@ -39,7 +39,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <!--  。。。。。。-->
         <!--只能由一个直接子布局-->
-        <com.example.dell.newscenter.myview.videoplayactivity.VideoFragmentLayout
+        <com.example.dell.newscenter.myview.videoplayactivity.videofragment.VideoFragmentLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 <!--
@@ -60,10 +60,10 @@
     tools:context=".activity.VideoPlayActivity"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
-    <com.example.dell.newscenter.myview.videoplayactivity.VideoLayout
+    <com.example.dell.newscenter.myview.videoplayactivity.video.VideoLayout
     android:layout_width="match_parent"
     android:layout_height="200dp"/>
-    <com.example.dell.newscenter.myview.videoplayactivity.VideoFragmentLayout
+    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.VideoFragmentLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     </LinearLayout>-->

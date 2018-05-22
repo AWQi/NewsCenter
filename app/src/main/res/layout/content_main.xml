@@ -13,23 +13,23 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <com.example.dell.newscenter.myview.mainactivity.PartitionsLayout
+    <com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout
         android:id="@+id/partitionslayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
-    </com.example.dell.newscenter.myview.mainactivity.PartitionsLayout>
-    <com.example.dell.newscenter.myview.mainactivity.FragmentLayout
+    </com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout>
+    <com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout
         android:id="@+id/myfragmentlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
-    </com.example.dell.newscenter.myview.mainactivity.FragmentLayout>
+    </com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout>
 
-    <com.example.dell.newscenter.myview.mainactivity.DynamicLayout
+    <com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout
         android:id="@+id/dynamiclayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.example.dell.newscenter.myview.mainactivity.DynamicLayout>
+        android:layout_height="match_parent"></com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout>
 
 </FrameLayout>
 

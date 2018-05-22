@@ -1,6 +1,5 @@
 package com.example.dell.newscenter.myview.InfoActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
+import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
+import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
+import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
+import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatInfoMenu;
 import com.example.dell.newscenter.utils.ActivityUtil;

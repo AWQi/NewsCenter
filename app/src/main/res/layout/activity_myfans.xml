@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"          android:layout_width="match_parent"
     android:layout_height="match_parent">
 <!--  android:id="@+id/myFansLV"-->
-    <com.example.dell.newscenter.myview.InfoActivity.MyFansLVLayout
+    <com.example.dell.newscenter.myview.InfoActivity.fans.MyFansLVLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    </com.example.dell.newscenter.myview.InfoActivity.MyFansLVLayout>
+    </com.example.dell.newscenter.myview.InfoActivity.fans.MyFansLVLayout>
 </android.support.constraint.ConstraintLayout>

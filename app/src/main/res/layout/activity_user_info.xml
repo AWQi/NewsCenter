@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@drawable/bg_info"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
    >
     <!-- tools:context=".myview.InfoActivity.UserInfoActivity"-->
     <!--android:background="#00000000" 透明背景-->
+    <RelativeLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <Button
         android:id="@+id/infoEditorBtn"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:background="#00000000"
+        android:background="@drawable/flowborder"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="账号资料"
         android:textStyle="bold"
-        android:textSize="30sp"/>
-    <com.example.dell.newscenter.myview.base.CircleImageView
-        android:layout_centerInParent="true"
-        android:id="@+id/userInfoHeadCV"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/psb" />
+        android:textSize="20sp"/>
+
     <LinearLayout
         android:id="@+id/InfoLL"
-        android:layout_below="@+id/userInfoHeadCV"
-        android:layout_alignStart="@+id/userInfoHeadCV"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -40,7 +39,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:text="AWQI"/>
         <ImageView
          android:id="@+id/userInfoGenderIV"
@@ -49,6 +48,19 @@
          android:layout_height="40dp"
          android:src="@drawable/secrecy"/>
     </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.dell.newscenter.myview.base.CircleImageView
+            android:id="@+id/userInfoHeadCV"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:src="@drawable/psb" />
+
 
     <com.example.dell.newscenter.myview.base.FloatInfoMenu
         android:id="@+id/floatInfoMenu"
@@ -77,13 +89,15 @@
             android:text="关注"
             android:textColor="@android:color/background_dark"
             android:textSize="20sp" />
-    <com.example.dell.newscenter.myview.base.CircleTextView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="动态"
-        android:textColor="@android:color/background_dark"
-        android:textSize="20sp" />
+        <com.example.dell.newscenter.myview.base.CircleTextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="动态"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
     </com.example.dell.newscenter.myview.base.FloatInfoMenu>
 
 </RelativeLayout>
+
+</LinearLayout>

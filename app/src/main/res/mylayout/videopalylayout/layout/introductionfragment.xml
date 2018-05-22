@@ -71,10 +71,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </com.example.dell.newscenter.myview.videoplayactivity.MyRecyclerViewRelevantRecommendations>
-    <!--<com.example.dell.newscenter.myview.videoplayactivity.RelevantreCommendationsLayout-->
+    <!--<com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.RelevantreCommendationsLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content">-->
-    <!--</com.example.dell.newscenter.myview.videoplayactivity.RelevantreCommendationsLayout>-->
+    <!--</com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.RelevantreCommendationsLayout>-->
     <!--<com.example.dell.newscenter.myview.MyListView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->

@@ -60,10 +60,10 @@
     tools:context=".activity.VideoPlayActivity"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
-    <com.example.dell.newscenter.myview.videoplayactivity.VideoLayout
+    <com.example.dell.newscenter.myview.videoplayactivity.video.VideoLayout
     android:layout_width="match_parent"
     android:layout_height="200dp"/>
-    <com.example.dell.newscenter.myview.videoplayactivity.VideoFragmentLayout
+    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.VideoFragmentLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     </LinearLayout>-->

@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:panel="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:id="@+id/livefragment"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <!--SwipeRefreshLayout  下拉刷新-->
+    <!--SwipeRefreshLayout  下拉刷新-->
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/livefragment_swiperedresh"
+        android:id="@+id/projectRecyclerLayoutSwiperedresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/livefragment_recycler"
+            android:id="@+id/projectRecyclerLayoutRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
-
 </LinearLayout>
