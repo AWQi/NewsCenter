@@ -21,13 +21,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.myview.InfoActivity.history.HistoryActivity;
+
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
-import com.example.dell.newscenter.myview.InfoActivity.OfflineCacheActivity;
-import com.example.dell.newscenter.myview.InfoActivity.UserInfoActivity;
+import com.example.dell.newscenter.myview.InfoActivity.download.OfflineCacheActivity;
+import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
+import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
@@ -275,21 +276,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         Intent intent = new Intent();
         int id = item.getItemId();
-
-        if (id == R.id.mainpage) {
-
-        } else if (id == R.id.history) {
-            intent.setClass(MainActivity.this, HistoryActivity.class);
-        } else if (id == R.id.offlinecache) {
-            intent.setClass(MainActivity.this, OfflineCacheActivity.class);
-        } else if (id == R.id.collection) {
+        if (id != R.id.mainpage) {
+            if (id == R.id.history) {
+                intent.setClass(MainActivity.this, MyHistoryActivity.class);
+            } else if (id == R.id.offlinecache) {
+                intent.setClass(MainActivity.this, OfflineCacheActivity.class);
+            } else if (id == R.id.collection) {
                 intent.setClass(MainActivity.this, MyCollectionActivity.class);
-        } else if (id == R.id.nav_share) {
+            } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+            } else if (id == R.id.nav_send) {
 
-        }
+            }
             startActivity(intent);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

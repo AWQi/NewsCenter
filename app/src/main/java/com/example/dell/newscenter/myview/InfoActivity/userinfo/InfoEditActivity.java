@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.InfoActivity;
+package com.example.dell.newscenter.myview.InfoActivity.userinfo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

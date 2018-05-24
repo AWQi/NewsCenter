@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.videoplayactivity.video;
+package com.example.dell.newscenter.myview.videoplayactivity.videoplayer;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -16,6 +16,7 @@ import android.widget.VideoView;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
+import com.example.dell.newscenter.myview.InfoActivity.history.HistoryUtil;
 import com.example.dell.newscenter.utils.ActivityUtil;
 
 public class  VideoLayout extends FrameLayout {
@@ -63,6 +64,7 @@ public class  VideoLayout extends FrameLayout {
                }
                videoview.setForeground(null);
                videoview.start();
+               HistoryUtil.putHistory(context,project);
            }
        });
    }

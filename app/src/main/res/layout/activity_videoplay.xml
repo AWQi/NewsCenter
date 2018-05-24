@@ -16,7 +16,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:background="@android:color/white">
             <!-- 。。。。。。-->
-            <com.example.dell.newscenter.myview.videoplayactivity.video.VideoLayout
+            <com.example.dell.newscenter.myview.videoplayactivity.videoplayer.VideoLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax" />

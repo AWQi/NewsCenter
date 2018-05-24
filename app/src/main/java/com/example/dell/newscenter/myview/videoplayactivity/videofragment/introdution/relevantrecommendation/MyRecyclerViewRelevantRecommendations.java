@@ -42,17 +42,15 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
          *
          *   获取数据
          */
-        String imageURL = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-fe9c78d2ff4ac332-12634f97e4a417cb6125ff8173671d0b_qq";
+        String imageURL1 = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-fe9c78d2ff4ac332-12634f97e4a417cb6125ff8173671d0b_qq";
+        String imageURL2 = "http://img2.woyaogexing.com/2018/05/22/57be9001e13d4eca!400x400_big.jpg";
         String videoURL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";
-        Project project = new Project(1,"AA",imageURL,videoURL,0,0,"BB");
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
-        projectList.add(project);
+        Project project1 = new Project(1,"AA",imageURL1,videoURL,0,0,"BB");
+        projectList.add(project1);
+
+        Project project2 = new Project(2,"AA",imageURL2,videoURL,0,0,"BB");
+
+        projectList.add(project2);
     }
   class MyAdapter extends  RecyclerView.Adapter<MyAdapter.ViewHolder>{
     private List<Project> projectList;
