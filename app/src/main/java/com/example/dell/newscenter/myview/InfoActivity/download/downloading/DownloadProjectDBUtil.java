@@ -1,5 +1,7 @@
 package com.example.dell.newscenter.myview.InfoActivity.download.downloading;
 
+import android.util.Log;
+
 import com.example.dell.newscenter.bean.Project;
 
 import org.litepal.LitePal;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class DownloadProjectDBUtil {
 static final public  String PROJECT_DATEBASE_NAME = "DownloadProject";
-
+    private static final String TAG = "DownloadProjectDBUtil";
 
 // 创建数据库
     static  public void createDB(){
@@ -44,8 +46,11 @@ static  public List<DownloadProject> queryDownloadProjectED(){
      return downloadProjectINGList;
  }
  static  public DownloadProject queryOne(int id){
-        List<DownloadProject> downloadProjects = DataSupport.where("id=? ",""+id).find(DownloadProject.class);
+        List<DownloadProject> downloadProjects = DataSupport.where("id="+id).find(DownloadProject.class);
 
+        if (downloadProjects.size()>0)
         return downloadProjects.get(0);
+        else
+        return  null;
  }
 }

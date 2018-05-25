@@ -51,7 +51,7 @@ public class  VideoLayout extends FrameLayout {
    public  void  init(){
 
        videoview =  findViewById(R.id.player); //
-       mMediaController = findViewById(R.id.mymediacontroller);///
+//       mMediaController = findViewById(R.id.mymediacontroller);///
        mMediaController = new MediaController(context);
        videoview.setMediaController(mMediaController);
 //       Glide.with(context).load(project.getImageURL()).into();
@@ -78,7 +78,7 @@ public class  VideoLayout extends FrameLayout {
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);// 循环
                 isPrepared = true;
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(context, "加载完成！", Toast.LENGTH_LONG).show();
             }
         });

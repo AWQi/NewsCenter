@@ -2,7 +2,9 @@ package com.example.dell.newscenter.myview.videoplayactivity.videofragment.intro
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
+import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownloadProjectDBUtil;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownloadUtil;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
@@ -150,7 +153,27 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
      *  下载
      */
     public  void download(){
-        DownloadUtil downloadUtil = new DownloadUtil(project,activity);
+        //   检查  重复   重复就提示
+        if (DownloadProjectDBUtil.queryOne(project.getId())!=null){
+            new AlertDialog.Builder(context)
+                    .setTitle("提示")  //  ;
+                    .setMessage("该视频已下载，是否重新下载？")
+                    .setIcon(R.drawable.download)  //  图标
+                    .setNegativeButton("取消",new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DownloadUtil downloadUtil = new DownloadUtil(project,activity);
+                        }
+                    })
+                    .create()
+                    .show();
+        }
+
     }
     /**
      *  分享
