@@ -1,5 +1,7 @@
 package com.example.dell.newscenter.myview.InfoActivity.download.downloading;
 
+import com.example.dell.newscenter.bean.Project;
+
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
 
@@ -8,6 +10,8 @@ import java.util.List;
 public class DownloadProjectDBUtil {
 static final public  String PROJECT_DATEBASE_NAME = "DownloadProject";
 
+
+// 创建数据库
     static  public void createDB(){
      LitePal.getDatabase();
  }
@@ -22,7 +26,7 @@ static final public  String PROJECT_DATEBASE_NAME = "DownloadProject";
  }
  // 更新记录
  static public  void updateDownloadProject(DownloadProject downloadProject){
-     downloadProject.update((long)downloadProject.getId());
+     downloadProject.update(downloadProject.getId());
  }
  // 查询所有
 static  public List<DownloadProject> queryAllDownloadProject(){
@@ -38,5 +42,10 @@ static  public List<DownloadProject> queryDownloadProjectED(){
  static  public  List<DownloadProject> queryDownloadProjectING(){
      List<DownloadProject> downloadProjectINGList = DataSupport.where("breakPoints<contentLength").find(DownloadProject.class);
      return downloadProjectINGList;
+ }
+ static  public DownloadProject queryOne(int id){
+        List<DownloadProject> downloadProjects = DataSupport.where("id=? ",""+id).find(DownloadProject.class);
+
+        return downloadProjects.get(0);
  }
 }

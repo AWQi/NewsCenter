@@ -50,7 +50,7 @@ public class VideoPlayActivity  extends AppCompatActivity{
         }
 
         setContentView(R.layout.activity_videoplay);
-        setActionBar(null);
+//        setActionBar(null);
 
         Intent intent = getIntent();
         project = (Project)intent.getParcelableExtra("project");

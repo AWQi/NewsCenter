@@ -1,6 +1,7 @@
 package com.example.dell.newscenter.myview.InfoActivity.download.downloading;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Environment;
@@ -28,33 +29,52 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
     ProgressBar progressBar;
     private ProgressDownloader downloader;
     private File file;
+    //这里的Activity  与context 并不对应
     private  Context context;
+    private Activity activity;
     private DownloadProject downloadProject;
-    public DownloadUtil(Project project) {
+    public DownloadUtil(Project project, Activity activity) {
         this.context = ApplicationUtil.getContext();
+        this.activity = activity;
         this.downloadProject = projectToDownloadProject(project);
+        requestPermission();
         beginDownload();
     }
-    // 下载获取权限
+    // 下载获取文件系统权限
     public  void requestPermission(){
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                ||ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "没有权限: ");
-            ActivityCompat.requestPermissions(ActivityUtil.scanForActivity(context), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_STORAGE_GROUP_CODE);
+            ActivityCompat.requestPermissions(activity,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_STORAGE_GROUP_CODE);
             return;
         }
     }
-
+    /**
+     *  查重，检查是否已经下载过
+     */
+    public boolean checkDup(){
+            if (DownloadProjectDBUtil.queryOne(downloadProject.getId())!=null){
+                return  true;
+            }else {
+                return false;
+            }
+    }
     /**
      *
      *          开始下载
      */
     public void beginDownload() {
+        if (checkDup()){    }
             file = new File(downloadProject.getLocalUrl());
-            downloader = new ProgressDownloader(downloadProject.getProject().getVideoURL(), file,  this);
+            downloader = new ProgressDownloader(downloadProject.getObjProject().getVideoURL(), file,  this);
             downloader.download(0L);
             downloadProject.setStatus(DownloadProject.DOWNLOAD_ING);
             DownloadProjectDBUtil.addDownloadProject(downloadProject);
+            Toast.makeText(context,"开始下载",Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -92,7 +112,7 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
         // 文件总长只需记录一次，要注意断点续传后的contentLength只是剩余部分的长度
         if (downloadProject.getContentLength() == 0L) {
             downloadProject.setContentLength(contentLength);
-            progressBar.setMax((int) (contentLength / 1024));
+//            progressBar.setMax((int) (contentLength / 1024));
         }
     }
 
@@ -121,7 +141,8 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
         String str = JsonUtil.ObjToStr(project);
         DownloadProject downloadProject= new DownloadProject();
         downloadProject.setProject(project);
-        downloadProject.setLocalUrl(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+downloadProject.getProject().getTitle()+".mp4");
+        downloadProject.setId(project.getId());
+        downloadProject.setLocalUrl(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+downloadProject.getObjProject().getTitle()+".mp4");
         downloadProject.setTotalBytes(0);
         downloadProject.setBreakPoints(0);
         return downloadProject;

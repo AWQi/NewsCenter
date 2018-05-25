@@ -29,7 +29,7 @@ public class DownloadProject extends   DataSupport{
         this.project = JsonUtil.ObjToStr(project);
     }
 
-    public Project getProject() {
+    public Project getObjProject() {
         return JsonUtil.StrToObj(project,Project.class);
     }
 
@@ -74,6 +74,14 @@ public class DownloadProject extends   DataSupport{
 
     public void setTotalBytes(long totalBytes) {
         this.totalBytes = totalBytes;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getProject() {
+        return project;
     }
 
     @Override

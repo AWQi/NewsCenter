@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+
     <!--
     android:name=".utils.ApplicationUtil"
     指定app启动时自动初始化的一个application 可以用于获取保存一些全局的信息

@@ -47,7 +47,7 @@
         android:singleLine="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
-        android:text="titdsdsdsdsdsdadasdsadsadsadsadasdsadsdsdcsdsle"/>
+        android:text="title"/>
 
 
     <LinearLayout

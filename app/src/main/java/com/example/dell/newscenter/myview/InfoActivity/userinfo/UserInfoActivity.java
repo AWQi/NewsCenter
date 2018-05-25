@@ -31,6 +31,7 @@ private Button inforEditorBtn = null;
         setContentView(R.layout.activity_user_info);
     // 获取  intent 中的   user对象
         Intent intent = this.getIntent();
+
         final User user = (User)intent.getParcelableExtra("user");
         boolean isEditAble = intent.getBooleanExtra("isEditAble",false);
 
