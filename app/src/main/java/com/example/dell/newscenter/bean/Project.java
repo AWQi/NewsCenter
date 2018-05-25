@@ -5,15 +5,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Project implements Parcelable{
-private int id;
-private  String  title ;
-private String imageURL;
-private String videoURL;
-private int praiseNum;
-private int commentsNum;
-private String kind;
-private int authorId;
-private String authorName;
+    protected int id;
+    protected  String  title ;
+    protected String imageURL;
+    protected String videoURL;
+    protected int praiseNum;
+    protected int commentsNum;
+    protected String kind;
+    protected int authorId;
+    protected String authorName;
+    protected String authorHeadUrl;
 
     public Project() {
     }
@@ -52,8 +53,23 @@ private String authorName;
         videoURL = in.readString();
         praiseNum = in.readInt();
         commentsNum = in.readInt();
+        kind = in.readString();
         authorId = in.readInt();
         authorName = in.readString();
+        authorHeadUrl = in.readString();
+    }
+
+    public Project(int id, String title, String imageURL, String videoURL, int praiseNum, int commentsNum, String kind, int authorId, String authorName, String authorHeadUrl) {
+        this.id = id;
+        this.title = title;
+        this.imageURL = imageURL;
+        this.videoURL = videoURL;
+        this.praiseNum = praiseNum;
+        this.commentsNum = commentsNum;
+        this.kind = kind;
+        this.authorId = authorId;
+        this.authorName = authorName;
+        this.authorHeadUrl = authorHeadUrl;
     }
 
     public static final Creator<Project> CREATOR = new Creator<Project>() {
@@ -92,6 +108,9 @@ private String authorName;
             parcel.writeInt(praiseNum);
             parcel.writeInt(commentsNum);
             parcel.writeString(kind);
+            parcel.writeInt(authorId);
+            parcel.writeString(authorName);
+            parcel.writeString(authorHeadUrl);
 
     }
 
@@ -122,6 +141,10 @@ private String authorName;
     public String getAuthorName() {
         return authorName;
     }
+    public String getAuthorHeadUrl() {
+        return authorHeadUrl;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -132,6 +155,9 @@ private String authorName;
                 ", praiseNum=" + praiseNum +
                 ", commentsNum=" + commentsNum +
                 ", kind='" + kind + '\'' +
+                ", authorId=" + authorId +
+                ", authorName='" + authorName + '\'' +
+                ", authorHeadUrl='" + authorHeadUrl + '\'' +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.dell.newscenter.R;
 
-public class OfflineCacheActivity extends AppCompatActivity{
+public class DownloadActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

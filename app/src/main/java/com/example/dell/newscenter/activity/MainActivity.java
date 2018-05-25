@@ -26,7 +26,7 @@ import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActi
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
-import com.example.dell.newscenter.myview.InfoActivity.download.OfflineCacheActivity;
+import com.example.dell.newscenter.myview.InfoActivity.download.DownloadActivity;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity
             if (id == R.id.history) {
                 intent.setClass(MainActivity.this, MyHistoryActivity.class);
             } else if (id == R.id.offlinecache) {
-                intent.setClass(MainActivity.this, OfflineCacheActivity.class);
+                intent.setClass(MainActivity.this, DownloadActivity.class);
             } else if (id == R.id.collection) {
                 intent.setClass(MainActivity.this, MyCollectionActivity.class);
             } else if (id == R.id.nav_share) {

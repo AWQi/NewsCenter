@@ -31,7 +31,8 @@ public class RecommendFragment extends Fragment{
     public void getDate() {
         String imageUrl = "http://img2.woyaogexing.com/2018/05/20/9cf1a7391ce95f13!400x400_big.jpg";
         String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
-        Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS");
+        String authorHeadUrl = "http://img2.woyaogexing.com/2018/05/24/d29f005920079fc3!400x400_big.jpg";
+        Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS",1,"AWQI",authorHeadUrl);
         projectList.add(project);
         projectList.add(project);
         projectList.add(project);

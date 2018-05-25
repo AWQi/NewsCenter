@@ -6,6 +6,8 @@ import android.content.Context;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 
+import org.litepal.LitePal;
+
 public class ApplicationUtil extends Application{
     private static Context context;
     private static User user;
@@ -15,6 +17,7 @@ public class ApplicationUtil extends Application{
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        LitePal.initialize(context);
     }
     static  public Context getContext(){
         return  context;

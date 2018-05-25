@@ -14,14 +14,23 @@
         >
 
         <com.example.dell.newscenter.myview.base.CircleImageView
-            android:id="@+id/main_head_portrait"
+            android:id="@+id/introductionHeadCV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:srcCompat="@drawable/psb"
              />
+        <TextView
+            android:id="@+id/introductionAuthorNameTV"
+            android:layout_toRightOf="@+id/introductionHeadCV"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="author"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
         <Button
+            android:id="@+id/introductionAttentBtn"
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
@@ -30,7 +39,8 @@
              />
     </RelativeLayout>
     <TextView
-        android:id="@+id/introductionTitle_tv"
+        android:layout_margin="15dp"
+        android:id="@+id/introductionTitleTV"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textSize="30sp"
@@ -47,21 +57,25 @@
         android:divider="@drawable/borderline"
         android:showDividers="end">
         <ImageView
+            android:id="@+id/introductionPraiseIV"
             android:layout_marginLeft="50dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/praise"/>
         <ImageView
+            android:id="@+id/introductionCollectIV"
             android:layout_marginLeft="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/collection"/>
         <ImageView
+            android:id="@+id/introductionDownloadIV"
             android:layout_marginLeft="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/download"/>
         <ImageView
+            android:id="@+id/introductionShareIV"
             android:layout_marginLeft="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -71,12 +85,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.MyRecyclerViewRelevantRecommendations>
-    <!--<com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.RelevantreCommendationsLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-    <!--</com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.RelevantreCommendationsLayout>-->
-    <!--<com.example.dell.newscenter.myview.MyListView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-    <!--</com.example.dell.newscenter.myview.MyListView>-->
 </LinearLayout>

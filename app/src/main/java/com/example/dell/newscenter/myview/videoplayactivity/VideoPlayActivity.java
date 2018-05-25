@@ -1,6 +1,7 @@
 package com.example.dell.newscenter.myview.videoplayactivity;
 
 import android.app.LocalActivityManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.TabWidget;
 import android.widget.VideoView;
 
 import com.example.dell.newscenter.R;
+import com.example.dell.newscenter.bean.Project;
 
 public class VideoPlayActivity  extends AppCompatActivity{
     private VideoView videoView = null;
@@ -28,6 +30,7 @@ public class VideoPlayActivity  extends AppCompatActivity{
     private TabHost videotabhost = null;
     private TabWidget videotabwidget = null;
     private FrameLayout videotabcontent = null;
+    private Project project;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,13 @@ public class VideoPlayActivity  extends AppCompatActivity{
 
         setContentView(R.layout.activity_videoplay);
         setActionBar(null);
+
+        Intent intent = getIntent();
+        project = (Project)intent.getParcelableExtra("project");
+
+
+
+
         /**
          *  播放器
          *
@@ -78,5 +88,9 @@ public class VideoPlayActivity  extends AppCompatActivity{
 //        videotabhost.addTab(videotabhost.newTabSpec("tab2").setIndicator("2").setContent(R.id.videotabcontent1));
 
 
+    }
+
+    public Project getProject() {
+        return project;
     }
 }
