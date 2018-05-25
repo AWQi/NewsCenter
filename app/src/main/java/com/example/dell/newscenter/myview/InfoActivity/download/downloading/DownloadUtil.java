@@ -68,7 +68,7 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
      *          开始下载
      */
     public void beginDownload() {
-        if (checkDup()){    }
+        if (checkDup()){   }
             file = new File(downloadProject.getLocalUrl());
             downloader = new ProgressDownloader(downloadProject.getObjProject().getVideoURL(), file,  this);
             downloader.download(0L);
