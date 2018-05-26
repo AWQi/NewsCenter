@@ -34,12 +34,13 @@ import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
+import com.example.dell.newscenter.qrcode.activity.QrCodeActivity;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "QrCodeActivity";
     /*  顶部的 布局*/
     private CircleImageView main_head_portrait = null;
     private  Toolbar toolbar = null;
@@ -149,7 +150,8 @@ public class MainActivity extends AppCompatActivity
         navigationHeadView.findViewById(R.id.qrcode).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            Intent intent = new Intent(MainActivity.this, QrCodeActivity.class);
+            startActivity(intent);
             }
         });
         // 动态
