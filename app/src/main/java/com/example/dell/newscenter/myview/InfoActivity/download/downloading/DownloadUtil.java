@@ -127,7 +127,9 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
         // 注意加上断点的长度
         downloadProject.setTotalBytes(totalBytes + downloadProject.getBreakPoints()) ;
         //更新 进度条
-//        progressBar.setProgress((int) (totalBytes + breakPoints) / 1024);
+        int i = (int) downloadProject.getTotalBytes()/1024;
+        progressBar.setProgress(i);
+        Toast.makeText(applicationContext,"下载进度，"+i,Toast.LENGTH_SHORT).show();
         if (done) {
             // 切换到主线程
             Observable

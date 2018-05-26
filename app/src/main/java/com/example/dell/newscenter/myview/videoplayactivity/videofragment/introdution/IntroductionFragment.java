@@ -15,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -105,6 +108,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
+        startOnClickAnimation(v);
         switch (id){
             // 作者
             case R.id.introductionHeadCV:
@@ -129,7 +133,31 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
 
         return false;
     }
+    public  void startOnClickAnimation(View view){
+        AnimationSet set = new AnimationSet(false);
+        ScaleAnimation s1 = new ScaleAnimation(1f,1.5f,1f,1.5f);
+        s1.setDuration(500);
 
+        view.startAnimation(s1);
+        final ScaleAnimation s2 = new ScaleAnimation(1.5f,1f,1.5f,1f);
+        s2.setDuration(500);
+        s1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                    s2.start();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
     public void authorInfo(){
         /**
          *   实际根据 id 做网络请求获取  先做代替
@@ -159,7 +187,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      *  收藏
      */
     public  void collect(){
-
+        introductionCollectIV.setImageResource(R.drawable.collectioned);//收藏后换图标
     }
     /**
      *  下载
