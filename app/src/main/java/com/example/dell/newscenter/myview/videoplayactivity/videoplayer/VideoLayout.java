@@ -1,12 +1,18 @@
 package com.example.dell.newscenter.myview.videoplayactivity.videoplayer;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
@@ -14,6 +20,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.InfoActivity.history.HistoryUtil;
@@ -27,11 +36,15 @@ public class  VideoLayout extends FrameLayout {
     private ProgressBar progressBar ;
     private  Project project;
     private Boolean isPrepared = false;
-    private String url1 = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";
-    private String url2 = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";
-    private String url3 = "http://42.96.249.166/live/388.m3u8";
-    private String url4 = "http://61.129.89.191/ThroughTrain/download.html?id=4035&flag=-org-"; //音频url
-
+    private boolean isStart = false;
+    // 设置 播放开始的回调 监听器  函数
+    private PlayStartListener startListener ;
+    public interface  PlayStartListener{
+        public void start();
+    }
+    public  void setPlayStartListener(PlayStartListener startListener){
+        this.startListener = startListener;
+    }
     public VideoLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -52,34 +65,64 @@ public class  VideoLayout extends FrameLayout {
 
        videoview =  findViewById(R.id.player); //
 //       mMediaController = findViewById(R.id.mymediacontroller);///
-       mMediaController = new MediaController(context);
-       videoview.setMediaController(mMediaController);
-//       Glide.with(context).load(project.getImageURL()).into();
+       {
+            /*  设置  播放器的背景图*/
+           Glide.with(context)
+                   .load(project.getImageURL())
+                   .asBitmap()
+                   .into(new SimpleTarget<Bitmap>(
+                     ActivityUtil.getWidth(context),ActivityUtil.getWidth(context)) {
+                       @Override
+                       public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                           Drawable drawable = new BitmapDrawable(resource);
+                           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                               videoview.setForeground(drawable);
+                           }
+                       }
+                   });
+       }
        loadView(project.getVideoURL());
-       videoview.setOnClickListener(new View.OnClickListener(){
+       videoview.setOnTouchListener(new OnTouchListener() {
            @Override
-           public void onClick(View v) {
+           public boolean onTouch(View v, MotionEvent event) {
+               Log.d(TAG, "VideoView被点击: ");
+               isStart = true;
                if (!isPrepared){//  如果没加载完成就显示进度条
                    progressBar.setVisibility(View.VISIBLE);
                }
+               HistoryUtil.putHistory(context,project);
                videoview.setForeground(null);
                videoview.start();
-               HistoryUtil.putHistory(context,project);
+               /* 开始播放，再加载controller 要与onClickListener冲突*/
+               videoview.setMediaController(new MediaController(context));
+
+               return false;
            }
        });
+//       videoview.setOnClickListener(new View.OnClickListener(){
+//           @Override
+//           public void onClick(View v) {
+//
+//           }
+//       });
    }
     public void loadView(String path) {
         progressBar = this.findViewById(R.id.progressbar); //
         Uri uri = Uri.parse(path);
         videoview.setVideoURI(uri);
-        videoview.setMediaController(new MediaController(context));// 控制栏
+//        videoview.setVideoPath(path);
         videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);// 循环
                 isPrepared = true;
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "加载完成！", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "加载完成！", Toast.LENGTH_SHORT).show();
+                if (isStart){
+                    videoview.start();
+                    videoview.setMediaController(new MediaController(context));// 控制栏
+
+                }
             }
         });
         videoview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

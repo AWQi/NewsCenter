@@ -23,12 +23,11 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefresh;
     private  Context context = null;
-
     public ProjectRecyclerViewLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         LayoutInflater.from(context).inflate(R.layout.projectrecyclerviewlayout,this);
-        onCreate(null);
+        onCreate();
     }
     public void getDate(List list) {
         if (list!=null) {
@@ -42,23 +41,26 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
             projectList.clear();
             projectList.addAll(list);
             adapter.notifyDataSetChanged();
-        }else {
-            String imageUrl = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-8437bbc8e07dde51-03547c8c564c14bb2bd98c8798ce94d7_qq";
-            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
-            Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS");
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
         }
+// else {
+//            String imageUrl = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-8437bbc8e07dde51-03547c8c564c14bb2bd98c8798ce94d7_qq";
+//            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
+//            Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS");
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
+//        }
     }
-    public void onCreate(List list) {
+
+    public void onCreate( ) {
         //  请求   子控件数据
         recyclerView = this.findViewById(R.id.projectRecyclerLayoutRecycler);
         GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ProjectAdapter(projectList);
         recyclerView.setAdapter(adapter);
+
         //  声明 下拉刷新框
         swipeRefresh = this.findViewById(R.id.projectRecyclerLayoutSwiperedresh);
         swipeRefresh.setColorSchemeResources(R.color.colorAccent);

@@ -12,11 +12,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
@@ -29,7 +31,7 @@ import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
-public class IntroductionFragment extends Fragment implements View.OnClickListener{
+public class IntroductionFragment extends Fragment implements View.OnTouchListener{
     private static final String TAG = "IntroductionFragment";
     private TextView introductionTitleTV;
   private CircleImageView introductionHeadCV;
@@ -72,12 +74,19 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
         introductionTitleTV.setText(project.getTitle());
 
         /* 注册点击事件*/
-        introductionHeadCV.setOnClickListener(this);
-        introductionAttentBtn.setOnClickListener(this);
-        introductionPraiseIV.setOnClickListener(this);
-        introductionCollectIV .setOnClickListener(this);
-        introductionDownloadIV.setOnClickListener(this);
-        introductionShareIV.setOnClickListener(this);
+//        introductionHeadCV.setOnClickListener(this);
+//        introductionAttentBtn.setOnClickListener(this);
+//        introductionPraiseIV.setOnClickListener(this);
+//        introductionCollectIV .setOnClickListener(this);
+//        introductionDownloadIV.setOnClickListener(this);
+//        introductionShareIV.setOnClickListener(this);
+
+        introductionHeadCV.setOnTouchListener(this);
+        introductionAttentBtn.setOnTouchListener(this);
+        introductionPraiseIV.setOnTouchListener(this);
+        introductionCollectIV .setOnTouchListener(this);
+        introductionDownloadIV.setOnTouchListener(this);
+        introductionShareIV.setOnTouchListener(this);
 
 
 
@@ -92,32 +101,35 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
         project = (Project)intent.getParcelableExtra("project");
     }
+
     @Override
-    public void onClick(View v) {
+    public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
         switch (id){
-                // 作者
+            // 作者
             case R.id.introductionHeadCV:
                 authorInfo();break;
-                //关注
+            //关注
             case R.id.introductionAttentBtn:
                 attent();break;
-                // 点赞
+            // 点赞
             case R.id.introductionPraiseIV:
                 praise();break;
-                //收藏
+            //收藏
             case R.id.introductionCollectIV:
                 collect();break;
-                //下载
+            //下载
             case R.id.introductionDownloadIV:
-               download();break;
-                //分享
+                download();break;
+            //分享
             case R.id.introductionShareIV:
                 share();break;
 
         }
 
+        return false;
     }
+
     public void authorInfo(){
         /**
          *   实际根据 id 做网络请求获取  先做代替
@@ -153,6 +165,7 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
      *  下载
      */
     public  void download(){
+        Toast.makeText(context,"检查下载数据",Toast.LENGTH_SHORT).show();
         //   检查  重复   重复就提示
         if (DownloadProjectDBUtil.queryOne(project.getId())!=null){
             new AlertDialog.Builder(context)
@@ -167,7 +180,13 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            DownloadUtil downloadUtil = new DownloadUtil(project,activity);
+
+                            try {
+                                DownloadUtil downloadUtil = new DownloadUtil(project,activity);
+                            } catch (Exception e) {
+                                Toast.makeText(context,"下载出错",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
                         }
                     })
                     .create()
@@ -181,4 +200,5 @@ public class IntroductionFragment extends Fragment implements View.OnClickListen
     public void share(){
 
     }
+
 }

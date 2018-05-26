@@ -79,7 +79,7 @@
             android:layout_marginLeft="40dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_menu_share"/>
+            android:src="@drawable/share"/>
     </LinearLayout>
     <com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.MyRecyclerViewRelevantRecommendations
         android:layout_width="match_parent"
