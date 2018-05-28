@@ -54,9 +54,7 @@ dependencies {
     //  okhttp
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
     //  bilibili 开源弹幕库
-    implementation'org.litepal.android:core:1.4.1'//  latepal  操作数据库
-
-
+    implementation 'org.litepal.android:core:1.4.1'//  latepal  操作数据库
 
     //    文件断点下载  依赖包
     // retrofit, A type-safe REST client for Android and Java
@@ -72,6 +70,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'junit:junit:4.12'
     implementation 'org.greenrobot:eventbus:3.0.0'
-    annotationProcessor  'org.greenrobot:eventbus-annotation-processor:3.0.1'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
 
 }

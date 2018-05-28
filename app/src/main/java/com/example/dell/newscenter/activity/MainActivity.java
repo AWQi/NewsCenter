@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.qrcode.activity.QrCodeActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 
@@ -28,6 +28,7 @@ import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionAc
 import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
 import com.example.dell.newscenter.myview.InfoActivity.download.DownloadActivity;
+import com.example.dell.newscenter.myview.InfoActivity.qrcode.QrCodeActivity;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;

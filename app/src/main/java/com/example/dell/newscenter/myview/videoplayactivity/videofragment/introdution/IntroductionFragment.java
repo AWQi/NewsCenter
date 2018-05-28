@@ -3,9 +3,11 @@ package com.example.dell.newscenter.myview.videoplayactivity.videofragment.intro
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.AsyncQueryHandler;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
@@ -29,10 +32,14 @@ import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownloadProjectDBUtil;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownloadUtil;
+import com.example.dell.newscenter.myview.InfoActivity.qrcode.QrBean;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.JsonUtil;
+import com.google.zxing.WriterException;
+import com.qrcode.zxing.decoding.zxing.encoding.EncodingHandler;
 
 public class IntroductionFragment extends Fragment implements View.OnTouchListener{
     private static final String TAG = "IntroductionFragment";
@@ -47,6 +54,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
   private Activity activity;
   private Context context;
   private Project project = null;
+  private ImageView shareQrIV;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity = getActivity();
         context = getContext();
@@ -69,6 +77,8 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
         introductionCollectIV = activity.findViewById(R.id.introductionCollectIV);
         introductionDownloadIV = activity.findViewById(R.id.introductionDownloadIV);
         introductionShareIV = activity.findViewById(R.id.introductionShareIV);
+        shareQrIV = activity.findViewById(R.id.shareQrIV);
+
         /*  设置要展示的信息*/
         Glide.with(context).load(project.getAuthorHeadUrl())
                 .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
@@ -109,6 +119,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
         startOnClickAnimation(v);
+
         switch (id){
             // 作者
             case R.id.introductionHeadCV:
@@ -227,6 +238,30 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      */
     public void share(){
 
+        try {
+            // 填充图片
+            String  projectInfo = JsonUtil.ObjToStr(project);
+            QrBean qrBean = new QrBean(QrBean.PROJECT,projectInfo);
+            String qrStr = JsonUtil.ObjToStr(qrBean);
+            Bitmap qrBitmap = EncodingHandler.createQRCode(qrStr,800);
+            shareQrIV.setImageBitmap(qrBitmap);
+            // 设置动画
+            AlphaAnimation alphaAnimation = new AlphaAnimation(0,1);
+            alphaAnimation.setDuration(500);
+            shareQrIV.startAnimation(alphaAnimation);
+            // 可见
+            shareQrIV.setVisibility(View.VISIBLE);
+            // 点击后关闭
+            shareQrIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shareQrIV.setVisibility(View.GONE);
+                }
+            });
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
 }

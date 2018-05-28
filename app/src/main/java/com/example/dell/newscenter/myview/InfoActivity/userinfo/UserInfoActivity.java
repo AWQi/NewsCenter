@@ -25,6 +25,7 @@ private TextView userInfoNameTV = null;
 private ImageView userInfoGenderIV = null;
 private FloatInfoMenu floatInfoMenu = null;
 private Button inforEditorBtn = null;
+private  boolean  isEditAble;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ private Button inforEditorBtn = null;
 
         final User user = (User)intent.getParcelableExtra("user");
         boolean isEditAble = intent.getBooleanExtra("isEditAble",false);
+
 
 
         userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
@@ -47,14 +49,27 @@ private Button inforEditorBtn = null;
 
 
         inforEditorBtn = findViewById(R.id.infoEditorBtn);
-        inforEditorBtn.setClickable(isEditAble);
-        inforEditorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserInfoActivity.this,InfoEditActivity.class);
-                startActivity(intent);
-            }
-        });
+        if (isEditAble){
+            inforEditorBtn.setText("编辑资料");
+            inforEditorBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(UserInfoActivity.this,InfoEditActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else {
+            inforEditorBtn.setText("关注");
+            inforEditorBtn.setClickable(isEditAble);
+            inforEditorBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //  发送网络请求  关注
+                    inforEditorBtn.setText("取消关注");
+                }
+            });
+        }
+
         floatInfoMenu = findViewById(R.id.floatInfoMenu);
         floatInfoMenu.setOnItemMenuClickListener(new FloatInfoMenu.OnItemMenuClickListener(){
             @Override

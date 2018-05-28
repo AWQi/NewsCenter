@@ -17,10 +17,10 @@
         android:layout_height="match_parent">
     <Button
         android:id="@+id/infoEditorBtn"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/flowborder"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="账号资料"
@@ -31,6 +31,7 @@
         android:id="@+id/InfoLL"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView

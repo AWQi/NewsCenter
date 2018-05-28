@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.google.zxing.activity.CaptureActivity"
+        <activity android:name="CaptureActivity"
                   android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
