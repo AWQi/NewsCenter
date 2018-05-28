@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qrcode.activity.QrCodeActivity;
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 
@@ -34,7 +35,7 @@ import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
-import com.example.dell.newscenter.qrcode.activity.QrCodeActivity;
+
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("user",ApplicationUtil.getUser());
                 intent.putExtra("isEditAble",true);
                 startActivity(intent);
+
             }
         });
         // 昵称

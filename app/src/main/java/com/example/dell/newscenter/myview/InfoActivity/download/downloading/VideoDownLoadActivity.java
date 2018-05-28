@@ -24,7 +24,7 @@
 //
 //public class VideoDownLoadActivity extends AppCompatActivity implements ProgressResponseBody.ProgressListener,View.OnClickListener{
 //    public static final  int  REQUEST_STORAGE_GROUP_CODE = 1;
-//    public static final String TAG = "MainActivity";
+//    public static final String TAG = "QrCodeActivity";
 //    public static final String PACKAGE_URL = "http://gdown.baidu.com/data/wisegame/df65a597122796a4/weixin_821.apk";
 //    ProgressBar progressBar;
 //    private Button downloadButton;

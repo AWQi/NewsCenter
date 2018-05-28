@@ -12,15 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dell.newscenter.R;
 import com.google.zxing.WriterException;
 import com.google.zxing.activity.CaptureActivity;
 import com.google.zxing.encoding.EncodingHandler;
-import com.qrcodescan.R;
+
 
 import butterknife.ButterKnife;
 
-public class QrActivity extends AppCompatActivity implements View.OnClickListener{
-    private static final String TAG = "QrActivity";
+public class QrCodeActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = "QrCodeActivity";
 
     Button openQrCodeScan ;
 
@@ -40,7 +41,7 @@ public class QrActivity extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr);
+        setContentView(R.layout.qrcode_activity_main);
 
 
          openQrCodeScan = findViewById(R.id.openQrCodeScan);
@@ -54,14 +55,22 @@ public class QrActivity extends AppCompatActivity implements View.OnClickListene
         ButterKnife.bind(this);
     }
 
+    /**
+     *
+     *    生成 二维码
+     *
+     * @param view
+     */
+
 //    @OnClick({R.id.openQrCodeScan, R.id.CreateQrCode})
+    @Override
     public void onClick(View view) {
         Log.d(TAG, "onClick: ");
         switch (view.getId()) {
             case R.id.openQrCodeScan:
                 //打开二维码扫描界面
 //                if(CommonUtil.isCameraCanUse()){
-                    Intent intent = new Intent(QrActivity.this, CaptureActivity.class);
+                    Intent intent = new Intent(QrCodeActivity.this, CaptureActivity.class);
                     startActivityForResult(intent, REQUEST_CODE);
 //                }else{
 //                    Toast.makeText(this,"请打开此应用的摄像头权限！",Toast.LENGTH_SHORT).show();
@@ -72,7 +81,7 @@ public class QrActivity extends AppCompatActivity implements View.OnClickListene
                     Log.d(TAG, "onClick: "+CreateQrCode);
                     //获取输入的文本信息
                     String str = text.getText().toString().trim();
-                    Log.d(TAG, "文本信息: "+str);
+                     Log.d(TAG, "文本信息: "+str);
                     if(str != null && !"".equals(str.trim())){
                         //根据输入的文本生成对应的二维码并且显示出来
                         Bitmap mBitmap = EncodingHandler.createQRCode(text.getText().toString(), 500);
@@ -92,6 +101,11 @@ public class QrActivity extends AppCompatActivity implements View.OnClickListene
         }
     }
 
+    /**
+     *
+     *          获取扫描结果
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
