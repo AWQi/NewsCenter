@@ -43,8 +43,7 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
         this.activity = activity;
         this.downloadProject = projectToDownloadProject(project);
         requestPermission();
-
-            beginDownload();
+        beginDownload();
     }
     // 下载获取文件系统权限
     public  void requestPermission(){
@@ -128,8 +127,9 @@ public class DownloadUtil implements ProgressResponseBody.ProgressListener{
         downloadProject.setTotalBytes(totalBytes + downloadProject.getBreakPoints()) ;
         //更新 进度条
         int i = (int) downloadProject.getTotalBytes()/1024;
-        progressBar.setProgress(i);
-        Toast.makeText(applicationContext,"下载进度，"+i,Toast.LENGTH_SHORT).show();
+//        progressBar.setProgress(i);
+//        Toast.makeText(applicationContext,"下载进度，"+i,Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "下载进度: "+i);
         if (done) {
             // 切换到主线程
             Observable

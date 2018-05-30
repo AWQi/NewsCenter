@@ -25,6 +25,7 @@ import com.example.dell.newscenter.R;
 
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
+import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownLoadProjectActivity;
 import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
 import com.example.dell.newscenter.myview.InfoActivity.download.DownloadActivity;
@@ -282,15 +283,16 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent();
         int id = item.getItemId();
         if (id != R.id.mainpage) {
-            if (id == R.id.history) {
+            if (id == R.id.history) {            //  历史记录
                 intent.setClass(MainActivity.this, MyHistoryActivity.class);
-            } else if (id == R.id.offlinecache) {
-                intent.setClass(MainActivity.this, DownloadActivity.class);
-            } else if (id == R.id.collection) {
+            } else if (id == R.id.offlinecache) { //离线缓存
+//                intent.setClass(MainActivity.this, DownloadActivity.class);
+                intent.setClass(MainActivity.this, DownLoadProjectActivity.class);
+            } else if (id == R.id.collection) {   //我的收藏
                 intent.setClass(MainActivity.this, MyCollectionActivity.class);
-            } else if (id == R.id.nav_share) {
+            } else if (id == R.id.nav_share) {   // 分享
 
-            } else if (id == R.id.nav_send) {
+            } else if (id == R.id.nav_send) {    // 发送
 
             }
             startActivity(intent);

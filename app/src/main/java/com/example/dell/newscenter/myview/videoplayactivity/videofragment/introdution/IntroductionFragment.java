@@ -230,6 +230,9 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
                     })
                     .create()
                     .show();
+        }else {
+            DownloadUtil downloadUtil = new DownloadUtil(project,activity);
+
         }
 
     }

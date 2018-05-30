@@ -1,13 +1,11 @@
 package com.example.dell.newscenter.myview.InfoActivity.download;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,92 +28,92 @@ import java.util.List;
 public class DownloadActivity extends AppCompatActivity{
     private static final String TAG = "ProjectRecyclerViewLayout";
     private List<DownloadProject> projectList = new ArrayList<>();
-    private MyAdapter adapter;
+//    private MyAdapter adapter;
     private RecyclerView recyclerView;
     private Context context = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
-        getDate();
-        //  请求   子控件数据
-        recyclerView = this.findViewById(R.id.downloadRV);
-        GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new MyAdapter(projectList);
-        recyclerView.setAdapter(adapter);
+//        getDate();
+//        //  请求   子控件数据
+//        recyclerView = this.findViewById(R.id.downloadRV);
+//        GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+//        recyclerView.setLayoutManager(layoutManager);
+//        adapter = new MyAdapter(projectList);
+//        recyclerView.setAdapter(adapter);
     }
 
-    /**
-     *   从数据库获取  已下载文件信息
-     */
-    public void getDate() {
-        projectList = DownloadProjectDBUtil.queryDownloadProjectED();
-    }
-
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
-        private Context context;
-        private List<DownloadProject> projectList;
-
-        public MyAdapter(List<DownloadProject> projectList) {
-            this.projectList = projectList;
-        }
-
-        @NonNull
-        @Override
-        public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            if (context==null){
-                context = parent.getContext();
-            }
-            View view = LayoutInflater.from(context).inflate(R.layout.download_project_item,parent,false);
-            return new MyAdapter.ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
-            final DownloadProject  downloadProject = projectList.get(position);
-            final Project project = downloadProject.getObjProject();
-            Glide.with(context).load(project.getImageURL())
-                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
-                    .fitCenter()
-                    .into(holder.downloadProjectItemImageIV);
-
-            holder.downloadProjectItemTitleTV.setText(project.getTitle());
-            holder.downloadProjectItemAuthorTV.setText(project.getAuthorName());
-//            holder.downloadProjectItemSizeTV.setText(downloadProject.get);
-            holder.downloadProjectItemDetailsTV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, VideoPlayActivity.class);
-                    intent.putExtra("project",project);
-                    ActivityUtil.scanForActivity(context).startActivity(intent);
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return projectList.size();
-        }
-
-        class  ViewHolder extends  RecyclerView.ViewHolder{
-            View view;
-            ImageView downloadProjectItemImageIV;
-            TextView downloadProjectItemTitleTV;
-            TextView downloadProjectItemAuthorTV;
-            TextView downloadProjectItemSizeTV;
-            TextView downloadProjectItemDetailsTV;
-            public ViewHolder(View view) {
-                super(view);
-                this.view = view;
-                downloadProjectItemImageIV = view.findViewById(R.id.downloadProjectItemImageIV);
-                downloadProjectItemTitleTV = view.findViewById(R.id.downloadProjectItemTitleTV);
-                downloadProjectItemAuthorTV = view.findViewById(R.id.downloadProjectItemAuthorTV);
-                downloadProjectItemSizeTV = view.findViewById(R.id.downloadProjectItemSizeTV);
-                downloadProjectItemDetailsTV = view.findViewById(R.id.downloadProjectItemDetailsTV);
-            }
-        }
-
-    }
+//    /**
+//     *   从数据库获取  已下载文件信息
+//     */
+//    public void getDate() {
+//        projectList = DownloadProjectDBUtil.queryDownloadProjectED();
+//    }
+//
+//    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+//        private Context context;
+//        private List<DownloadProject> projectList;
+//
+//        public MyAdapter(List<DownloadProject> projectList) {
+//            this.projectList = projectList;
+//        }
+//
+//        @NonNull
+//        @Override
+//        public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//            if (context==null){
+//                context = parent.getContext();
+//            }
+//            View view = LayoutInflater.from(context).inflate(R.layout.downloaded_project_item,parent,false);
+//            return new MyAdapter.ViewHolder(view);
+//        }
+//
+//        @Override
+//        public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+//            final DownloadProject  downloadProject = projectList.get(position);
+//            final Project project = downloadProject.getObjProject();
+//            Glide.with(context).load(project.getImageURL())
+//                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
+//                    .fitCenter()
+//                    .into(holder.downloadProjectItemImageIV);
+//
+//            holder.downloadProjectItemTitleTV.setText(project.getTitle());
+//            holder.downloadProjectItemAuthorTV.setText(project.getAuthorName());
+////            holder.downloadProjectItemSizeTV.setText(downloadProject.get);
+//            holder.downloadProjectItemDetailsTV.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(context, VideoPlayActivity.class);
+//                    intent.putExtra("project",project);
+//                    ActivityUtil.scanForActivity(context).startActivity(intent);
+//                }
+//            });
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return projectList.size();
+//        }
+//
+//        class  ViewHolder extends  RecyclerView.ViewHolder{
+//            View view;
+//            ImageView downloadProjectItemImageIV;
+//            TextView downloadProjectItemTitleTV;
+//            TextView downloadProjectItemAuthorTV;
+//            TextView downloadProjectItemSizeTV;
+//            TextView downloadProjectItemDetailsTV;
+//            public ViewHolder(View view) {
+//                super(view);
+//                this.view = view;
+//                downloadProjectItemImageIV = view.findViewById(R.id.downloadProjectItemImageIV);
+//                downloadProjectItemTitleTV = view.findViewById(R.id.downloadProjectItemTitleTV);
+//                downloadProjectItemAuthorTV = view.findViewById(R.id.downloadProjectItemAuthorTV);
+//                downloadProjectItemSizeTV = view.findViewById(R.id.downloadProjectItemSizeTV);
+//                downloadProjectItemDetailsTV = view.findViewById(R.id.downloadProjectItemDetailsTV);
+//            }
+//        }
+//
+//    }
 
 }

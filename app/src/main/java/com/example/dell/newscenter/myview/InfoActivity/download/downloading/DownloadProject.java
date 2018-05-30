@@ -33,8 +33,6 @@ public class DownloadProject extends   DataSupport{
         return JsonUtil.StrToObj(project,Project.class);
     }
 
-
-
     public void setLocalUrl(String localUrl) {
         this.localUrl = localUrl;
     }
