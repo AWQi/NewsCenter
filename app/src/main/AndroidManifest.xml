@@ -109,7 +109,12 @@
 
         <service android:name=".myview.InfoActivity.download.service.DownloadService" />
 
-        <activity android:name=".myview.videoplayactivity.videoplayer.FullScreenPlayActivity"></activity>
+
+        <!--  全屏      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"-->
+        <activity android:name=".myview.videoplayactivity.videoplayer.FullScreenPlayActivity"
+            android:screenOrientation="landscape"
+           android:theme="@style/NoTitleFullscreen"
+            ></activity>
     </application>
 
 </manifest>

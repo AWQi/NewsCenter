@@ -21,6 +21,7 @@ import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownloadProject;
 import com.example.dell.newscenter.myview.videoplayactivity.VideoPlayActivity;
+import com.example.dell.newscenter.myview.videoplayactivity.videoplayer.FullScreenPlayActivity;
 import com.example.dell.newscenter.utils.ActivityUtil;
 
 import java.util.List;
@@ -102,7 +103,7 @@ public class DownloadProjectRVAdapter extends RecyclerView.Adapter{
             }
         }else if(holder instanceof DownloadedHolder) {
             DownloadedHolder h = (DownloadedHolder) holder;
-            DownloadProject downloadProject =  downloadedList.get(position-1);
+            final DownloadProject downloadProject =  downloadedList.get(position-1);
             final Project project = downloadProject.getObjProject();
             Glide.with(context).load(project.getImageURL())
                     .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
@@ -121,7 +122,9 @@ public class DownloadProjectRVAdapter extends RecyclerView.Adapter{
             h.view.setOnClickListener(new View.OnClickListener() { //  点击整个布局，直接播放
                  @Override
                 public void onClick(View v) {
-
+                     Intent intent = new Intent(context, FullScreenPlayActivity.class);
+                     intent.putExtra("url",downloadProject.getLocalUrl());
+                     context.startActivity(intent);
                 }
             });
         }else if(holder instanceof DownloadingHolder){ //正在下载页
