@@ -72,20 +72,20 @@ public class DownloadActivity extends AppCompatActivity{
 //        @Override
 //        public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
 //            final DownloadProject  downloadProject = projectList.get(position);
-//            final Project project = downloadProject.getObjProject();
-//            Glide.with(context).load(project.getImageURL())
+//            final Project studio_item = downloadProject.getObjProject();
+//            Glide.with(context).load(studio_item.getImageURL())
 //                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
 //                    .fitCenter()
 //                    .into(holder.downloadProjectItemImageIV);
 //
-//            holder.downloadProjectItemTitleTV.setText(project.getTitle());
-//            holder.downloadProjectItemAuthorTV.setText(project.getAuthorName());
+//            holder.downloadProjectItemTitleTV.setText(studio_item.getTitle());
+//            holder.downloadProjectItemAuthorTV.setText(studio_item.getAuthorName());
 ////            holder.downloadProjectItemSizeTV.setText(downloadProject.get);
 //            holder.downloadProjectItemDetailsTV.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
 //                    Intent intent = new Intent(context, VideoPlayActivity.class);
-//                    intent.putExtra("project",project);
+//                    intent.putExtra("studio_item",studio_item);
 //                    ActivityUtil.scanForActivity(context).startActivity(intent);
 //                }
 //            });

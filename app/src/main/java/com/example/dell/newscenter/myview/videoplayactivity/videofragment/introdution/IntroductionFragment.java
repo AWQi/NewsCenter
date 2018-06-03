@@ -3,7 +3,6 @@ package com.example.dell.newscenter.myview.videoplayactivity.videofragment.intro
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.AsyncQueryHandler;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,7 +58,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
         context = getContext();
         //  请求   子控件数据
         //    加载fragment
-        View rootView  = inflater.inflate(R.layout.introductionfragment,container,false);
+        View rootView  = inflater.inflate(R.layout.introduction_fragment,container,false);
         return rootView;
     }
 
@@ -107,12 +105,12 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
     }
     /**
      *
-     *   获取  project
+     *   获取  studio_item
      *       由mainactivity ,或其他 videoActivity 传送，  可以由context 获取intent 从而获取参数
      */
     public void getDate(){
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
-        project = (Project)intent.getParcelableExtra("project");
+        project = (Project)intent.getParcelableExtra("studio_item");
     }
 
     @Override

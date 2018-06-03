@@ -62,7 +62,7 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
       @NonNull
       @Override
       public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-          View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.relevantrecommendationsitem,parent,false);
+          View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.relevant_recommendations_item,parent,false);
           ViewHolder holder = new ViewHolder(view);
           return holder;
       }
@@ -77,7 +77,7 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
               public void onClick(View view) {
                   Project project = projectList.get(holder.getAdapterPosition());
                   Intent intent = new Intent(context, VideoPlayActivity.class);
-                  intent.putExtra("project",project);
+                  intent.putExtra("studio_item",project);
                   ActivityUtil.scanForActivity(context).startActivity(intent);
               }
           });

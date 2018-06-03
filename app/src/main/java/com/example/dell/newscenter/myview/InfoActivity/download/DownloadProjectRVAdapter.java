@@ -115,7 +115,7 @@ public class DownloadProjectRVAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, VideoPlayActivity.class);
-                    intent.putExtra("project",project);
+                    intent.putExtra("studio_item",project);
                     context.startActivity(intent);
                 }
             });

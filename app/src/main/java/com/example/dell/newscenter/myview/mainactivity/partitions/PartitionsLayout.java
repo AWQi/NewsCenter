@@ -12,6 +12,6 @@ public class PartitionsLayout extends LinearLayout{
 
     public PartitionsLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.partlayout,this);
+        LayoutInflater.from(context).inflate(R.layout.part_layout,this);
     }
 }

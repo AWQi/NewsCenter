@@ -21,7 +21,7 @@ public class RecommendFragment extends Fragment{
     private  View rootView;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //    加载fragment
-        rootView  = inflater.inflate(R.layout.recommendfragment,container,false);
+        rootView  = inflater.inflate(R.layout.recommend_fragment,container,false);
         return rootView;
     }
     /**
@@ -40,7 +40,7 @@ public class RecommendFragment extends Fragment{
     }
     /**
      *
-     *  动态改变  fragment  recycler  添加  project
+     *  动态改变  fragment  recycler  添加  studio_item
      * @param savedInstanceState
      */
     @Override

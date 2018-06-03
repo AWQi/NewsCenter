@@ -26,7 +26,7 @@ public class CommenLayout extends LinearLayout{
         public CommenLayout(final Context context, @Nullable AttributeSet attrs) {
             super(context, attrs);
             this.context = context;
-            LayoutInflater.from(context).inflate(R.layout.commenlayout,this);// 获取layout
+            LayoutInflater.from(context).inflate(R.layout.commen_layout,this);// 获取layout
             listView = findViewById(R.id.commen_lv);
             initProject();
             myAdapter = new MyAdapter(context,R.layout.commenitem,commenList);// 获取item
@@ -47,7 +47,7 @@ public class CommenLayout extends LinearLayout{
             /**
              *
              *   获取数据
-             *         根据  project 查询  commen
+             *         根据  studio_item 查询  commen
              */
             String imageURL = "http://f.hiphotos.baidu.com/image/pic/item/35a85edf8db1cb13f423dfa0d154564e92584b3f.jpg";
             String videoURL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";

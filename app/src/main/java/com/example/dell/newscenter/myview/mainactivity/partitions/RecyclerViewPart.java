@@ -65,7 +65,7 @@ public class RecyclerViewPart extends RecyclerView {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.partitem, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.part_item, parent, false);
 
 //            //设置大小随机
 //            Random random = new  Random();

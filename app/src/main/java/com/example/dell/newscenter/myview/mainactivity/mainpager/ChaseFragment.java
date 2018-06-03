@@ -19,6 +19,6 @@ public void setSource(int source) {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.chasefragment,container,false);
+        return inflater.inflate(R.layout.chase_fragment,container,false);
     }
 }

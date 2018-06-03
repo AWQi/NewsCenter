@@ -1,6 +1,5 @@
 package com.example.dell.newscenter.myview.mainactivity.mainpager.live;
 
-
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.hardware.Camera;
@@ -12,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.example.dell.newscenter.R;
 import com.github.faucamp.simplertmp.RtmpHandler;

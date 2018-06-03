@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/newlogo"
+            android:src="@drawable/logo"
             android:layout_width="120dp"
             android:layout_height="80dp" />
         <TextView

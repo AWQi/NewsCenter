@@ -82,7 +82,7 @@ private Bitmap qrBitmap = null;
                  startActivity(intent);
              }else if(scanQrBean.kind==QrBean.PROJECT){
                  Intent intent = new Intent(QrCodeActivity.this, VideoPlayActivity.class);
-                 intent.putExtra("project",(Project)JsonUtil.StrToObj(scanQrBean.content,Project.class));
+                 intent.putExtra("studio_item",(Project)JsonUtil.StrToObj(scanQrBean.content,Project.class));
                  startActivity(intent);
             }else{
                  Log.d(TAG, "二维码解析出错: ");

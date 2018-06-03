@@ -31,10 +31,10 @@ private MyAdapter myAdapter = null;
     public RelevantreCommendationsLayout(final Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.relevantrecommendationslayout,this);// 获取layout
+        LayoutInflater.from(context).inflate(R.layout.relevant_recommendations_layout,this);// 获取layout
         listView = findViewById(R.id.relevantrecommendations_lv);
         initProject();
-        myAdapter = new MyAdapter(context,R.layout.relevantrecommendationsitem,projectList);// 获取item
+        myAdapter = new MyAdapter(context,R.layout.relevant_recommendations_item,projectList);// 获取item
         listView.setAdapter(myAdapter);
         //  设置点击监听器
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,7 +42,7 @@ private MyAdapter myAdapter = null;
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Project project = projectList.get(i);
                 Intent intent = new Intent(context, VideoPlayActivity.class);
-                intent.putExtra("project",project);
+                intent.putExtra("studio_item",project);
                 ActivityUtil.scanForActivity(context).startActivity(intent);
             }
         });

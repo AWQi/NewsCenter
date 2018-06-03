@@ -49,7 +49,7 @@ import java.nio.channels.FileLock;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "QrCodeActivity";
+    private static final String TAG = "NewCenter";
     /*  顶部的 布局*/
     private CircleImageView main_head_portrait = null;
     private  Toolbar toolbar = null;
@@ -104,9 +104,16 @@ public class MainActivity extends AppCompatActivity
             public void onItemMenuClick(View view, int position) {
                 int id = view.getId();
                 switch (id){
-                    case  R.id.startLiveIV:
-                        Intent intent = new Intent(MainActivity.this,PushActivity.class);
-                        startActivity(intent);
+                    case  R.id.startLiveIV:  // 直播
+                        Intent t1 = new Intent(MainActivity.this,PushActivity.class);
+                        Log.d(TAG, "onItemMenuClick: "+"开直播");
+                        startActivity(t1);
+                        break;
+                    case  R.id.startDynamicIV:  // 发表动态
+                        Intent t2 = new Intent(MainActivity.this,PushActivity.class);
+                        startActivity(t2);
+                        break;
+                    default:break;
                 }
             }
         });

@@ -12,6 +12,6 @@ public class DynamicLayout extends LinearLayout{
 
     public DynamicLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.dynamiclayout,this);
+        LayoutInflater.from(context).inflate(R.layout.dynamic_layout,this);
     }
 }

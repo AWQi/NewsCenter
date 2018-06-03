@@ -7,20 +7,15 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.activity.MainActivity;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
-import com.example.dell.newscenter.utils.ApplicationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +26,7 @@ public class MyAttentionLVLayout extends ListView{
     public MyAttentionLVLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         getDate();
-        myAdapter = new MyAdapter(context,R.layout.myattentionitem,userList);
+        myAdapter = new MyAdapter(context,R.layout.myattention_item,userList);
         this.setAdapter(myAdapter);
     }
     private  void  getDate(){

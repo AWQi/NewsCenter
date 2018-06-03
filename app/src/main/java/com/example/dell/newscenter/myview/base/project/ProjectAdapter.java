@@ -33,7 +33,7 @@ private List<Project> projectList;
         if (context==null){
             context = parent.getContext();
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.cardviewproject,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cardview_project_item,parent,false);
         return new ViewHolder(view);
     }
 
@@ -46,7 +46,7 @@ private List<Project> projectList;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, VideoPlayActivity.class);
-                intent.putExtra("project",project);
+                intent.putExtra("studio_item",project);
                 ActivityUtil.scanForActivity(context).startActivity(intent);
             }
         });

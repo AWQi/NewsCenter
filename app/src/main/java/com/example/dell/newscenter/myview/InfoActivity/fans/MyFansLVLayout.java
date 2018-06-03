@@ -4,7 +4,6 @@ package com.example.dell.newscenter.myview.InfoActivity.fans;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.utils.ActivityUtil;
@@ -33,7 +30,7 @@ public class MyFansLVLayout extends ListView {
         super(context, attrs);
         this.context = context;
         getDate();
-        myAdapter = new MyAdapter(context,R.layout.myfansitem,userList);
+        myAdapter = new MyAdapter(context,R.layout.myfans_item,userList);
         this.setAdapter(myAdapter);
     }
     private  void getDate(){

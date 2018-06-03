@@ -26,7 +26,7 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
     public ProjectRecyclerViewLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.projectrecyclerviewlayout,this);
+        LayoutInflater.from(context).inflate(R.layout.project_recyclerview_layout,this);
         onCreate();
     }
     public void getDate(List list) {
@@ -45,11 +45,11 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
 // else {
 //            String imageUrl = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-8437bbc8e07dde51-03547c8c564c14bb2bd98c8798ce94d7_qq";
 //            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
-//            Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS");
-//            projectList.add(project);
-//            projectList.add(project);
-//            projectList.add(project);
-//            projectList.add(project);
+//            Project studio_item = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS");
+//            projectList.add(studio_item);
+//            projectList.add(studio_item);
+//            projectList.add(studio_item);
+//            projectList.add(studio_item);
 //        }
     }
 
@@ -84,7 +84,7 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
                                  */
                                 getDate(null);
                                 Log.d(TAG, "runOnUiThread：run刷新中: ");
-                                adapter.notifyDataSetChanged();///   通知刷新  project
+                                adapter.notifyDataSetChanged();///   通知刷新  studio_item
                                 swipeRefresh.setRefreshing(false);
                             }
                         });
