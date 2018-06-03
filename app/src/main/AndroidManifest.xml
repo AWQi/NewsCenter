@@ -29,7 +29,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyAppTheme">
         <activity
             android:name=".activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -48,9 +48,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".myview.videoplayactivity.VideoPlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".myview.InfoActivity.fans.MyFansActivity"
             android:label="我的粉丝"
@@ -96,6 +96,8 @@
             android:name=".myview.InfoActivity.qrcode.QrCodeActivity"
             android:label="二维码扫描"
             android:theme="@style/MyAppTheme" />
+        <!-- 开直播 -->
+        <activity android:name=".myview.mainactivity.mainpager.live.PushActivity" />
 
         <!-- qrcode -->
         <activity
@@ -109,12 +111,12 @@
 
         <service android:name=".myview.InfoActivity.download.service.DownloadService" />
 
-
-        <!--  全屏      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"-->
-        <activity android:name=".myview.videoplayactivity.videoplayer.FullScreenPlayActivity"
+        <!-- 全屏      android:theme="@android:style/Theme.NoTitleBar.Fullscreen" -->
+        <activity
+            android:name=".myview.videoplayactivity.videoplayer.FullScreenPlayActivity"
             android:screenOrientation="landscape"
-           android:theme="@style/NoTitleFullscreen"
-            ></activity>
+            android:theme="@style/NoTitleFullscreen" />
+        <activity android:name=".myview.mainactivity.mainpager.live.PullActivity"></activity>
     </application>
 
 </manifest>

@@ -1,15 +1,21 @@
 package com.example.dell.newscenter.myview.videoplayactivity;
 
 import android.app.LocalActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,8 +28,10 @@ import android.widget.VideoView;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
+import com.example.dell.newscenter.myview.videoplayactivity.videoplayer.FullScreenPlayActivity;
 
-public class VideoPlayActivity  extends AppCompatActivity{
+public class VideoPlayActivity  extends AppCompatActivity {
+    private static final String TAG = "VideoPlayActivity";
     private VideoView videoView = null;
     private MediaController mediaController = null;
     private String url = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";
@@ -31,11 +39,11 @@ public class VideoPlayActivity  extends AppCompatActivity{
     private TabWidget videotabwidget = null;
     private FrameLayout videotabcontent = null;
     private Project project;
+    private OrientationEventListener orientoinListener;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 设置状态栏透明!!!!记得在setContentView之前
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -51,10 +59,26 @@ public class VideoPlayActivity  extends AppCompatActivity{
 
         setContentView(R.layout.activity_videoplay);
         setActionBar(null);
-
         Intent intent = getIntent();
         project = (Project)intent.getParcelableExtra("project");
 
+//        // 检查系统是否设置了自动横屏
+//        orientoinListener  = new OrientationEventListener(VideoPlayActivity.this) {
+//            @Override
+//            public void onOrientationChanged(int orientation) {
+//                Log.d(TAG, "横竖屏改变: ");
+//                if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+//                    Intent intent = new Intent(VideoPlayActivity.this, FullScreenPlayActivity.class);
+//                    intent.putExtra("url",project.getVideoURL());
+//                    startActivity(intent);
+////                    orientation
+//                }
+//            }
+//        };
+//        boolean autoRotateOn  = (android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION,0)==1);
+//        if (autoRotateOn){
+//            orientoinListener.enable();
+//        }
 
 
 
@@ -90,7 +114,10 @@ public class VideoPlayActivity  extends AppCompatActivity{
 
     }
 
+
     public Project getProject() {
         return project;
     }
+
+
 }

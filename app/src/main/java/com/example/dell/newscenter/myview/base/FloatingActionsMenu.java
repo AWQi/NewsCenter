@@ -90,6 +90,7 @@ public  class FloatingActionsMenu extends ViewGroup{
                                 onItemMenuClickListener.onItemMenuClick(childAt,temp);
                             }
                             clickItemAnim(temp);
+
                         }
                     });
                 }

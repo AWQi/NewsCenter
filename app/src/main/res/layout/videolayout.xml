@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="250dp"
     android:orientation="vertical"
+    android:theme="@style/MyAppTheme"
     tools:context=".myview.videoplayactivity.VideoPlayActivity"
     >
         <FrameLayout
@@ -45,7 +46,50 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 />
+            <master.flame.danmaku.ui.widget.DanmakuView
+                android:id="@+id/danmakuView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </FrameLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@android:color/darker_gray"
+            android:layout_height="30dp">
+            <EditText
+                android:id="@+id/sendDanMuET"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:background="@drawable/flowborder"
+                android:textColor="@android:color/black"
+                android:hint="发送弹幕"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/fullScreenPlayIV"
+                android:layout_weight="5"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/full_screen"
+                />
+            <!--<ImageView-->
+                <!--android:layout_weight="5"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+            <!---->
+        </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

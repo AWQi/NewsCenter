@@ -16,9 +16,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.myview.mainactivity.mainpager.ChaseFragment;
-import com.example.dell.newscenter.myview.mainactivity.mainpager.LiveFragment;
-import com.example.dell.newscenter.myview.mainactivity.mainpager.RecommendFragment;
+import com.example.dell.newscenter.myview.mainactivity.mainpager.live.LiveFragment;
 
 
 import java.util.ArrayList;

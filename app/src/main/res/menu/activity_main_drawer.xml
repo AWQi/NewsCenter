@@ -25,13 +25,13 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/exitLogin"
+                android:icon="@drawable/exit_login"
+                android:title="退出登录" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/night"
+                android:icon="@drawable/night"
+                android:title="夜间模式" />
         </menu>
     </item>
 

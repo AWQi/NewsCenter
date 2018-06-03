@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.mainactivity.mainpager;
+package com.example.dell.newscenter.myview.mainactivity.mainpager.live;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

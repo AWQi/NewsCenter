@@ -11,6 +11,7 @@ import org.litepal.LitePal;
 public class ApplicationUtil extends Application{
     private static Context context;
     private static User user;
+    public static  String LIVE_PATH = "rtmp://140.143.16.51/";
     public static int genderId[] = new int[]{R.drawable.men, R.drawable.women,R.drawable.secrecy};//  0 1 2 分别对应 男 女  保密
 
     @Override

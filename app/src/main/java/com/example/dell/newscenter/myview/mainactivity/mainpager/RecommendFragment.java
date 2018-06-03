@@ -30,7 +30,7 @@ public class RecommendFragment extends Fragment{
      */
     public void getDate() {
         String imageUrl = "http://img2.woyaogexing.com/2018/05/20/9cf1a7391ce95f13!400x400_big.jpg";
-        String videoUrl ="http://140.143.16.51/live/1.mp4";
+        String videoUrl ="http://140.143.16.51/live/test.m3u8";
         String authorHeadUrl = "http://img2.woyaogexing.com/2018/05/24/d29f005920079fc3!400x400_big.jpg";
         Project project = new Project(1,"ADWS",imageUrl,videoUrl,0,0,"ACSS",1,"AWQI",authorHeadUrl);
         projectList.add(project);

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,13 +35,17 @@ import com.example.dell.newscenter.myview.InfoActivity.qrcode.QrCodeActivity;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
+import com.example.dell.newscenter.myview.base.FloatInfoMenu;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
+import com.example.dell.newscenter.myview.mainactivity.mainpager.live.PushActivity;
 import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
 
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+
+import java.nio.channels.FileLock;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,18 +94,23 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-//        /**
-//         *
-//         *  悬浮框
-//         */
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        /**
+         *
+         *  菜单栏
+         */
+         fam = findViewById(R.id.fam);
+        fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
+            @Override
+            public void onItemMenuClick(View view, int position) {
+                int id = view.getId();
+                switch (id){
+                    case  R.id.startLiveIV:
+                        Intent intent = new Intent(MainActivity.this,PushActivity.class);
+                        startActivity(intent);
+                }
+            }
+        });
+
         /**
          *
          *   侧滑栏布局
@@ -290,12 +301,13 @@ public class MainActivity extends AppCompatActivity
                 intent.setClass(MainActivity.this, DownLoadProjectActivity.class);
             } else if (id == R.id.collection) {   //我的收藏
                 intent.setClass(MainActivity.this, MyCollectionActivity.class);
-            } else if (id == R.id.nav_share) {   // 分享
-
-            } else if (id == R.id.nav_send) {    // 发送
-
+            } else if (id == R.id.exitLogin) {   // 退出登录
+                intent.setClass(MainActivity.this,LoginActivity.class);
             }
             startActivity(intent);
+             if (id == R.id.night) {    // 夜间模式
+
+            }
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -81,11 +81,13 @@
             android:src="@drawable/shooting"/>
 
         <ImageView
+            android:id="@+id/startLiveIV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/live" />
 
         <ImageView
+            android:id="@+id/startDynamicIV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/writedynamic"/>
