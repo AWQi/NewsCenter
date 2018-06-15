@@ -29,11 +29,11 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-
     <!--
     android:name=".utils.ApplicationUtil"
     指定app启动时自动初始化的一个application 可以用于获取保存一些全局的信息
     -->
+
     <application
         android:name=".utils.ApplicationUtil"
         android:allowBackup="true"
@@ -131,9 +131,9 @@
         <!-- 开直播 -->
         <activity android:name=".myview.mainactivity.mainpager.live.PushActivity"
             android:screenOrientation="portrait"/>
+
         <!--接收直播流-->
         <activity android:name=".myview.mainactivity.mainpager.live.PullActivity"></activity>
-
 
     </application>
 

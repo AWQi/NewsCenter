@@ -1,6 +1,7 @@
-package com.example.push;
+package com.example.live;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -10,9 +11,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.push.R;
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.seu.magicfilter.utils.MagicFilterType;
 
@@ -21,6 +22,8 @@ import net.ossrs.yasea.SrsEncodeHandler;
 import net.ossrs.yasea.SrsPublisher;
 import net.ossrs.yasea.SrsRecordHandler;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.net.SocketException;
 
@@ -28,12 +31,14 @@ import java.net.SocketException;
  * Created by Sikang on 2017/5/2.
  */
 
-public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncodeListener, RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, View.OnClickListener {
+public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncodeListener, RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, View.OnClickListener {
 
+    static  final  private  String SERVER_URL = "rtmp://140.143.16.51/hls/";//推流服务器地址
+    private int studioNum ;// 房间号
     private Button mPublishBtn;
     private Button mCameraSwitchBtn;
     private Button mEncoderBtn;
-    private EditText mRempUrlEt;
+    private TextView mRempUrlTv;
     private SrsPublisher mPublisher;
     private String rtmpUrl;
 
@@ -41,12 +46,14 @@ public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncode
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_push);
+        setContentView(R.layout.activity_live);
 
-        mPublishBtn = (Button) findViewById(R.id.publish);
-        mCameraSwitchBtn = (Button) findViewById(R.id.swCam);
-        mEncoderBtn = (Button) findViewById(R.id.swEnc);
-        mRempUrlEt = (EditText) findViewById(R.id.url);
+
+
+        mPublishBtn =  findViewById(R.id.publish);
+        mCameraSwitchBtn =  findViewById(R.id.swCam);
+        mEncoderBtn =  findViewById(R.id.swEnc);
+        mRempUrlTv =  findViewById(R.id.url);
         mPublishBtn.setOnClickListener(this);
         mCameraSwitchBtn.setOnClickListener(this);
         mEncoderBtn.setOnClickListener(this);
@@ -67,6 +74,17 @@ public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncode
         mPublisher.switchCameraFilter(MagicFilterType.BEAUTY);
         //打开摄像头，开始预览（未推流）
         mPublisher.startCamera();
+
+
+        // 获取推流完整地址
+        Intent intent = getIntent();
+        studioNum = intent.getIntExtra("StudioNum",0);//直播间号
+        if (studioNum==0){
+            Toast.makeText(LiveActivity.this,"直播间号获取失败，请返回重新获取",Toast.LENGTH_SHORT).show();
+        }
+        rtmpUrl = SERVER_URL+studioNum;
+        mRempUrlTv.setText("直播间号为:"+studioNum);
+
     }
 
     @Override
@@ -74,8 +92,8 @@ public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncode
         int id = v.getId();
         if (id== R.id.publish) {
 
-            if (mPublishBtn.getText().toString().contentEquals("开始")) {
-                rtmpUrl = mRempUrlEt.getText().toString();
+            if (mPublishBtn.getText().toString().contentEquals("开始直播")) {
+//                rtmpUrl = mRempUrlTv.getText().toString();
                 if (TextUtils.isEmpty(rtmpUrl)) {
                     Toast.makeText(getApplicationContext(), "地址不能为空！", Toast.LENGTH_SHORT).show();
                 }
@@ -96,12 +114,12 @@ public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncode
                 mEncoderBtn.setEnabled(true);
             }
         }
-            //切换摄像头
+        //切换摄像头
         else if (id ==R.id.swCam) {
 
             mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
         }
-            //切换编码方式
+        //切换编码方式
         else if (id==R.id.swEnc) {
 
             if (mEncoderBtn.getText().toString().contentEquals("软编码")) {
@@ -120,7 +138,7 @@ public class PushActivity extends Activity implements SrsEncodeHandler.SrsEncode
             //开始/停止推流
             case R.id.publish:
                 if (mPublishBtn.getText().toString().contentEquals("开始")) {
-                    rtmpUrl = mRempUrlEt.getText().toString();
+                    rtmpUrl = mRempUrlTv.getText().toString();
                     if (TextUtils.isEmpty(rtmpUrl)) {
                         Toast.makeText(getApplicationContext(), "地址不能为空！", Toast.LENGTH_SHORT).show();
                     }

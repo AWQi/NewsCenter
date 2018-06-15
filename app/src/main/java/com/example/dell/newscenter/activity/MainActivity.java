@@ -1,6 +1,11 @@
 package com.example.dell.newscenter.activity;
 
+import android.app.DownloadManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -25,6 +30,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 
+import com.example.dell.newscenter.bean.Studio;
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownLoadProjectActivity;
@@ -46,6 +52,8 @@ import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
 import java.nio.channels.FileLock;
+import java.util.List;
+import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,32 +90,67 @@ public class MainActivity extends AppCompatActivity
         /*  底部的布局*/
         main_bottom = findViewById(R.id.main_bottom);
 
-
-        /**
-         * 悬浮菜单
-         *
-         */
-        FloatingActionsMenu fam = findViewById(R.id.fam);
-        fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
-            @Override
-            public void onItemMenuClick(View view, int position) {
-
-            }
-        });
+//
+//        /**
+//         * 悬浮菜单
+//         *
+//         */
+//        FloatingActionsMenu fam = findViewById(R.id.fam);
+//        fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
+//            @Override
+//            public void onItemMenuClick(View view, int position) {
+//
+//            }
+//        });
         /**
          *
          *  菜单栏
          */
-         fam = findViewById(R.id.fam);
+         FloatingActionsMenu  fam = findViewById(R.id.fam);
         fam.setOnItemMenuClickListener(new FloatingActionsMenu.OnItemMenuClickListener() {
             @Override
             public void onItemMenuClick(View view, int position) {
                 int id = view.getId();
                 switch (id){
                     case  R.id.startLiveIV:  // 直播
-                        Intent t1 = new Intent(MainActivity.this,PushActivity.class);
-                        Log.d(TAG, "onItemMenuClick: "+"开直播");
-                        startActivity(t1);
+                        /**
+                         *
+                         *  //启动另外一个App
+                          */
+
+                        /**
+                         *  获取已安装应用的列表
+                         */
+                        List<PackageInfo> packageInfos = getPackageManager().getInstalledPackages(0);
+                        for (PackageInfo p :packageInfos){// 遍历 list  能找到  live 就  跳转
+                            if (p.packageName.equals("com.example.live")){
+                                //  1.
+                                String packageName = "com.example.live";
+                                String activity = "com.example.live.LiveActivity";
+                                ComponentName cn = new ComponentName(packageName,activity);
+                                Intent t1 = new Intent();
+                                t1.setComponent(cn);
+                                t1.putExtra("StudioNum",ApplicationUtil.getUser().getId());
+                                Log.d(TAG, "onItemMenuClick: "+"开直播");
+                                startActivity(t1);
+                                break;
+                            }
+                        }
+                        // 找不到 list  就   发送  url 下载
+                        /**
+                         *  调用  系统的 download 下载live插件
+                         */
+                        //下载路径，如果路径无效了，可换成你的下载路径
+                        String url = "http://c.qijingonline.com/test.mkv";
+                        //创建下载任务,downloadUrl就是下载链接
+                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                        //指定下载路径和下载文件名
+                        request.setDestinationInExternalPublicDir("", url.substring(url.lastIndexOf("/") + 1));
+                        //获取下载管理器
+                        DownloadManager downloadManager= (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                        //将下载任务加入下载队列，否则不会进行下载
+                        downloadManager.enqueue(request);
+
                         break;
                     case  R.id.startDynamicIV:  // 发表动态
                         Intent t2 = new Intent(MainActivity.this,PushActivity.class);
