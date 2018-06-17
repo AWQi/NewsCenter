@@ -47,8 +47,6 @@ public class LoginActivity extends AppCompatActivity  {
     // UI references.
     private AutoCompleteTextView telET;
     private EditText pwdTV;
-    private View mProgressView;
-    private View mLoginFormView;
     private String tel ;
     private String pwd;
     @Override
@@ -70,8 +68,8 @@ public class LoginActivity extends AppCompatActivity  {
 //        loginBtn.performClick();
 
 
-        Button registerBtn = findViewById(R.id.registerBtn);
-        registerBtn.setOnClickListener(new OnClickListener() {
+        TextView registerTV = findViewById(R.id.registerTV);
+        registerTV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);

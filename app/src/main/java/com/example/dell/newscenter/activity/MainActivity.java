@@ -1,12 +1,14 @@
 package com.example.dell.newscenter.activity;
 
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -51,6 +53,7 @@ import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayo
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
+import java.io.File;
 import java.nio.channels.FileLock;
 import java.util.List;
 import java.util.Timer;
@@ -58,6 +61,8 @@ import java.util.Timer;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "NewCenter";
+    static  final String  SERVRE_LIVE_APK = "http://140.143.16.51/live/apk/live.apk";
+    static  final String LOCAL_LIVE_APK = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))+"/live.apk";//本地插件地址
     /*  顶部的 布局*/
     private CircleImageView main_head_portrait = null;
     private  Toolbar toolbar = null;
@@ -122,6 +127,7 @@ public class MainActivity extends AppCompatActivity
                          *  获取已安装应用的列表
                          */
                         List<PackageInfo> packageInfos = getPackageManager().getInstalledPackages(0);
+                        boolean isInstall = false;
                         for (PackageInfo p :packageInfos){// 遍历 list  能找到  live 就  跳转
                             if (p.packageName.equals("com.example.live")){
                                 //  1.
@@ -133,6 +139,7 @@ public class MainActivity extends AppCompatActivity
                                 t1.putExtra("StudioNum",ApplicationUtil.getUser().getId());
                                 Log.d(TAG, "onItemMenuClick: "+"开直播");
                                 startActivity(t1);
+                                isInstall=true;
                                 break;
                             }
                         }
@@ -140,16 +147,30 @@ public class MainActivity extends AppCompatActivity
                         /**
                          *  调用  系统的 download 下载live插件
                          */
-                        //下载路径，如果路径无效了，可换成你的下载路径
-                        String url = "http://c.qijingonline.com/test.mkv";
-                        //创建下载任务,downloadUrl就是下载链接
-                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                        //指定下载路径和下载文件名
-                        request.setDestinationInExternalPublicDir("", url.substring(url.lastIndexOf("/") + 1));
-                        //获取下载管理器
-                        DownloadManager downloadManager= (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                        //将下载任务加入下载队列，否则不会进行下载
-                        downloadManager.enqueue(request);
+                        /**
+                         *
+                         * 1、使用 浏览器下载
+                         */
+                        if (!isInstall) {
+                            Intent t1 = new Intent(Intent.ACTION_VIEW, Uri.parse(SERVRE_LIVE_APK));
+                            startActivity(t1);
+                        }
+                        /**
+                         *  2、使用系统自带下载中心下载
+                          */
+//                        //创建下载任务,downloadUrl就是下载链接
+//                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(SERVRE_LIVE_APK));
+//                        //获取下载管理器
+//                        DownloadManager downloadManager= (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+//                        // 通知栏
+//                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//                        // 设置通知的标题和描述
+////                        request.setTitle("直播插件下载");
+//                        //指定下载路径和下载文件名
+//                        File liveApk = new File(LOCAL_LIVE_APK);
+//                        request.setDestinationUri(Uri.fromFile(liveApk));
+//                        //将下载任务加入下载队列，否则不会进行下载
+//                        downloadManager.enqueue(request);
 
                         break;
                     case  R.id.startDynamicIV:  // 发表动态
@@ -317,10 +338,6 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -396,8 +413,5 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     }
-    /**
-     *
-     * 上方滑动栏
-     */
+
 }

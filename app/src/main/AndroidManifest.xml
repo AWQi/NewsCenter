@@ -101,7 +101,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="用户登录"
-            android:theme="@style/MyAppTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RegisterActivity" />
         <activity
             android:name=".myview.InfoActivity.qrcode.QrCodeActivity"
