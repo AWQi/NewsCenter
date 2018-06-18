@@ -82,4 +82,6 @@ dependencies {
     implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.1'
     implementation 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.1'
     //        implementation project(':ijkplayer')
+    implementation files('libs/commons-net-3.3.jar')
+    implementation files('libs/commons-net-3.3-sources.jar')
 }
