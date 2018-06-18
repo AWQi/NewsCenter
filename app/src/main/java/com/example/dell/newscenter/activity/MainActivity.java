@@ -360,22 +360,26 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         Intent intent = new Intent();
         int id = item.getItemId();
-        if (id != R.id.mainpage) {
-            if (id == R.id.history) {            //  历史记录
-                intent.setClass(MainActivity.this, MyHistoryActivity.class);
-            } else if (id == R.id.offlinecache) { //离线缓存
-//                intent.setClass(MainActivity.this, DownloadActivity.class);
-                intent.setClass(MainActivity.this, DownLoadProjectActivity.class);
-            } else if (id == R.id.collection) {   //我的收藏
-                intent.setClass(MainActivity.this, MyCollectionActivity.class);
-            } else if (id == R.id.exitLogin) {   // 退出登录
-                intent.setClass(MainActivity.this,LoginActivity.class);
-            }
-            startActivity(intent);
-             if (id == R.id.night) {    // 夜间模式
 
-            }
-        }
+        if (id == R.id.mainpage) {}
+
+            else if (id == R.id.night) {    // 夜间模式    不跳转   特殊对待
+                 ApplicationUtil.exchangeNightMode();
+                 recreate();
+            }else {
+                if (id == R.id.history) {            //  历史记录
+                    intent.setClass(MainActivity.this, MyHistoryActivity.class);
+                } else if (id == R.id.offlinecache) { //离线缓存
+    //                intent.setClass(MainActivity.this, DownloadActivity.class);
+                    intent.setClass(MainActivity.this, DownLoadProjectActivity.class);
+                } else if (id == R.id.collection) {   //我的收藏
+                    intent.setClass(MainActivity.this, MyCollectionActivity.class);
+                } else if (id == R.id.exitLogin) {   // 退出登录
+                    intent.setClass(MainActivity.this,LoginActivity.class);
+                }
+                startActivity(intent);
+         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

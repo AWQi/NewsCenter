@@ -5,11 +5,11 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.dell.newscenter.myview.MyToolBar
+    <com.example.dell.newscenter.myview.base.MyToolBar
         app:title="本地缓存"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.example.dell.newscenter.myview.MyToolBar>
+    </com.example.dell.newscenter.myview.base.MyToolBar>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/downloadRV"
         android:layout_width="match_parent"

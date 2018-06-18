@@ -7,7 +7,7 @@
         android:id="@+id/relevantrecommendationsImageIV"
         android:layout_width="150dp"
         android:layout_height="120dp"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@drawable/psb"
         />
     <LinearLayout

@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <com.example.dell.newscenter.myview.MyToolBar
+    <com.example.dell.newscenter.myview.base.MyToolBar
         android:id="@+id/fansBar"
         android:tooltipText="我的粉丝"
         app:title="我的粉丝"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.example.dell.newscenter.myview.MyToolBar>
+    </com.example.dell.newscenter.myview.base.MyToolBar>
 <!--  android:id="@+id/myFansLV"-->
     <com.example.dell.newscenter.myview.InfoActivity.fans.MyFansLVLayout
 

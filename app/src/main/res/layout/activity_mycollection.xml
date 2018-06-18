@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.dell.newscenter.myview.MyToolBar
+    <com.example.dell.newscenter.myview.base.MyToolBar
         app:title="我的收藏"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.example.dell.newscenter.myview.MyToolBar>
+    </com.example.dell.newscenter.myview.base.MyToolBar>
     <com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout
         android:id="@+id/myCollectionRV"
         android:layout_width="match_parent"

@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.example.dell.newscenter.myview.MyToolBar
+    <com.example.dell.newscenter.myview.base.MyToolBar
         app:title="我的关注"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.example.dell.newscenter.myview.MyToolBar>
+    </com.example.dell.newscenter.myview.base.MyToolBar>
     <com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionLVLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

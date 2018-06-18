@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview;
+package com.example.dell.newscenter.myview.base;
 
 
 import android.app.Activity;
