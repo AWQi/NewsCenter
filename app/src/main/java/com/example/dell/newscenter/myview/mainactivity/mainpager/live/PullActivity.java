@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Studio;
@@ -23,6 +24,8 @@ private Studio studio = null;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_live_pull);
+
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // 屏幕常亮
             intent = getIntent();
             studio = intent.getParcelableExtra("studio");
             Log.d(TAG, "studioURL"+studio.getStudioUrl());
