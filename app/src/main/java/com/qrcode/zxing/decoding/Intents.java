@@ -26,7 +26,7 @@ public final class Intents {
 
   public static final class Scan {
     /**
-     * Send this intent to open the Barcodes app in scanning mode, find a barcode, and return
+     * Send this intent to open the Barcodes app in scanning mode, find a barcode, and return_icon
      * the results.
      */
     public static final String ACTION = "com.google.zxing.client.android.SCAN";

@@ -244,7 +244,7 @@ public final class CameraManager {
 //    Point screenResolution = configManager.getScreenResolution();
 //    if (framingRect == null) {
 //      if (camera == null) {
-//        return null;
+//        return_icon null;
 //      }
 //      int width = screenResolution.x * 3 / 4;
 //      if (width < MIN_FRAME_WIDTH) {
@@ -263,7 +263,7 @@ public final class CameraManager {
 //      framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
 //      Log.d(TAG, "Calculated framing rect: " + framingRect);
 //    }
-//    return framingRect;
+//    return_icon framingRect;
 //  }
 
   /**
@@ -306,7 +306,7 @@ public final class CameraManager {
       output[x].x = frame.left + (int) (points[x].getX() + 0.5f);
       output[x].y = frame.top + (int) (points[x].getY() + 0.5f);
     }
-    return output;
+    return_icon output;
   }
    */
 

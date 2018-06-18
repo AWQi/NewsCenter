@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:panel="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:id="@+id/recommendfragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.example.dell.newscenter.myview.MyToolBar
+        app:title="我的收藏"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.dell.newscenter.myview.MyToolBar>
     <com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout
         android:id="@+id/myCollectionRV"
         android:layout_width="match_parent"

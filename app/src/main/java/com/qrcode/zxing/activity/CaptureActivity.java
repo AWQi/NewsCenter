@@ -128,7 +128,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
 //                innerIntent.setType("image/*");
 //                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
 //                this.startActivityForResult(wrapperIntent, REQUEST_CODE_SCAN_GALLERY);
-//                return true;
+//                return_icon true;
 //        }
         return super.onOptionsItemSelected(item);
     }

@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".myview.InfoActivity.userinfo.InfoEditActivity">
-
+    <com.example.dell.newscenter.myview.MyToolBar
+        app:title="信息修改"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.dell.newscenter.myview.MyToolBar>
     <RelativeLayout
         android:id="@+id/infoEditHeadRL"
         android:layout_width="match_parent"

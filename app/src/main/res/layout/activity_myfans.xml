@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"          android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+    <com.example.dell.newscenter.myview.MyToolBar
+        android:id="@+id/fansBar"
+        android:tooltipText="我的粉丝"
+        app:title="我的粉丝"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.dell.newscenter.myview.MyToolBar>
 <!--  android:id="@+id/myFansLV"-->
     <com.example.dell.newscenter.myview.InfoActivity.fans.MyFansLVLayout
 
@@ -9,4 +18,4 @@
         android:layout_height="match_parent"
         >
     </com.example.dell.newscenter.myview.InfoActivity.fans.MyFansLVLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

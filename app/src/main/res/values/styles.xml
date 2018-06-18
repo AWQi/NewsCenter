@@ -6,12 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTitleSize">2dp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -30,7 +32,18 @@
     <style name="MyAppTheme" parent="AppTheme" >
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
+       <item name="android:statusBarColor">@color/colorAccent</item>"
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
+    <style name="NightAppTheme" parent="Theme.AppCompat.DayNight" >
+        <item name="colorPrimary">@color/result_view</item>
+        <item name="colorPrimaryDark">@color/result_view</item>
+        <item name="colorAccent">@color/result_view</item>
+        <item name="android:statusBarColor">@color/result_view</item>"
+    </style>
+
+
 
     <style name="NoTitleFullscreen"   parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>

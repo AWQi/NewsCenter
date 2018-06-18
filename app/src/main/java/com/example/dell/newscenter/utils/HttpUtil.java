@@ -11,7 +11,7 @@ static public void sendOkHttpRequest(String address,okhttp3.Callback callback){
 //      如果没网就 提示网络 不可用   直接停止 请求
 //    if (!isNetWorkAvailable){
 //        Toast.makeText(ApplicationUtil.getContext(),"network is unvailable",Toast.LENGTH_SHORT).show();
-//        return;
+//        return_icon;
 //    }
 
         OkHttpClient client = new OkHttpClient();

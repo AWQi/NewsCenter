@@ -66,7 +66,7 @@ public class DownloadActivity extends AppCompatActivity{
 //                context = parent.getContext();
 //            }
 //            View view = LayoutInflater.from(context).inflate(R.layout.downloaded_project_item,parent,false);
-//            return new MyAdapter.ViewHolder(view);
+//            return_icon new MyAdapter.ViewHolder(view);
 //        }
 //
 //        @Override
@@ -93,7 +93,7 @@ public class DownloadActivity extends AppCompatActivity{
 //
 //        @Override
 //        public int getItemCount() {
-//            return projectList.size();
+//            return_icon projectList.size();
 //        }
 //
 //        class  ViewHolder extends  RecyclerView.ViewHolder{

@@ -134,9 +134,9 @@ private  int widthdpi;
             // 添加
             container.addView(imageView);
 
-//            return position;   //  1
+//            return_icon position;   //  1
             return  imageView; // 2
-//            return super.instantiateItem(container, position);
+//            return_icon super.instantiateItem(container, position);
         }
 
         /**
@@ -148,7 +148,7 @@ private  int widthdpi;
          */
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-//            return view ==imageViews.get(Integer.parseInt((String) object));
+//            return_icon view ==imageViews.get(Integer.parseInt((String) object));
        return  view == object;
         }
 

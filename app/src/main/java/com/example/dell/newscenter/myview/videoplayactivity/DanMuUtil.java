@@ -69,7 +69,7 @@
 //    private BaseDanmakuParser parser = new BaseDanmakuParser() {
 //        @Override
 //        protected IDanmakus parse() {
-//            return new Danmakus();
+//            return_icon new Danmakus();
 //        }
 //    };
 //    /**
