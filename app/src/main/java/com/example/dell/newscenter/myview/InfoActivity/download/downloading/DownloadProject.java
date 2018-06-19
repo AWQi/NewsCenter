@@ -19,7 +19,7 @@ public class DownloadProject extends   DataSupport{
     private long totalBytes = 0L;
     /**
      *
-     * //  特定  重写  studio_item  的get  set 方法 实际只存储  projec  的json 数据
+     * //  特定  重写  live_item  的get  set 方法 实际只存储  projec  的json 数据
      * 主要用于兼容  存储数据库  这样外部调用时无其他 影响
      */
     private  String project = null;
@@ -89,7 +89,7 @@ public class DownloadProject extends   DataSupport{
                 ", breakPoints=" + breakPoints +
                 ", contentLength=" + contentLength +
                 ", status=" + status +
-                ", studio_item='" + project + '\'' +
+                ", live_item='" + project + '\'' +
                 '}';
     }
 }

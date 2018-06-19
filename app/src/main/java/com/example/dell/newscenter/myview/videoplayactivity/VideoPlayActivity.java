@@ -60,7 +60,7 @@ public class VideoPlayActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_videoplay);
         setActionBar(null);
         Intent intent = getIntent();
-        project = (Project)intent.getParcelableExtra("studio_item");
+        project = (Project)intent.getParcelableExtra("live_item");
 
 //        // 检查系统是否设置了自动横屏
 //        orientoinListener  = new OrientationEventListener(VideoPlayActivity.this) {
@@ -69,7 +69,7 @@ public class VideoPlayActivity  extends AppCompatActivity {
 //                Log.d(TAG, "横竖屏改变: ");
 //                if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
 //                    Intent intent = new Intent(VideoPlayActivity.this, FullScreenPlayActivity.class);
-//                    intent.putExtra("url",studio_item.getVideoURL());
+//                    intent.putExtra("url",live_item.getVideoURL());
 //                    startActivity(intent);
 ////                    orientation
 //                }

@@ -40,7 +40,7 @@ public class RecommendFragment extends Fragment{
     }
     /**
      *
-     *  动态改变  fragment  recycler  添加  studio_item
+     *  动态改变  fragment  recycler  添加  live_item
      * @param savedInstanceState
      */
     @Override

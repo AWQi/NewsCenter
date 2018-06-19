@@ -42,7 +42,7 @@ private MyAdapter myAdapter = null;
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Project project = projectList.get(i);
                 Intent intent = new Intent(context, VideoPlayActivity.class);
-                intent.putExtra("studio_item",project);
+                intent.putExtra("live_item",project);
                 ActivityUtil.scanForActivity(context).startActivity(intent);
             }
         });

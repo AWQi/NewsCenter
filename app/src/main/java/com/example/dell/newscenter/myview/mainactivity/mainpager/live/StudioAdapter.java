@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +38,7 @@ public class StudioAdapter extends RecyclerView.Adapter{
         if (context==null){
             context = parent.getContext();
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.studio_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.live_item,parent,false);
         StudioHolder holder= new StudioHolder(view);
         return holder;
     }

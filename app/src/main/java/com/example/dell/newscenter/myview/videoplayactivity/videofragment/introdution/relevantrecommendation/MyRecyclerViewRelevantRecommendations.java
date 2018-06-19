@@ -77,7 +77,7 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
               public void onClick(View view) {
                   Project project = projectList.get(holder.getAdapterPosition());
                   Intent intent = new Intent(context, VideoPlayActivity.class);
-                  intent.putExtra("studio_item",project);
+                  intent.putExtra("live_item",project);
                   ActivityUtil.scanForActivity(context).startActivity(intent);
               }
           });

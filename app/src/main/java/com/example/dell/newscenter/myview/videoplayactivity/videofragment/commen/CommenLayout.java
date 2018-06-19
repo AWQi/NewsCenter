@@ -47,7 +47,7 @@ public class CommenLayout extends LinearLayout{
             /**
              *
              *   获取数据
-             *         根据  studio_item 查询  commen
+             *         根据  live_item 查询  commen
              */
             String imageURL = "http://f.hiphotos.baidu.com/image/pic/item/35a85edf8db1cb13f423dfa0d154564e92584b3f.jpg";
             String videoURL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";

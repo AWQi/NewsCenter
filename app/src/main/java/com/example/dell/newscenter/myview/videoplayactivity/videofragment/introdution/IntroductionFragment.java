@@ -105,12 +105,12 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
     }
     /**
      *
-     *   获取  studio_item
+     *   获取  live_item
      *       由mainactivity ,或其他 videoActivity 传送，  可以由context 获取intent 从而获取参数
      */
     public void getDate(){
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
-        project = (Project)intent.getParcelableExtra("studio_item");
+        project = (Project)intent.getParcelableExtra("live_item");
     }
 
     @Override

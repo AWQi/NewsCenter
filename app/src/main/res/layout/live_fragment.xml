@@ -1,34 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<!--  使用LinearLayou  可能会导致   滑动没效果-->
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/livefragment"
-    android:orientation="vertical"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/livefragment"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    >
+
+<android.support.design.widget.AppBarLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="150dp">
 
-    <com.example.dell.newscenter.myview.base.BannerLayout
+    <android.support.design.widget.CollapsingToolbarLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
-        <ImageView
-            android:src="@drawable/l1"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        android:minHeight="50dp"
+        android:background="@android:color/white">
+        <com.example.dell.newscenter.myview.base.BannerLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:src="@drawable/l2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:src="@drawable/l1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:src="@drawable/l2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.example.dell.newscenter.myview.base.BannerLayout>
+            android:layout_height="150dp"
+            app:layout_collapseMode="parallax">
+            <!--app:layout_collapseMode="parallax"-->
+            <ImageView
+                android:src="@drawable/l1"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:src="@drawable/l3"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:src="@drawable/l4"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:src="@drawable/l2"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:src="@drawable/l5"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.example.dell.newscenter.myview.base.BannerLayout>
 
+    </android.support.design.widget.CollapsingToolbarLayout>
 
-  <!--SwipeRefreshLayout  下拉刷新-->
+</android.support.design.widget.AppBarLayout>
+
+<!--
+     android:fillViewport="true"
+     android:layout_height="400dp"
+     在ScrollView中嵌套 viewpager
+     l1、必须设置android:fillViewport="true"
+     l2、 包含viewpager的子控件设置为固定的高度，否则会出现兼容性，导致viewpager无法显示
+-->
+
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <!--  。。。。。。-->
+    <!--只能由一个直接子布局-->
+
+    <!--SwipeRefreshLayout  下拉刷新-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/livefragment_swiperedresh"
         android:layout_width="match_parent"
@@ -40,4 +84,5 @@
             android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout >

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,8 +70,11 @@ public class LiveFragment extends Fragment {
         //  请求   子控件数据
         studioList.clear();
         getDate();
+        StaggeredGridLayoutManager.LayoutParams param = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        param.setFullSpan(true);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        param.setFullSpan(true);
         RecyclerView recyclerView = getActivity().findViewById(R.id.livefragment_recycler);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new StudioAdapter(getContext(),getActivity(),studioList);
         recyclerView.setAdapter(adapter);
@@ -97,7 +101,7 @@ public class LiveFragment extends Fragment {
                                  */
                                 getDate();
                                 Log.d(TAG, "runOnUiThread：run刷新中: ");
-                                adapter.notifyDataSetChanged();///   通知刷新  studio_item
+                                adapter.notifyDataSetChanged();///   通知刷新  live_item
                                 swipeRefresh.setRefreshing(false);
                             }
                         });
