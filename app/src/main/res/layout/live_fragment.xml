@@ -5,6 +5,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.example.dell.newscenter.myview.base.BannerLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <ImageView
+            android:src="@drawable/l1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@drawable/l2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@drawable/l1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@drawable/l2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.example.dell.newscenter.myview.base.BannerLayout>
+
+
   <!--SwipeRefreshLayout  下拉刷新-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/livefragment_swiperedresh"

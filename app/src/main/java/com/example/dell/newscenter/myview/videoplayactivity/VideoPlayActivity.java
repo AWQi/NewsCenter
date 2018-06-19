@@ -109,7 +109,7 @@ public class VideoPlayActivity  extends AppCompatActivity {
 //        inflater.inflate(R.layout.videotabcontent1,videotabhost.getTabContentView());
 //        inflater.inflate(R.layout.videotabcontent2,videotabhost.getTabContentView());
 //        videotabhost.addTab(videotabhost.newTabSpec("tab1").setIndicator("1").setContent(R.id.videotabcontent1));
-//        videotabhost.addTab(videotabhost.newTabSpec("tab2").setIndicator("2").setContent(R.id.videotabcontent1));
+//        videotabhost.addTab(videotabhost.newTabSpec("tab2").setIndicator("l2").setContent(R.id.videotabcontent1));
 
 
     }

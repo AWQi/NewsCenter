@@ -6,7 +6,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "l1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     testImplementation 'junit:junit:4.12'
-    //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:percent:27.1.1'
     //   百分比布局
@@ -71,9 +71,6 @@ dependencies {
     implementation 'junit:junit:4.12'
     implementation 'org.greenrobot:eventbus:3.0.0'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
-    /* 推流  的 library*/
-    implementation project(':yasea')
-    /*   取流 ijkplayer  */
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
     implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.1'
     implementation 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'

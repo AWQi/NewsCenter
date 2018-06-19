@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp">
-        <android.support.v4.widget.CircleImageView
+        <com.example.dell.newscenter.myview.base.CircleImageView
+            android:id="@+id/dynamicItemAuthorHeadCV"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/psb"/>
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/dynamicItemAuthorNameTV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="author"/>
@@ -25,10 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/dynamicItemImageIV"
             android:src="@drawable/logo"
-            android:layout_width="120dp"
-            android:layout_height="80dp" />
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
         <TextView
+            android:id="@+id/dynamicItemTitleTV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="30dp"
@@ -42,16 +45,19 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/dynamicItemShareIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_menu_share"/>
+            android:src="@drawable/share"/>
         <ImageView
+            android:id="@+id/dynamicItemCommenIV"
             android:layout_weight="1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/commen"/>
         <ImageView
+            android:id="@+id/dynamicItemPraiseIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"

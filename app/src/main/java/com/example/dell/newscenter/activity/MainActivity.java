@@ -1,9 +1,6 @@
 package com.example.dell.newscenter.activity;
 
-import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
@@ -11,8 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,31 +27,24 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 
-import com.example.dell.newscenter.bean.Studio;
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownLoadProjectActivity;
 import com.example.dell.newscenter.myview.InfoActivity.dynamic.MyDynamicActivity;
 import com.example.dell.newscenter.myview.InfoActivity.fans.MyFansActivity;
-import com.example.dell.newscenter.myview.InfoActivity.download.DownloadActivity;
 import com.example.dell.newscenter.myview.InfoActivity.qrcode.QrCodeActivity;
 import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity;
 import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
-import com.example.dell.newscenter.myview.base.FloatInfoMenu;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
-import com.example.dell.newscenter.myview.mainactivity.mainpager.live.PushActivity;
 import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
 
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 
-import java.io.File;
-import java.nio.channels.FileLock;
 import java.util.List;
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -130,7 +118,7 @@ public class MainActivity extends AppCompatActivity
                         boolean isInstall = false;
                         for (PackageInfo p :packageInfos){// 遍历 list  能找到  live 就  跳转
                             if (p.packageName.equals("com.example.live")){
-                                //  1.
+                                //  l1.
                                 String packageName = "com.example.live";
                                 String activity = "com.example.live.LiveActivity";
                                 ComponentName cn = new ComponentName(packageName,activity);
@@ -149,14 +137,14 @@ public class MainActivity extends AppCompatActivity
                          */
                         /**
                          *
-                         * 1、使用 浏览器下载
+                         * l1、使用 浏览器下载
                          */
                         if (!isInstall) {
                             Intent t1 = new Intent(Intent.ACTION_VIEW, Uri.parse(SERVRE_LIVE_APK));
                             startActivity(t1);
                         }
                         /**
-                         *  2、使用系统自带下载中心下载
+                         *  l2、使用系统自带下载中心下载
                           */
 //                        //创建下载任务,downloadUrl就是下载链接
 //                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(SERVRE_LIVE_APK));
@@ -174,8 +162,8 @@ public class MainActivity extends AppCompatActivity
 
                         break;
                     case  R.id.startDynamicIV:  // 发表动态
-                        Intent t2 = new Intent(MainActivity.this,PushActivity.class);
-                        startActivity(t2);
+//                        Intent t2 = new Intent(MainActivity.this,PushActivity.class);
+//                        startActivity(t2);
                         break;
                     default:break;
                 }
@@ -287,7 +275,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 //                toggle.onDrawerStateChanged(DrawerLayout.SCREEN_STATE_ON);
-//                toggle setPosition(1);
+//                toggle setPosition(l1);
                 return true;
             }
         });

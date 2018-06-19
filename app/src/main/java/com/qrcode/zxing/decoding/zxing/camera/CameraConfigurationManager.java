@@ -265,7 +265,7 @@ final class CameraConfigurationManager {
     }
 
     // Most devices, like the Hero, appear to expose this zoom parameter.
-    // It takes on values like "27" which appears to mean 2.7x zoom
+    // It takes on values like "27" which appears to mean l2.7x zoom
     if (takingPictureZoomMaxString != null) {
       parameters.set("taking-picture-zoom", tenDesiredZoom);
     }

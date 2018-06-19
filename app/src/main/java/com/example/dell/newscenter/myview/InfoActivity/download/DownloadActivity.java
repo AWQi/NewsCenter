@@ -38,7 +38,7 @@ public class DownloadActivity extends AppCompatActivity{
 //        getDate();
 //        //  请求   子控件数据
 //        recyclerView = this.findViewById(R.id.downloadRV);
-//        GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+//        GridLayoutManager layoutManager = new GridLayoutManager(context, l2);
 //        recyclerView.setLayoutManager(layoutManager);
 //        adapter = new MyAdapter(projectList);
 //        recyclerView.setAdapter(adapter);

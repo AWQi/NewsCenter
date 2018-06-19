@@ -131,8 +131,6 @@
 
 
         <!-- 开直播 -->
-        <activity android:name=".myview.mainactivity.mainpager.live.PushActivity"
-            android:screenOrientation="portrait"/>
 
         <!--接收直播流-->
         <activity android:name=".myview.mainactivity.mainpager.live.PullActivity" android:screenOrientation="landscape"></activity>

@@ -77,17 +77,17 @@ private  int widthdpi;
          */
         //   根据View生命周期  当视图执行到 onLayout 或者onDraw 的时候，视图的边距优质
         //  当一个视图树中的全局布局发生改变或者视图中的某个视图的可视状态发生改变时调用
-        //  1、得到间距
+        //  l1、得到间距
         red_point.getViewTreeObserver().addOnGlobalLayoutListener(new MyOnGlobalLayoutListener());
-        //  2、 得到屏幕滑动百分比  在监听器内计算margin
+        //  l2、 得到屏幕滑动百分比  在监听器内计算margin
         viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //  1、  保存曾经进入过主页面
+                //  l1、  保存曾经进入过主页面
                 CacheUtils.setBoolean(GuideActivity.this, WelcomeActivity.START_MAIN,true);
-                // 2、   跳转主页面
+                // l2、   跳转主页面
                 Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
                 startActivity(intent);
                 //  3、 关闭引导页面
@@ -134,8 +134,8 @@ private  int widthdpi;
             // 添加
             container.addView(imageView);
 
-//            return_icon position;   //  1
-            return  imageView; // 2
+//            return_icon position;   //  l1
+            return  imageView; // l2
 //            return_icon super.instantiateItem(container, position);
         }
 

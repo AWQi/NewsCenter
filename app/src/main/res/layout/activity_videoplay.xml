@@ -28,8 +28,8 @@
          android:fillViewport="true"
          android:layout_height="400dp"
          在ScrollView中嵌套 viewpager
-         1、必须设置android:fillViewport="true"
-         2、 包含viewpager的子控件设置为固定的高度，否则会出现兼容性，导致viewpager无法显示
+         l1、必须设置android:fillViewport="true"
+         l2、 包含viewpager的子控件设置为固定的高度，否则会出现兼容性，导致viewpager无法显示
     -->
 
     <android.support.v4.widget.NestedScrollView

@@ -21,6 +21,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtil {
+    static final public String LIVE_PATH = "rtmp://140.143.16.51/";
+    static final public String IMAGE_PATH = "http://140.143.16.51/image/";
+    static final public String VIDEO_PATH = "http://140.143.16.51/video/";
+
     private static final String TAG = "HttpUtil";
     /**
      *      1、
@@ -51,9 +55,6 @@ public class HttpUtil {
                         response.append(line);
                     }
                     Log.d(TAG, "run: 发送请求");
-
-
-
                     //                    return response.toString();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -73,7 +74,7 @@ public class HttpUtil {
         }).start();
     }
     /**
-     *      2、okhttp
+     *      l2、okhttp
      *
      */
     static  public  void sendPostWithOkHttp3(final String url, final Map<String,String> params, final Callback callback){
@@ -101,5 +102,6 @@ public class HttpUtil {
             }
         }).start();
     }
+
 
 }

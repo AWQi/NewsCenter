@@ -110,7 +110,7 @@ public class DownloadProjectRVAdapter extends RecyclerView.Adapter{
                     .fitCenter().into(h.downloadedItemImageIV);
             h.downloadedItemTitleTV.setText(project.getTitle());
             h.downloadedItemAuthorTV.setText(project.getAuthorName());
-//            h.downloadedItemSizeTV.setText(downloadedList.get(position-1));
+//            h.downloadedItemSizeTV.setText(downloadedList.get(position-l1));
             h.downloadedItemDetailsTV.setOnClickListener(new View.OnClickListener() {//点击详情跳转到播放页
                 @Override
                 public void onClick(View v) {
