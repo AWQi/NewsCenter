@@ -13,17 +13,18 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
-    <uses-feature android:name="android.hardware.camera.autofocus" />    <!-- 自动聚焦权限 -->
-    <!--取流所需要的权限-->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+    <!-- 取流所需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 推流所需要的权限-->
+    <!-- 推流所需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -32,90 +33,74 @@
     <!--
     android:name=".utils.ApplicationUtil"
     指定app启动时自动初始化的一个application 可以用于获取保存一些全局的信息
-
     -->
-
     <application
-    android:name=".utils.ApplicationUtil"
-    android:allowBackup="true"
-    android:icon="@drawable/logo"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/MyAppTheme">
-        <activity
-        android:name=".activity.WelcomeActivity"
+        android:name=".utils.ApplicationUtil"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:theme="@style/MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-        android:name=".activity.GuideActivity"
-        android:theme="@style/MyAppTheme" />
+            android:name=".activity.GuideActivity"
+            android:theme="@style/MyAppTheme" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/MyAppTheme"
             android:label="用户登录"
-             />
+            android:theme="@style/MyAppTheme" />
         <activity android:name=".activity.RegisterActivity" />
         <activity
-        android:name=".activity.MainActivity"
-        android:label=""
-            />
+            android:name=".activity.MainActivity"
+            android:label="" />
         <activity
-        android:name=".myview.videoplayactivity.VideoPlayActivity"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-        android:label=""
-       />
-
+            android:name=".myview.videoplayactivity.VideoPlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="" />
         <activity
-        android:name=".myview.InfoActivity.fans.MyFansActivity"
-            android:label="我的粉丝"
-         />
+            android:name=".myview.InfoActivity.fans.MyFansActivity"
+            android:label="我的粉丝" />
         <activity
-        android:name=".myview.InfoActivity.attention.MyAttentionActivity"
-        android:label="我的关注"
-        />
+            android:name=".myview.InfoActivity.attention.MyAttentionActivity"
+            android:label="我的关注" />
         <activity
-        android:name=".myview.InfoActivity.dynamic.MyDynamicActivity"
-        android:label="我的动态"
-         />
+            android:name=".myview.InfoActivity.dynamic.MyDynamicActivity"
+            android:label="我的动态" />
         <activity
-        android:name=".myview.InfoActivity.history.MyHistoryActivity"
-        android:label="历史记录"
-        />
+            android:name=".myview.InfoActivity.history.MyHistoryActivity"
+            android:label="历史记录" />
         <activity
-        android:name=".myview.InfoActivity.collection.MyCollectionActivity"
-        android:label="我的收藏"
-        />
+            android:name=".myview.InfoActivity.collection.MyCollectionActivity"
+            android:label="我的收藏" />
         <activity
-        android:name=".myview.InfoActivity.download.downloading.DownLoadProjectActivity"
-        android:label="离线缓存"
-        />
+            android:name=".myview.InfoActivity.download.downloading.DownLoadProjectActivity"
+            android:label="离线缓存" />
         <activity
-        android:name=".myview.InfoActivity.download.DownloadActivity"
-        android:label="离线缓存"
-        />
+            android:name=".myview.InfoActivity.download.DownloadActivity"
+            android:label="离线缓存" />
         <activity
-        android:name=".myview.InfoActivity.userinfo.InfoEditActivity"
-        android:label="修改信息"
-         />
+            android:name=".myview.InfoActivity.userinfo.InfoEditActivity"
+            android:label="修改信息" />
         <activity
-        android:name=".myview.InfoActivity.userinfo.UserInfoActivity"
-        android:label="个人主页"
-        android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".myview.InfoActivity.userinfo.UserInfoActivity"
+            android:label="个人主页"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".myview.InfoActivity.qrcode.QrCodeActivity"
-            android:label="二维码扫描"
-           />
-
+            android:label="二维码扫描" />
 
         <!-- qrcode -->
         <activity
             android:name="com.qrcode.activity.QrCodeMainActivity"
-            android:label="二维码页面"
-            />
+            android:label="二维码页面" />
         <activity
             android:name="com.qrcode.zxing.activity.CaptureActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
@@ -129,12 +114,15 @@
             android:screenOrientation="landscape"
             android:theme="@style/NoTitleFullscreen" />
 
-
         <!-- 开直播 -->
 
-        <!--接收直播流-->
-        <activity android:name=".myview.mainactivity.mainpager.live.PullActivity" android:screenOrientation="landscape"></activity>
 
+        <!-- 接收直播流 -->
+        <activity
+            android:name=".myview.mainactivity.mainpager.live.PullActivity"
+            android:screenOrientation="landscape" />
+        <!-- 动态上传-->
+        <activity android:name=".myview.mainactivity.PublicationDynamicsActivity"></activity>
     </application>
 
 </manifest>

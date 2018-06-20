@@ -26,11 +26,11 @@
 
 
                 <com.example.dell.newscenter.myview.base.CircleImageView
-                    android:id="@+id/main_head_portrait"
-                    android:layout_width="50dp"
+                    android:id="@+id/main_toolbar_head"
+                    android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/nav_header_desc"
-                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    android:paddingTop="10dp"
                     app:srcCompat="@drawable/psb" />
 
                 <SearchView

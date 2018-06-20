@@ -37,6 +37,7 @@ import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity
 import com.example.dell.newscenter.myview.InfoActivity.history.MyHistoryActivity;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.myview.base.FloatingActionsMenu;
+import com.example.dell.newscenter.myview.mainactivity.PublicationDynamicsActivity;
 import com.example.dell.newscenter.myview.mainactivity.dynamic.DynamicLayout;
 import com.example.dell.newscenter.myview.mainactivity.mainpager.FragmentLayout;
 import com.example.dell.newscenter.myview.mainactivity.partitions.PartitionsLayout;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity
     static  final String  SERVRE_LIVE_APK = "http://140.143.16.51/live/apk/live.apk";
     static  final String LOCAL_LIVE_APK = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))+"/live.apk";//本地插件地址
     /*  顶部的 布局*/
-    private CircleImageView main_head_portrait = null;
+    private CircleImageView main_toolbar_head = null;
     private  Toolbar toolbar = null;
 
     /*  中央  的  布局*/
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity
 
     /*  底部的  布局*/
     private BottomNavigationView main_bottom = null;
+    /* 侧滑栏 布局*/
     private DrawerLayout drawer = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 
         /* 顶部的布局*/
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        main_head_portrait = findViewById(R.id.main_head_portrait);
+        main_toolbar_head = findViewById(R.id.main_toolbar_head);
 
         /* 中央的布局*/
         main_center_layout = findViewById(R.id.center_LinearLayout);
@@ -82,7 +84,8 @@ public class MainActivity extends AppCompatActivity
         dynamicLayout = findViewById(R.id.dynamiclayout);
         /*  底部的布局*/
         main_bottom = findViewById(R.id.main_bottom);
-
+        /* 侧滑栏布局*/
+        drawer = findViewById(R.id.drawer_layout);
 //
 //        /**
 //         * 悬浮菜单
@@ -162,8 +165,8 @@ public class MainActivity extends AppCompatActivity
 
                         break;
                     case  R.id.startDynamicIV:  // 发表动态
-//                        Intent t2 = new Intent(MainActivity.this,PushActivity.class);
-//                        startActivity(t2);
+                        Intent t2 = new Intent(MainActivity.this,PublicationDynamicsActivity.class);
+                        startActivity(t2);
                         break;
                     default:break;
                 }
@@ -179,12 +182,14 @@ public class MainActivity extends AppCompatActivity
          drawer.addDrawerListener(toggle);
          toggle.syncState();
          */
-        drawer = findViewById(R.id.drawer_layout);
-        //   注释掉则默认的三杠点击进入侧滑 变为  向右划屏幕 打开侧滑栏
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+
+
+//        drawer = findViewById(R.id.drawer_layout);
+//        //   注释掉则默认的三杠点击进入侧滑 变为  向右划屏幕 打开侧滑栏
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -262,7 +267,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         /**
-         *   上边  那一栏
+         *  标题栏
          */
 //        toolbar.setLogo(R.drawable.ic_menu_send);
         setSupportActionBar(toolbar);//
@@ -270,12 +275,13 @@ public class MainActivity extends AppCompatActivity
                 .load(ApplicationUtil.getUser().getHeadUrl())
                 .override(ActivityUtil.getWidth(MainActivity.this),ActivityUtil.getHeight(MainActivity.this))
                 .fitCenter()
-                .into(main_head_portrait);
-        main_head_portrait.setOnTouchListener(new View.OnTouchListener() {
+                .into(main_toolbar_head);
+        main_toolbar_head.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 //                toggle.onDrawerStateChanged(DrawerLayout.SCREEN_STATE_ON);
 //                toggle setPosition(l1);
+                drawer.openDrawer(GravityCompat.START);
                 return true;
             }
         });
@@ -351,7 +357,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.mainpage) {}
 
-            else if (id == R.id.night) {    // 夜间模式    不跳转   特殊对待
+            else if (id == R.id.night) {    // 夜间模式   动作不是跳转   特殊对待
                  ApplicationUtil.exchangeNightMode();
                  recreate();
             }else {
