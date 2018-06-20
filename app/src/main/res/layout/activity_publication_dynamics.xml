@@ -7,43 +7,81 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+<com.example.dell.newscenter.myview.base.MyToolBar
+    app:title="发表动态"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--   view  占位作用-->
+    <View
+        android:layout_width="160dp"
+        android:layout_height="0dp"/>
+    <Button
+        android:id="@+id/publishBtn"
+        android:layout_marginRight="0dp"
+        android:background="#00000000"
+        android:textSize="25sp"
+        android:text="发表"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</com.example.dell.newscenter.myview.base.MyToolBar>
     <Button
         android:id="@+id/addPhotoBtn"
         android:text="+添加封面"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
     <Button
         android:id="@+id/addVideoBtn"
         android:text="+添加视频"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/videoLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <VideoView
+            android:id="@+id/video"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
     <EditText
         android:id="@+id/addTitleET"
+        android:hint="请输入20字符以内标题"
+        android:maxLength="20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:background="@drawable/bg_textarea"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
     <EditText
         android:id="@+id/addDescribeET"
+        android:textAlignment="textStart"
+        android:maxLength="50"
+        android:hint="请输入50字符以内描述"
+        android:background="@null"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <Button
-        android:id="@+id/photographBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="拍照"/>
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"/>
-    <Button
-        android:id="@+id/shootBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="录像"/>
-    <VideoView
-        android:id="@+id/video"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/leftNum"
+        android:text="剩余字数：50"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
-        android:layout_height="200dp" />
+        android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>
