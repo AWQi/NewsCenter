@@ -37,6 +37,7 @@ import java.util.List;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.PermissionUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
-
+        PermissionUtil.requestStorage(LoginActivity.this);
     }
 
     /**

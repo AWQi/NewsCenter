@@ -1,16 +1,20 @@
 package com.example.dell.newscenter.myview.mainactivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +35,8 @@ import android.widget.VideoView;
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.activity.MainActivity;
+import com.example.dell.newscenter.utils.FTPUtil;
+import com.example.dell.newscenter.utils.GetPathFromUri;
 import com.example.dell.newscenter.utils.PermissionUtil;
 
 import java.io.File;
@@ -70,8 +76,43 @@ private Button publishBtn;
             @Override
             public void onClick(View v) {
                 String res = checkInfo();
+                res=null;// 先关闭检查
                 if (res == null) {
                     //  开始发表
+                    /**
+                     *  1 、上传图片
+                     *  2、上传视频
+                     *  3、更改数据库
+                     */
+                   String path = GetPathFromUri.getPath(PublicationDynamicsActivity.this,imageUri);
+                    Log.d(TAG, "path: "+path);
+                   int i = path.lastIndexOf("/");
+                    String localPath = path.substring(0,i);
+                    String fileName = path.substring(i+1);
+                    Log.d(TAG, "path: "+path);
+                    Log.d(TAG, "localPath: "+localPath);
+                    Log.d(TAG, "fileName: "+fileName);
+                    //  1、
+                    FTPUtil.uploadFtpFile(FTPUtil.FTP_IMAGE_PATH,fileName, localPath, fileName, new FTPUtil.FTPCallBack() {
+                        @Override
+                        public void callBack() {
+                            String path = GetPathFromUri.getPath(PublicationDynamicsActivity.this,imageUri);
+                            Log.d(TAG, "videoUri.getPath() "+path);
+                            int i = path.lastIndexOf("/");
+                            String localPath = path.substring(0,i);
+                            String fileName = path.substring(i+1);
+                            Log.d(TAG, "localPath: "+localPath);
+                            Log.d(TAG, "fileName: "+fileName);
+                    //  2、
+                            FTPUtil.uploadFtpFile(FTPUtil.FTP_VIDEO_PATH,fileName, localPath, fileName, new FTPUtil.FTPCallBack() {
+                                @Override
+                                public void callBack() {
+                     //   3、              //    写入数据库
+
+                                }
+                            });
+                        }
+                    });
                 }else {
                     Toast.makeText(PublicationDynamicsActivity.this,res,Toast.LENGTH_SHORT).show();
                 }
@@ -161,6 +202,9 @@ private Button publishBtn;
     }
 
     private String checkInfo() {
+        Log.d(TAG, "checkInfo: imageUri"+imageUri.getPath());
+        Log.d(TAG, "checkInfo: videoUri"+videoUri.getPath());
+
         if (imageUri==null){
             return "请选择封面";
         }else if (videoUri==null){
@@ -223,12 +267,15 @@ private Button publishBtn;
             case  TAKE_PHOTO:
                 Log.d(TAG, "requestCode: "+requestCode);
                 Log.d(TAG, "RESULT_OK: "+RESULT_OK);
-                Uri u = null;
-                if ((u = data.getData())!=null){ //不等于null 就是从相册获取
-                    imageUri = u;
-                }
-                Log.d(TAG, " imageUri "+ imageUri);
+
                 if (resultCode==RESULT_OK){
+                    Uri u = null;
+                    if ((u = data.getData())!=null){ //不等于null 就是从相册获取
+                        imageUri = u;
+                    }
+                    Log.d(TAG, " imageUri "+ imageUri.getEncodedPath());
+                    Log.d(TAG, " imageUri "+ imageUri.getPath());
+
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
                         Log.d(TAG, "bitmap: "+bitmap);
@@ -278,5 +325,42 @@ private Button publishBtn;
                 }
                     break;
         }
+    }
+
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){;
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+
+
+    public static String getRealFilePath( final Context context, final Uri uri ) {
+        if ( null == uri ) return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if ( scheme == null )
+            data = uri.getPath();
+        else if ( ContentResolver.SCHEME_FILE.equals( scheme ) ) {
+            data = uri.getPath();
+        } else if ( ContentResolver.SCHEME_CONTENT.equals( scheme ) ) {
+            Cursor cursor = context.getContentResolver().query( uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null );
+            if ( null != cursor ) {
+                if ( cursor.moveToFirst() ) {
+                    int index = cursor.getColumnIndex( MediaStore.Images.ImageColumns.DATA );
+                    if ( index > -1 ) {
+                        data = cursor.getString( index );
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
     }
 }

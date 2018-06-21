@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -20,11 +21,13 @@ static public String FTP_HOST = "140.143.16.51";
 static public String FTP_USER_NAME = "my";
 static public String FTP_PWD = "wang";
 static public int FTP_PORT = 21;
+static public int SFTP_PORT = 22;
 static public String FTP_VIDEO_PATH = "/public/nginx/video";
 static public String FTP_IMAGE_PATH = "/public/nginx/image";
 static public String localPath = "G:\\迅雷下载";
 
-static public String fileName = "a.mp4";
+static public String localFileName = "a.mp4";
+static public String ftpFileName = "a.mp4";
 	static public void configFTP(String ftpHost,String ftpUserName,
 			String ftpPasswd,int ftpPort ,
 			String ftpPath,String localPath ,String fileName ) {
@@ -42,7 +45,16 @@ static public String fileName = "a.mp4";
 			ftpClient.login(ftpUserName, ftpPasswd);
 			if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
 				Log.e(TAG, "未连接到FTP服务器" );
-				ftpClient.disconnect();
+                Log.d(TAG, "使用SFTP连接: ");
+
+                ftpClient.connect(ftpHost, ftpPort);
+                ftpClient.login(ftpUserName, ftpPasswd);
+                if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())){
+                    Log.e(TAG, "未连接到FTP服务器" );
+                    ftpClient.disconnect();
+                }else {
+                    Log.d(TAG, "连接成功");
+                }
 			} else {
 				Log.d(TAG, "连接成功");
 			} 
@@ -100,7 +112,8 @@ static public String fileName = "a.mp4";
         }).start();
 	}
 	static public void uploadFtpFile(final String ftpPath,
-                                     final String localPath, final String fileName, final FTPCallBack ftpCallBack) {
+                                     final String ftpFileName,
+                                     final String localPath, final String loaclFileName, final FTPCallBack ftpCallBack) {
 	    new Thread(new Runnable() {
 
             @Override
@@ -120,14 +133,14 @@ static public String fileName = "a.mp4";
                         Log.e(TAG, "进入文件夹" + ftpPath + " 失败！" );
                     }
                     //读取文件到流
-                    File localFile = new File(localPath+File.separatorChar,fileName);
+                    File localFile = new File(localPath+File.separatorChar,loaclFileName);
                     InputStream is = new FileInputStream(localFile);
                     // 上传
-                    ftpClient.storeFile(fileName, is); //执行此条语句的时间， 就是上传的过程，比较耗时
+
+                    ftpClient.storeFile(ftpFileName, is); //执行此条语句的时间， 就是上传的过程，比较耗时
                     Log.d(TAG, "上传成功:");
 
                     ftpCallBack.callBack();// 回调函数
-
                     is.close();
                     ftpClient.logout();
                 } catch (FileNotFoundException e) {
@@ -135,6 +148,7 @@ static public String fileName = "a.mp4";
                     e.printStackTrace();
                 } catch (IOException e) {
                     Log.e(TAG, "文件读取错误" );
+                    Log.e(TAG, e.getMessage() );
                     e.printStackTrace();
                 }finally {
                     if (ftpClient.isConnected()) {
