@@ -77,14 +77,14 @@ public class HttpUtil {
      *      l2、okhttp
      *
      */
-    static  public  void sendPostWithOkHttp3(final String url, final Map<String,String> params, final Callback callback){
+    static  public  void sendPostWithOkHttp3(final String url,String body,Map<String,String>  head  ,final Map<String,String> params, final Callback callback){
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 // post  请求  用于添加参数
-                FormBody.Builder builder = new FormBody.Builder();;
+                FormBody.Builder builder = new FormBody.Builder();
                 if (params!=null) {
                     for (String key : params.keySet()) {
                         builder.add(key, params.get(key));

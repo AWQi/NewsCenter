@@ -52,6 +52,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
     //  解析json
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okio:okio:1.5.0'
     //  okhttp
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
     //  bilibili 开源弹幕库
