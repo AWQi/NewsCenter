@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtil {
-    static final public String LIVE_PATH = "rtmp://140.143.16.51/";
+    static final public String LIVE_PATH = "rtmp://140.143.16.51/hls/";
     static final public String IMAGE_PATH = "http://140.143.16.51/image/";
     static final public String VIDEO_PATH = "http://140.143.16.51/video/";
 

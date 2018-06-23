@@ -1,6 +1,7 @@
 package com.example.dell.newscenter.utils;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -138,6 +139,7 @@ static public String ftpFileName = "a.mp4";
                     // 上传
 
                     ftpClient.storeFile(ftpFileName, is); //执行此条语句的时间， 就是上传的过程，比较耗时
+//                    Toast.makeText(ApplicationUtil.getContext(),"上传成功",Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "上传成功:");
 
                     ftpCallBack.callBack();// 回调函数
@@ -145,9 +147,11 @@ static public String ftpFileName = "a.mp4";
                     ftpClient.logout();
                 } catch (FileNotFoundException e) {
                     Log.e(TAG, "未找到相关文件");
+                    Toast.makeText(ApplicationUtil.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 } catch (IOException e) {
                     Log.e(TAG, "文件读取错误" );
+                    Toast.makeText(ApplicationUtil.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                     Log.e(TAG, e.getMessage() );
                     e.printStackTrace();
                 }finally {
