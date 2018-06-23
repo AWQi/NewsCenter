@@ -50,6 +50,7 @@ public class StudioAdapter extends RecyclerView.Adapter{
             h.studioItemTitleTV.setText(studio.getTitle());
             h.studioItemKindTV.setText(studio.getKind());
         Glide.with(context).load(studio.getImageUrl())
+                .fitCenter()
                 .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
                 .into(h.studioItemImageIV);
         h.studioItemLL.setOnClickListener(new View.OnClickListener() {

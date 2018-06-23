@@ -1,6 +1,6 @@
 package com.example.dell.newscenter.bean;
 
-public class Commen {
+public class Comment {
 private  int id ;
 private  int authorId;
 private  String authorImageURL;
@@ -8,10 +8,10 @@ private  int authorName;
 private  String content;
 private  String Date;
 
-    public Commen() {
+    public Comment() {
     }
 
-    public Commen(int id, int authorId, String authorImage, int authorName, String content, String date) {
+    public Comment(int id, int authorId, String authorImage, int authorName, String content, String date) {
         this.id = id;
         this.authorId = authorId;
         this.authorImageURL = authorImageURL;
@@ -20,7 +20,7 @@ private  String Date;
         Date = date;
     }
 
-    public Commen(String authorImageURL, String content) {
+    public Comment(String authorImageURL, String content) {
         this.authorImageURL = authorImageURL;
         this.content = content;
     }

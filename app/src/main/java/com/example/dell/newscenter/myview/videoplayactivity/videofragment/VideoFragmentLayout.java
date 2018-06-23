@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.example.dell.newscenter.R;
-import com.example.dell.newscenter.myview.videoplayactivity.videofragment.commen.CommenFragment;
+import com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment.CommenFragment;
 import com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.IntroductionFragment;
 
 import java.util.ArrayList;

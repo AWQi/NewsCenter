@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.videoplayactivity.videofragment.commen;
+package com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment;
 
 
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class CommenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //  请求   子控件数据
         //    加载fragment
-        View rootView  = inflater.inflate(R.layout.commenfragment,container,false);
+        View rootView  = inflater.inflate(R.layout.commentfragment,container,false);
         return rootView;
     }
 }
