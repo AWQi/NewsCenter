@@ -38,7 +38,7 @@ public class JoyResult<T>{
     public <T>T getDataObj(Class objClass){
         return (T)JsonUtil.StrToObj(getData(),objClass);
     }
-    public List<T> getDataList(Class objClass){
+    public List<T> getDataList(){
         return JsonUtil.StrToList(getData());
     }
 }

@@ -51,23 +51,23 @@ public class RecyclerViewDynamic  extends  RecyclerView{
     }
 
     private void getData() {
-        /**
-         *
-         *   获取数据
-         */
-            String imageUrl = "http://img2.woyaogexing.com/2018/05/19/a7bbc2eebe60b832!400x400_big.jpg";
-            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
-            String headUrl = ApplicationUtil.getUser().getHeadUrl();
-            Project project = new Project(1,"AASC",imageUrl,videoUrl,0,0,"ADS",1,"AWQI",headUrl);
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
+//        /**
+//         *
+//         *   获取数据
+//         */
+//            String imageUrl = "http://img2.woyaogexing.com/2018/05/19/a7bbc2eebe60b832!400x400_big.jpg";
+//            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
+//            String headUrl = ApplicationUtil.getUser().getHeadUrl();
+//            Project project = new Project(1,"AASC",imageUrl,videoUrl,0,0,"ADS",1,"AWQI",headUrl);
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
 
 //       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyHttpCallBack() {
 //           @Override
 //           public void analyticData(JoyResult joyResult) {
-//
+//               joyResult.getDataList();
 //           }
 //       });
 
