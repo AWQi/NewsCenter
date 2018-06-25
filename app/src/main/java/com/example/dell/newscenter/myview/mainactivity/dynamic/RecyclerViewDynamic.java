@@ -24,6 +24,9 @@ import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.HttpUtil;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,13 @@ public class RecyclerViewDynamic  extends  RecyclerView{
             projectList.add(project);
             projectList.add(project);
             projectList.add(project);
+
+//       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyHttpCallBack() {
+//           @Override
+//           public void analyticData(JoyResult joyResult) {
+//
+//           }
+//       });
 
     }
 

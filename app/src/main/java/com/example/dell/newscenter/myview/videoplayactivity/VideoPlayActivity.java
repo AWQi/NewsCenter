@@ -60,7 +60,7 @@ public class VideoPlayActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_videoplay);
         setActionBar(null);
         Intent intent = getIntent();
-        project = (Project)intent.getParcelableExtra("live_item");
+        project =intent.getParcelableExtra("live_item");
 
 //        // 检查系统是否设置了自动横屏
 //        orientoinListener  = new OrientationEventListener(VideoPlayActivity.this) {

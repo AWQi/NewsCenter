@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -24,6 +25,22 @@ public class HttpUtil {
     static final public String LIVE_PATH = "rtmp://140.143.16.51/hls/";
     static final public String IMAGE_PATH = "http://140.143.16.51/image/";
     static final public String VIDEO_PATH = "http://140.143.16.51/video/";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static final String TAG = "HttpUtil";
     /**
@@ -73,11 +90,27 @@ public class HttpUtil {
             }
         }).start();
     }
+
+    {
+
+        String url = "http://10.0.2.2:8080/test";
+        String body = "body";
+        Map<String ,String> head = new HashMap();
+        head.put("head","head");
+        head.put("head2","head2");
+        Map<String,String> param = new HashMap<>();
+        param.put("key","key");
+        param.put("key2","key2");
+    }
+
+
+
+
     /**
      *      l2、okhttp
      *
      */
-    static  public  void sendPostWithOkHttp3(final String url,String body,Map<String,String>  head  ,final Map<String,String> params, final Callback callback){
+    static  public  void sendPostWithOkHttp3(final String url,final String body,final Map<String,String>  head  ,final Map<String,String> params, final Callback callback){
 
         new Thread(new Runnable() {
             @Override
@@ -102,6 +135,5 @@ public class HttpUtil {
             }
         }).start();
     }
-
 
 }
