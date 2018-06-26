@@ -1,21 +1,43 @@
 package com.example.dell.newscenter.utils;
 
+import android.util.Log;
+
+import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import retrofit2.http.HEAD;
 
 public class JoyHttpUtil {
 static  final  public String HOST = "10.0.2.2";
+    private static final String TAG = "JoyHttpUtil";
     /**   评论：
      *
      */
@@ -80,7 +102,7 @@ static  final  public String HOST = "10.0.2.2";
     static  final  private  String QUERY_ATTENT_DYNAMIC = "http://"+HOST+":8080/queryAttentDynamic";
     static  public void queryAttentDynamic(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
-        param.put("kind",String.valueOf(userId));
+        param.put("userId",String.valueOf(userId));
         joyPostHttp(QUERY_ATTENT_DYNAMIC,null,null,param,joyHttpCallBack);
     }
 
@@ -149,18 +171,47 @@ static  final  public String HOST = "10.0.2.2";
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
-                // post  请求  用于添加参数
-                FormBody.Builder builder = new FormBody.Builder();
-                if (params!=null) {
-                    for (String key : params.keySet()) {
-                        builder.add(key, params.get(key));
-                    }
+                //10.0.2.2 shi 相对于模拟器来讲主机的地址 10.0.2.3是模拟器的地址
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(15000L, TimeUnit.MILLISECONDS)
+                        .readTimeout(15000L, TimeUnit.MILLISECONDS)
+                        .addInterceptor(new Interceptor() {
+                            @Override
+                            public Response intercept(Chain chain) throws IOException { Request original = chain.request();
+
+                                /**
+                                 *    添加1   尾部  参数
+                                 */
+                                HttpUrl originalHttpUrl = original.url();
+                                HttpUrl.Builder httpBuilder  = originalHttpUrl.newBuilder();
+                                if (params!=null) {
+                                    for (String key : params.keySet()) {
+                                        httpBuilder = httpBuilder.addQueryParameter(key, params.get(key));
+                                    }
+                                }
+                                HttpUrl url = httpBuilder.build();
+                                /**
+                                 *    添加   head  参数
+                                 */
+                                Request.Builder requestBuilder = original.newBuilder().url(url);
+                                if (head!=null) {
+                                    for (String key : head.keySet()) {
+                                        requestBuilder = requestBuilder.addHeader(key, head.get(key));
+                                    }
+                                }
+                                Request request = requestBuilder.build();
+                                return chain.proceed(request);
+                            }
+                        }).build();
+
+                String realBody = null;
+                if (body==null){
+                    realBody = "";
+                }else {
+                    realBody = body;
                 }
-                Request request = new Request.Builder()
-                        .url(url)
-                        .post(builder.build())
-                        .build();
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),realBody);
+                Request request =  new Request.Builder().url(url).post(requestBody).build();
                 //
                 Call call = client.newCall(request);
                 // 执行异步请求
@@ -172,18 +223,66 @@ static  final  public String HOST = "10.0.2.2";
 
 
    static public  abstract class    JoyHttpCallBack implements Callback {
-        private  JoyResult  joyResult  = null;
+
+        protected   JoyResultCallBack  joyResultCallBack ;
+        protected   JoyListCallBack  joyListCallBack;
+        protected   JoyObjCallBack joyObjCallBack;
+        protected   Class clazz =null;
+        protected   Type type;
         @Override
         public void onFailure(Call call, IOException e) {
-            joyResult = new JoyResult();
-            analyticData(joyResult);
+            JoyResult joyResult = new JoyResult(300,"请求失败");
+            joyResultCallBack.analyticData(joyResult);
         }
         @Override
         public void onResponse(Call call, Response response) throws IOException {
             String jsonStr = response.body().string();
-            joyResult = JsonUtil.StrToObj(jsonStr,JoyResult.class);
-            analyticData(joyResult);
+            Log.d(TAG, "onResponse: "+jsonStr);
+            int a = jsonStr.indexOf("[");
+            if (a!=-1){// 传入泛型  解析Json
+//               JoyResult.JoyList joyList =  JsonUtil.StrToObj(jsonStr,listType);
+                Gson gson = new Gson();
+                JoyResult.JoyList joyList =gson.fromJson(jsonStr,type);
+//                //Json的解析类对象
+//                JsonParser parser = new JsonParser();
+//                //将JSON的String 转成一个JsonArray对象
+//                JsonObject jsonObject = parser.parse(jsonStr).getAsJsonObject();
+//                JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+//               Type type = clazz;
+//                List<Type.>
+                Log.d(TAG, "joyList: "+joyList.getData());
+
+                joyListCallBack.analyticData(joyList);
+            }else {
+                JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, JoyResult.JoyObj.class);
+                joyObjCallBack.analyticData(joyObj);
+            }
+
+
+        }
+
+
+
+    }
+    static  abstract  public  class JoyResultCallBack extends  JoyHttpCallBack{
+        public JoyResultCallBack() {
+            joyResultCallBack = this;
         }
         abstract public  void analyticData(JoyResult joyResult);
+    }
+    static  abstract  public  class JoyListCallBack extends JoyHttpCallBack{
+        public JoyListCallBack(Type type) {
+            joyListCallBack = this;
+            this.type =type;
+        }
+
+        abstract public  void analyticData(JoyResult.JoyList joyList);
+    }
+    static  abstract  public  class JoyObjCallBack extends  JoyHttpCallBack{
+        public JoyObjCallBack(Class clazz) {
+            joyObjCallBack = this;
+            this.clazz =clazz;
+        }
+        abstract public  void analyticData(JoyResult.JoyObj joyObj);
     }
 }

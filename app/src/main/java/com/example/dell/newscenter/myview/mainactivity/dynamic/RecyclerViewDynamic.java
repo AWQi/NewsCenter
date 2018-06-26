@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.UiThread;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,49 +29,62 @@ import com.example.dell.newscenter.utils.ApplicationUtil;
 import com.example.dell.newscenter.utils.HttpUtil;
 import com.example.dell.newscenter.utils.JoyHttpUtil;
 import com.example.dell.newscenter.utils.JoyResult;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewDynamic  extends  RecyclerView{
+public class RecyclerViewDynamic  extends RecyclerView {
     private static final String TAG = "RecyclerViewDynamic";
     private Context context;
     private List<Project> projectList = new ArrayList<>();
-
+    public  RecyclerViewDynamic.MyAdapter myAdapter;
     public RecyclerViewDynamic(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        getData();
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
 
         this.setLayoutManager(layoutManager);
-
-        RecyclerViewDynamic.MyAdapter myAdapter = new RecyclerViewDynamic.MyAdapter(projectList);
+        myAdapter = new RecyclerViewDynamic.MyAdapter(projectList);
         this.setAdapter(myAdapter);
+        getData(myAdapter);
         this.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));// 添加默认分割线
     }
 
-    private void getData() {
-        /**
-         *
-         *   获取数据
-         */
-            String imageUrl = "http://img2.woyaogexing.com/2018/05/19/a7bbc2eebe60b832!400x400_big.jpg";
-            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
-            String headUrl = ApplicationUtil.getUser().getHeadUrl();
-            Project project = new Project(1,"AASC",imageUrl,videoUrl,0,0,"ADS",1,"AWQI",headUrl);
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
-            projectList.add(project);
+    private void getData(final Adapter adapter) {
+//        /**
+//         *
+//         *   获取数据
+//         */
+//            String imageUrl = "http://img2.woyaogexing.com/2018/05/19/a7bbc2eebe60b832!400x400_big.jpg";
+//            String videoUrl ="http://ips.ifeng.com/video.ifeng.com/video04/2011/03/24/480x360_offline20110324.mp4";
+//            String headUrl = ApplicationUtil.getUser().getHeadUrl();
+//            Project project = new Project(1,"AASC",imageUrl,videoUrl,0,0,"ADS",1,"AWQI",headUrl);
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
+//            projectList.add(project);
 
-//       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyHttpCallBack() {
-//           @Override
-//           public void analyticData(JoyResult joyResult) {
-//               joyResult.getDataList();
-//           }
-//       });
+        Type type =  new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
+       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(type) {
+           public void analyticData(final JoyResult.JoyList joyList) {
+//               Log.d(TAG, "analyticData: "+joyResult.getData());
+               ((Activity)context).runOnUiThread(new Runnable() { //  开UI 线程
+                   @Override
+                   public void run() {
+                       List list = joyList.getData();
+                       projectList.addAll(list);
+//                       recyclerView.invalidate();
+                       adapter.notifyDataSetChanged();//  刷新
+                       Log.d(TAG, "projectList.size: "+projectList.size());
+
+                   }
+               });
+
+           }
+       });
 
     }
 
@@ -101,8 +116,6 @@ public class RecyclerViewDynamic  extends  RecyclerView{
                     .fitCenter()
                     .into(  holder.dynamicItemImageIV);
             holder.dynamicItemTitleTV.setText(project.getTitle());
-
-
         }
         @Override
         public int getItemCount() {

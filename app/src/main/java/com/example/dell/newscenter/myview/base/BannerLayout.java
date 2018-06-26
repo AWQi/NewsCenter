@@ -34,9 +34,6 @@ public class BannerLayout extends RelativeLayout {
             {
                 currentScreenIndex=(currentScreenIndex+1)%getChildCount();
                 scrollToScreen(currentScreenIndex);
-
-                Log.i("TAG","handleMessage scrollToScreen:"+currentScreenIndex);
-
                 if(autoScroll)
                     handler.sendEmptyMessageDelayed(currentWhat, scrollTime);
             }
@@ -80,7 +77,6 @@ public class BannerLayout extends RelativeLayout {
         int maxHeight=-1;
 
         final int count = getChildCount();
-        Log.d(TAG, "widthMeasureSpec/2: "+widthMeasureSpec/2);
         for (int i = 0; i < count; i++) {
             getChildAt(i).measure(widthMeasureSpec, heightMeasureSpec);  //将父控件测量模式传入子控件
 
@@ -88,7 +84,6 @@ public class BannerLayout extends RelativeLayout {
 
         }
         maxHeight=Math.min(maxHeight, MeasureSpec.getSize(heightMeasureSpec));
-        Log.d(TAG, "MeasureSpec.getSize(widthMeasureSpec)"+MeasureSpec.getSize(widthMeasureSpec)+"maxHeight"+maxHeight);
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),maxHeight); // 确定父控件的大小
     }
     @Override
