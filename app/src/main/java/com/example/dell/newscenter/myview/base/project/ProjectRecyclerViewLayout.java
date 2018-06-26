@@ -94,4 +94,8 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
             }
         });
     }
+
+    public ProjectAdapter getAdapter() {
+        return adapter;
+    }
 }

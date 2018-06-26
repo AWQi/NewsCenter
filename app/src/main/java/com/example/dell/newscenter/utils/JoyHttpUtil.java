@@ -69,6 +69,13 @@ static  final  public String HOST = "10.0.2.2";
         joyPostHttp(DELETE_COMMENT,null,null,param,joyHttpCallBack);
     }
     //    查看我的收藏 ：
+    static final private String QUERY_MYDYANAMIC = "http://"+HOST+":8080/queryMyDynamic";
+    static  public void queryMyDynamic(int userId,JoyHttpCallBack joyHttpCallBack){
+        Map param = new HashMap<String,String>();
+        param.put("userId",String.valueOf(userId));
+        joyPostHttp(QUERY_MYDYANAMIC,null,null,param,joyHttpCallBack);
+    }
+    //    查看我的收藏 ：
     static final private String QUERY_COLLECT = "http://"+HOST+":8080/queryDynamicCollect";
     static  public void queryDynamicCollect(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
@@ -159,11 +166,11 @@ static  final  public String HOST = "10.0.2.2";
 
 
     //    动态作者信息
-    static  final  private  String    QUERY_DYNAMIC =  "http://"+HOST+":8080/queryDynamicAuthor";
+    static  final  private  String    QUERY_DYNAMIC_AUTHOR =  "http://"+HOST+":8080/queryDynamicAuthor";
     static  public void QUERY_DYNAMIC(int authorId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("authorId",String.valueOf(authorId));
-        joyPostHttp(QUERY_DYNAMIC,null,null,param,joyHttpCallBack);
+        joyPostHttp(QUERY_DYNAMIC_AUTHOR,null,null,param,joyHttpCallBack);
     }
 
 
@@ -247,8 +254,9 @@ static  final  public String HOST = "10.0.2.2";
         @Override
         public void onResponse(Call call, Response response) throws IOException {
             String jsonStr = response.body().string();
-//            Log.d(TAG, "onResponse: "+jsonStr);
+            Log.d(TAG, "onResponse: "+jsonStr);
             int a = jsonStr.indexOf("[");
+
             if (a!=-1){// 传入泛型  解析Json
                 Gson gson = new Gson();
                 JoyResult.JoyList joyList =gson.fromJson(jsonStr,type);

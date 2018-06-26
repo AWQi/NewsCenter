@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
@@ -38,7 +39,7 @@ private List<Project> projectList;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Project  project = projectList.get(position);
         holder.title.setText(project.getTitle());
         Glide.with(context).load(project.getImageURL()).into(holder.icon); // 图片加载 会对图片进行压缩，不会有内存溢出

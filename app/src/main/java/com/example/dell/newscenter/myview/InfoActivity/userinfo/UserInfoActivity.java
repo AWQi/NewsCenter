@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
@@ -39,7 +40,7 @@ private  boolean  isEditAble;
 
 
         userInfoHeadCV = findViewById(R.id.userInfoHeadCV);
-        ActivityUtil.loadNetImage(UserInfoActivity.this,user.getHeadUrl(),userInfoHeadCV);
+        Glide.with(UserInfoActivity.this).load(user.getHeadUrl()).fitCenter().into(userInfoHeadCV);
         userInfoNameTV = findViewById(R.id.userInfoNameTV);
         userInfoNameTV.setText(user.getName());
         userInfoGenderIV = findViewById(R.id.userInfoGenderIV);

@@ -33,11 +33,5 @@ public class ActivityUtil {
    public static  int getHeight(Context context){
        return ActivityUtil.scanForActivity(context).getWindowManager().getDefaultDisplay().getHeight();
    }
-   public  static  void  loadNetImage(Context context,String url,ImageView view){
-       Glide.with(context)
-               .load(url)
-               .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
-               .fitCenter()
-               .into(view);
-   }
+
 }

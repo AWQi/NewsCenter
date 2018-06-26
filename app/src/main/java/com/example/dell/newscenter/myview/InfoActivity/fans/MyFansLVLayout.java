@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.utils.ActivityUtil;
@@ -34,12 +35,13 @@ public class MyFansLVLayout extends ListView {
         this.setAdapter(myAdapter);
     }
     private  void getDate(){
-        User user = new User("AWQI","https://i01piccdn.sogoucdn.com/3c28af542f2d49f7-9e7c5d699eaea93e-e247d97701e0b8dc2dd8024d3adb26c0_qq");
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
+//        User user = new User("AWQI","https://i01piccdn.sogoucdn.com/3c28af542f2d49f7-9e7c5d699eaea93e-e247d97701e0b8dc2dd8024d3adb26c0_qq");
+//        userList.add(user);
+//        userList.add(user);
+//        userList.add(user);
+//        userList.add(user);
+//        userList.add(user);
+
 
 
     }
@@ -75,7 +77,7 @@ public class MyFansLVLayout extends ListView {
                 viewHolder = (ViewHolder) view.getTag(); // 从view中取出
             }
             Log.d(TAG, "HeadUrl "+user.getHeadUrl());
-            ActivityUtil.loadNetImage(context,user.getHeadUrl(),viewHolder.fansImage);
+            Glide.with(context).load(user.getHeadUrl()).fitCenter().into(viewHolder.fansImage);
             viewHolder.fansTextView.setText(user.getName());
             return view;
         }

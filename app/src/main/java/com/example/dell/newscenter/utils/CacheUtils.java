@@ -20,7 +20,6 @@ public class CacheUtils {
     public  static  boolean getBoolean (Context context,String key){
 
     SharedPreferences sp = context.getSharedPreferences("News",Context.MODE_PRIVATE);
-
     return sp.getBoolean(key,false);
 }
 

@@ -1,6 +1,7 @@
 package com.example.dell.newscenter.activity;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         View  navigationHeadView  = navigationView.getHeaderView(0);
         // 头像
         ImageView headImage = navigationHeadView.findViewById(R.id.headImage);
-        ActivityUtil.loadNetImage(MainActivity.this,ApplicationUtil.getUser().getHeadUrl(),headImage);
+        Glide.with(MainActivity.this).load(ApplicationUtil.getUser().getHeadUrl()).fitCenter().into(headImage);
         headImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
