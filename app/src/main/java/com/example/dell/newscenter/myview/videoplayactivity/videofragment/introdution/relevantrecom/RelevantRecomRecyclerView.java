@@ -1,5 +1,6 @@
-package com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation;
+package com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecom;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,39 +19,61 @@ import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.videoplayactivity.VideoPlayActivity;
 import com.example.dell.newscenter.utils.ActivityUtil;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
+public class RelevantRecomRecyclerView extends RecyclerView{
     private  Context context;
     private  List<Project> projectList = new ArrayList<>();
-    public MyRecyclerViewRelevantRecommendations(Context context, @Nullable AttributeSet attrs) {
+    private  MyAdapter myAdapter;
+    public RelevantRecomRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        getDate();
+        getDate(getKind());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
 
         //消除抖动
         this.setLayoutManager(layoutManager);
 
-        MyAdapter myAdapter = new MyAdapter(projectList);
+         myAdapter = new MyAdapter(projectList);
         this.setAdapter(myAdapter);
     }
-    private void getDate() {
+    private  String getKind(){
+        return  ((VideoPlayActivity)context).getProject().getKind();
+    }
+    private void getDate(String kind ) {
         /**
          *
          *   获取数据
          */
-        String imageURL1 = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-fe9c78d2ff4ac332-12634f97e4a417cb6125ff8173671d0b_qq";
-        String imageURL2 = "http://img2.woyaogexing.com/2018/05/22/57be9001e13d4eca!400x400_big.jpg";
-        String videoURL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";
-        Project project1 = new Project(1,"AA",imageURL1,videoURL,0,0,"BB");
-        projectList.add(project1);
+//        String imageURL1 = "https://i04picsos.sogoucdn.com/3c28af542f2d49f7-fe9c78d2ff4ac332-12634f97e4a417cb6125ff8173671d0b_qq";
+//        String imageURL2 = "http://img2.woyaogexing.com/2018/05/22/57be9001e13d4eca!400x400_big.jpg";
+//        String videoURL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov";
+//        Project project1 = new Project(1,"AA",imageURL1,videoURL,0,0,"BB");
+//        projectList.add(project1);
+//
+//        Project project2 = new Project(2,"AA",imageURL2,videoURL,0,0,"BB");
+//
+//        projectList.add(project2);
 
-        Project project2 = new Project(2,"AA",imageURL2,videoURL,0,0,"BB");
+        JoyHttpUtil.RelevantRecom(kind, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_TYPE) {
+            @Override
+            public void analyticData(final JoyResult.JoyList joyList) {
+//               Log.d(TAG, "analyticData: "+joyResult.getData());
+                ((Activity)context).runOnUiThread(new Runnable() { //  开UI 线程
+                    @Override
+                    public void run() {
+                        List list = joyList.getData();
+                        projectList.addAll(list);
+                        myAdapter.notifyDataSetChanged();//  刷新
+                    }
+                });
+            }
+        });
 
-        projectList.add(project2);
     }
   class MyAdapter extends  RecyclerView.Adapter<MyAdapter.ViewHolder>{
     private List<Project> projectList;
@@ -62,7 +85,7 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
       @NonNull
       @Override
       public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-          View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.relevant_recommendations_item,parent,false);
+          View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.relevant_recom_item,parent,false);
           ViewHolder holder = new ViewHolder(view);
           return holder;
       }
@@ -92,8 +115,8 @@ public class MyRecyclerViewRelevantRecommendations extends RecyclerView{
           TextView projectTitleTV;
           public ViewHolder(View itemView) {
               super(itemView);
-              projectImageTV = itemView.findViewById(R.id.relevantrecommendationsImageIV);
-              projectTitleTV  = itemView.findViewById(R.id.relevantrecommendationsTitleTV);
+              projectImageTV = itemView.findViewById(R.id.relevantRecomImageIV);
+              projectTitleTV  = itemView.findViewById(R.id.relevantRecomTitleTV);
           }
       }
   }

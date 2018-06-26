@@ -85,10 +85,10 @@
             android:layout_height="40dp"
             android:src="@drawable/share"/>
     </LinearLayout>
-    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.MyRecyclerViewRelevantRecommendations
+    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecom.RelevantRecomRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecommendation.MyRecyclerViewRelevantRecommendations>
+    </com.example.dell.newscenter.myview.videoplayactivity.videofragment.introdution.relevantrecom.RelevantRecomRecyclerView>
     </LinearLayout>
 
     <ImageView

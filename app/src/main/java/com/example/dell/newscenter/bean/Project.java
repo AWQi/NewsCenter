@@ -6,18 +6,15 @@ import android.os.Parcelable;
 
 public class Project implements Parcelable{
     protected int id;
-    protected int authorid;
+    protected int authorId;
     protected  String  title ;
     protected String imageUrl;
     protected String videoUrl;
     protected int praiseNum;
     protected int commentsNum;
     protected String kind;
-    protected int authorId;
     protected String authorName;
     protected String authorHeadUrl;
-
-
     protected String introduction;
     protected int praisesNum;
     protected String date;
@@ -26,9 +23,6 @@ public class Project implements Parcelable{
 
     public void setId(int id) {
         this.id = id;
-    }
-    public void setAuthorid(Integer authorid) {
-        this.authorid = authorid;
     }
     public void setTitle(String title) {
         this.title = title;
@@ -72,23 +66,15 @@ public class Project implements Parcelable{
     public void setCollectNum(Integer collectNum) {
         this.collectNum = collectNum;
     }
-
-    public Integer getAuthorid() {
-        return authorid;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
-
     public String getVideoUrl() {
         return videoUrl;
     }
-
     public String getIntroduction() {
         return introduction;
     }
-
     public Integer getPraisesNum() {
         return praisesNum;
     }
@@ -200,7 +186,6 @@ public class Project implements Parcelable{
             parcel.writeInt(authorId);
             parcel.writeString(authorName);
             parcel.writeString(authorHeadUrl);
-
             parcel.writeString(introduction);
             parcel.writeInt(praisesNum);
             parcel.writeString(date);
@@ -240,25 +225,5 @@ public class Project implements Parcelable{
         return authorHeadUrl;
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", authorid=" + authorid +
-                ", title='" + title + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", videoUrl='" + videoUrl + '\'' +
-                ", praiseNum=" + praiseNum +
-                ", commentsNum=" + commentsNum +
-                ", kind='" + kind + '\'' +
-                ", authorId=" + authorId +
-                ", authorName='" + authorName + '\'' +
-                ", authorHeadUrl='" + authorHeadUrl + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", praisesNum=" + praisesNum +
-                ", date='" + date + '\'' +
-                ", viewNum=" + viewNum +
-                ", collectNum=" + collectNum +
-                '}';
-    }
+
 }

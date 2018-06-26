@@ -38,7 +38,8 @@ public class VideoPlayActivity  extends AppCompatActivity {
     private TabHost videotabhost = null;
     private TabWidget videotabwidget = null;
     private FrameLayout videotabcontent = null;
-    private Project project;
+    public Project project;
+
     private OrientationEventListener orientoinListener;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

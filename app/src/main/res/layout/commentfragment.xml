@@ -7,24 +7,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_weight="9">
+       >
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:maxLines="1"
             android:hint="说点什么吧"
             />
         <ImageView
             android:src="@drawable/ic_menu_send"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="9"/>
     </LinearLayout>
-    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment.MyRecyclerViewCommen
+    <com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment.CommentRecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-    </com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment.MyRecyclerViewCommen>
+       >
+    </com.example.dell.newscenter.myview.videoplayactivity.videofragment.comment.CommentRecyclerView>
 </LinearLayout>

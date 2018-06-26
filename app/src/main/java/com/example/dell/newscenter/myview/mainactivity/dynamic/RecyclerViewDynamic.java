@@ -67,8 +67,8 @@ public class RecyclerViewDynamic  extends RecyclerView {
 //            projectList.add(project);
 //            projectList.add(project);
 
-        Type type =  new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
-       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(type) {
+
+       JoyHttpUtil.queryAttentDynamic(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_TYPE) {
            public void analyticData(final JoyResult.JoyList joyList) {
 //               Log.d(TAG, "analyticData: "+joyResult.getData());
                ((Activity)context).runOnUiThread(new Runnable() { //  开UI 线程
@@ -76,10 +76,7 @@ public class RecyclerViewDynamic  extends RecyclerView {
                    public void run() {
                        List list = joyList.getData();
                        projectList.addAll(list);
-//                       recyclerView.invalidate();
                        adapter.notifyDataSetChanged();//  刷新
-                       Log.d(TAG, "projectList.size: "+projectList.size());
-
                    }
                });
 

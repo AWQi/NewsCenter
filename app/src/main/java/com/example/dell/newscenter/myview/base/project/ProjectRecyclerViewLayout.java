@@ -29,6 +29,7 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
         LayoutInflater.from(context).inflate(R.layout.project_recyclerview_layout,this);
         onCreate();
     }
+
     public void getDate(List list) {
         if (list!=null) {
             /**

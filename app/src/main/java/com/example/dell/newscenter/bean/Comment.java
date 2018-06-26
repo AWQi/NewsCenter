@@ -4,25 +4,63 @@ public class Comment {
 private  int id ;
 private  int authorId;
 private  String authorImageURL;
-private  int authorName;
+private  String authorName;
 private  String content;
 private  String Date;
+private  int dynamicId;
 
-    public Comment() {
+ public Comment() {
     }
 
-    public Comment(int id, int authorId, String authorImage, int authorName, String content, String date) {
+    public Comment(int authorId, String authorImageURL, String authorName, String content, String date, int dynamicId) {
+        this.authorId = authorId;
+        this.authorImageURL = authorImageURL;
+        this.authorName = authorName;
+        this.content = content;
+        Date = date;
+        this.dynamicId = dynamicId;
+    }
+
+    public Comment(int id, int authorId, String authorImageURL, String authorName, String content, String date, int dynamicId) {
         this.id = id;
         this.authorId = authorId;
         this.authorImageURL = authorImageURL;
         this.authorName = authorName;
         this.content = content;
         Date = date;
+        this.dynamicId = dynamicId;
     }
 
-    public Comment(String authorImageURL, String content) {
+    public int getDynamicId() {
+        return dynamicId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public void setAuthorImageURL(String authorImageURL) {
         this.authorImageURL = authorImageURL;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public void setDynamicId(int dynamicId) {
+        this.dynamicId = dynamicId;
     }
 
     public int getId() {
@@ -37,7 +75,7 @@ private  String Date;
         return authorImageURL;
     }
 
-    public int getAuthorName() {
+    public String getAuthorName() {
         return authorName;
     }
 

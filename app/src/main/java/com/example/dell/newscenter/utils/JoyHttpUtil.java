@@ -1,7 +1,10 @@
 package com.example.dell.newscenter.utils;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.dell.newscenter.bean.Comment;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.User;
 import com.google.gson.Gson;
@@ -33,11 +36,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import retrofit2.http.HEAD;
-
 public class JoyHttpUtil {
 static  final  public String HOST = "10.0.2.2";
     private static final String TAG = "JoyHttpUtil";
+    static  public final  Type PROJECT_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
+    static  public final  Type COMMENT_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
+    static  public final  Type USER_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
+
+
     /**   评论：
      *
      */
@@ -46,7 +52,7 @@ static  final  public String HOST = "10.0.2.2";
     static  public void queryComment(int projrctId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("dynamicId",String.valueOf(projrctId));
-        joyPostHttp(QUERY_COLLECT,null,null,param,joyHttpCallBack);
+        joyPostHttp(QUERY_COMMENT,null,null,param,joyHttpCallBack);
     }
     //    添加评论
     static final private String ADD_COMMENT = "http://"+HOST+":8080/addComment";
@@ -94,9 +100,9 @@ static  final  public String HOST = "10.0.2.2";
     }
     //    推荐动态
     static  final  private  String COMMENT_DYNAMIC = "http://"+HOST+":8080/commendDynamics";
-    static  public void CommendDynamics(int page,JoyHttpCallBack joyHttpCallBack){
+    static  public void commendDynamics(int page,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
-        param.put("kind",String.valueOf(page));
+        param.put("page",String.valueOf(page));
         joyPostHttp(COMMENT_DYNAMIC,null,null,param,joyHttpCallBack);
     }
     static  final  private  String QUERY_ATTENT_DYNAMIC = "http://"+HOST+":8080/queryAttentDynamic";
@@ -231,27 +237,22 @@ static  final  public String HOST = "10.0.2.2";
         protected   Type type;
         @Override
         public void onFailure(Call call, IOException e) {
-            JoyResult joyResult = new JoyResult(300,"请求失败");
-            joyResultCallBack.analyticData(joyResult);
+//            JoyResult joyResult = new JoyResult(300,"请求失败");
+//            joyResultCallBack.analyticData(joyResult);
+
+            Context context = ApplicationUtil.getContext();
+            Toast.makeText(context,"网络连接错误",Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "onFailure: -------------------------"+"获取网络数据失败");
         }
         @Override
         public void onResponse(Call call, Response response) throws IOException {
             String jsonStr = response.body().string();
-            Log.d(TAG, "onResponse: "+jsonStr);
+//            Log.d(TAG, "onResponse: "+jsonStr);
             int a = jsonStr.indexOf("[");
             if (a!=-1){// 传入泛型  解析Json
-//               JoyResult.JoyList joyList =  JsonUtil.StrToObj(jsonStr,listType);
                 Gson gson = new Gson();
                 JoyResult.JoyList joyList =gson.fromJson(jsonStr,type);
-//                //Json的解析类对象
-//                JsonParser parser = new JsonParser();
-//                //将JSON的String 转成一个JsonArray对象
-//                JsonObject jsonObject = parser.parse(jsonStr).getAsJsonObject();
-//                JsonArray jsonArray = jsonObject.getAsJsonArray("data");
-//               Type type = clazz;
-//                List<Type.>
-                Log.d(TAG, "joyList: "+joyList.getData());
-
+//                Log.d(TAG, "joyList: "+joyList.getData());
                 joyListCallBack.analyticData(joyList);
             }else {
                 JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, JoyResult.JoyObj.class);

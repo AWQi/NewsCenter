@@ -50,6 +50,7 @@ private List<Project> projectList;
                 ActivityUtil.scanForActivity(context).startActivity(intent);
             }
         });
+        holder.kind.setText(project.getKind());
     }
 
     @Override
