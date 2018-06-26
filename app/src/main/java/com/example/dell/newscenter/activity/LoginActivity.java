@@ -93,7 +93,9 @@ public class LoginActivity extends AppCompatActivity  {
 
         //  解析  user 到 bean
 
-        User user  = new User(1,"AWQI","18734741443","http://img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg",1);
+        User user  = new User(1,"AWQI","18734741443"
+                ,"http://img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg"
+                ,1,1,5,6);
         if (user.getId()!=0){  // 若正确  则获取到id不为0
             //  存储到ApplicationUtil .user
             ApplicationUtil.setUser(user);

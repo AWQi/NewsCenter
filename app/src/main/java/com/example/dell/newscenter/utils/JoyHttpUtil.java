@@ -288,9 +288,8 @@ static  final  public String HOST = "10.0.2.2";
         abstract public  void analyticData(JoyResult.JoyList joyList);
     }
     static  abstract  public  class JoyObjCallBack extends  JoyHttpCallBack{
-        public JoyObjCallBack(Class clazz) {
+        public JoyObjCallBack( ) {
             joyObjCallBack = this;
-            this.clazz =clazz;
         }
         abstract public  void analyticData(JoyResult.JoyObj joyObj);
     }

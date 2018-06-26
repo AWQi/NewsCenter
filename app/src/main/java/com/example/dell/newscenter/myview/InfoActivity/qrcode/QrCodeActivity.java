@@ -80,10 +80,12 @@ private Bitmap qrBitmap = null;
                  intent.putExtra("user",(User)JsonUtil.StrToObj(scanQrBean.content,User.class));
                  intent.putExtra("isEditAble",false);
                  startActivity(intent);
+                 this.finish();
              }else if(scanQrBean.kind==QrBean.PROJECT){
                  Intent intent = new Intent(QrCodeActivity.this, VideoPlayActivity.class);
                  intent.putExtra("live_item",(Project)JsonUtil.StrToObj(scanQrBean.content,Project.class));
                  startActivity(intent);
+                 this.finish();
             }else{
                  Log.d(TAG, "二维码解析出错: ");
             }

@@ -1,6 +1,7 @@
 package com.example.dell.newscenter.myview.InfoActivity.fans;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,9 @@ import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.utils.ActivityUtil;
+import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +45,20 @@ public class MyFansLVLayout extends ListView {
 //        userList.add(user);
 //        userList.add(user);
 //        userList.add(user);
+        JoyHttpUtil.myFans(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.USER_TYPE) {
+            @Override
+            public void analyticData(final JoyResult.JoyList joyList) {
+                ((Activity)context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List list = joyList.getData();
+                        userList.addAll(list);
+                        myAdapter.notifyDataSetChanged();
 
+                    }
+                });
+            }
+        });
 
 
     }

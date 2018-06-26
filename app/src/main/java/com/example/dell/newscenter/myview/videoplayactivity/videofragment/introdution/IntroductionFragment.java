@@ -35,13 +35,16 @@ import com.example.dell.newscenter.myview.InfoActivity.userinfo.UserInfoActivity
 import com.example.dell.newscenter.myview.base.CircleImageView;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 import com.example.dell.newscenter.utils.JsonUtil;
+import com.google.android.exoplayer.C;
 import com.google.zxing.WriterException;
 import com.qrcode.zxing.decoding.zxing.encoding.EncodingHandler;
 
 public class IntroductionFragment extends Fragment implements View.OnTouchListener{
-    private static final String TAG = "IntroductionFragment";
-    private TextView introductionTitleTV;
+  private static final String TAG = "IntroductionFragment";
+  private TextView introductionTitleTV;
   private CircleImageView introductionHeadCV;
   private TextView introductionAuthorNameTV;
   private Button introductionAttentBtn;
@@ -110,7 +113,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      */
     public void getDate(){
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
-        project = (Project)intent.getParcelableExtra("live_item");
+        project = intent.getParcelableExtra("live_item");
     }
 
     @Override
@@ -183,6 +186,26 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      */
     public void attent(){
         // 发送网络请求关注
+        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
+            @Override
+            public void analyticData(final JoyResult.JoyObj joyObj) {
+                ((Activity)context).runOnUiThread(new Runnable() {
+                    // Toast   必须放在  ui线程  不然会报错
+//                    java.lang.RuntimeException: Can't toast on a thread that has not called Looper.prepare()
+                    @Override
+                    public void run() {
+                        if (joyObj.status==200) {
+                            Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
+                            introductionAttentBtn.setText("已关注");
+                            introductionAttentBtn.setClickable(false);
+                        }else {
+                            Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        });
     }
 
     /**

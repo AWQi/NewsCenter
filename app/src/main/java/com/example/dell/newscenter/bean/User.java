@@ -10,6 +10,33 @@ public class User implements Parcelable {
     private String tel;
     private String headUrl;
     private int gender ;
+    private Integer myAttentNum;
+    private Integer myFanNum;
+    private Integer myDynamicNum;
+
+    public void setMyAttentNum(Integer myAttentNum) {
+        this.myAttentNum = myAttentNum;
+    }
+
+    public void setMyFanNum(Integer myFanNum) {
+        this.myFanNum = myFanNum;
+    }
+
+    public void setMyDynamicNum(Integer myDynamicNum) {
+        this.myDynamicNum = myDynamicNum;
+    }
+
+    public Integer getMyAttentNum() {
+        return myAttentNum;
+    }
+
+    public Integer getMyFanNum() {
+        return myFanNum;
+    }
+
+    public Integer getMyDynamicNum() {
+        return myDynamicNum;
+    }
 
     public User(int id, String name, String tel, String headUrl, int gender) {
         this.id = id;
@@ -29,6 +56,17 @@ public class User implements Parcelable {
     public User(String name, String headUrl) {
         this.name = name;
         this.headUrl = headUrl;
+    }
+
+    public User(int id, String name, String tel, String headUrl, int gender, Integer myAttentNum, Integer myFanNum, Integer myDynamicNum) {
+        this.id = id;
+        this.name = name;
+        this.tel = tel;
+        this.headUrl = headUrl;
+        this.gender = gender;
+        this.myAttentNum = myAttentNum;
+        this.myFanNum = myFanNum;
+        this.myDynamicNum = myDynamicNum;
     }
 
     public void setTel(String tel) {

@@ -12,13 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Comment;
 import com.example.dell.newscenter.myview.videoplayactivity.VideoPlayActivity;
+import com.example.dell.newscenter.utils.ApplicationUtil;
 import com.example.dell.newscenter.utils.HttpUtil;
 import com.example.dell.newscenter.utils.JoyHttpUtil;
 import com.example.dell.newscenter.utils.JoyResult;
@@ -96,23 +99,50 @@ public class CommentRecyclerView extends RecyclerView {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Comment comment = commentList.get(position);
+            final Comment comment = commentList.get(position);
             Glide.with(context).load(comment.getAuthorImageURL()).into(holder.commenAuthorImage);
             holder.commenContent.setText(comment.getContent());
+            holder.attentBtn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Button view = (Button) v;
+                    JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(),comment.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
+
+                        @Override
+                        public void analyticData(final JoyResult.JoyObj joyObj) {
+                            ((Activity)context).runOnUiThread(new Runnable() {
+                                // Toast   必须放在  ui线程  不然会报错
+//                    java.lang.RuntimeException: Can't toast on a thread that has not called Looper.prepare()
+                                @Override
+                                public void run() {
+                                    if (joyObj.status==200) {
+                                        Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
+                                        view.setText("已关注");
+                                        view.setClickable(false);
+                                    }else {
+                                        Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }
+            });
         }
         @Override
         public int getItemCount() {
             return commentList.size();
         }
-
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView commenAuthorImage;
             TextView commenContent;
-
+            Button attentBtn;
             public ViewHolder(View itemView) {
                 super(itemView);
                 commenAuthorImage = itemView.findViewById(R.id.commen_user);
                 commenContent = itemView.findViewById(R.id.commen_tv);
+                attentBtn = itemView.findViewById(R.id.commen_attent);
             }
         }
     }

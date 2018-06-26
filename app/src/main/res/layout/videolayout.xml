@@ -65,7 +65,6 @@
                 android:background="@drawable/flowborder"
                 android:textColor="@android:color/black"
                 android:hint="发送弹幕"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <ImageView
