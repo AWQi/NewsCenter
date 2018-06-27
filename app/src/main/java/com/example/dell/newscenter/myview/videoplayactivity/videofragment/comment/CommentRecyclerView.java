@@ -34,6 +34,7 @@ public class CommentRecyclerView extends RecyclerView {
     private Context context;
     private List<Comment> commentList = new ArrayList<>();
     private MyAdapter myAdapter = null;
+
     public CommentRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -43,11 +44,13 @@ public class CommentRecyclerView extends RecyclerView {
         this.setLayoutManager(layoutManager);
         myAdapter = new MyAdapter(commentList);
         this.setAdapter(myAdapter);
-        this.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));// 添加默认分割线
+        this.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));// 添加默认分割线
     }
-    private  int getProjectId(){
-        return  ((VideoPlayActivity)context).getProject().getId();
+
+    private int getProjectId() {
+        return ((VideoPlayActivity) context).getProject().getId();
     }
+
     private void getData(int projectId) {
         /**
          *
@@ -65,16 +68,16 @@ public class CommentRecyclerView extends RecyclerView {
 //        commentList.add(comment);
 //        commentList.add(comment);
 //        commentList.add(comment);
-        Log.d(TAG, "projectId: ````````````````````````````````"+projectId);
+        Log.d(TAG, "projectId: ````````````````````````````````" + projectId);
         JoyHttpUtil.queryComment(projectId, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.COMMENT_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
-                ((Activity)context).runOnUiThread(new Runnable() { //  开UI 线程
+                ((Activity) context).runOnUiThread(new Runnable() { //  开UI 线程
                     @Override
                     public void run() {
                         List list = joyList.getData();
                         commentList.addAll(list);
-                        Log.d(TAG, "commentList   size"+list.size()+"run: -----------------------------------");
+                        Log.d(TAG, "commentList   size" + list.size() + "run: -----------------------------------");
                         myAdapter.notifyDataSetChanged();//  刷新
                     }
                 });
@@ -86,9 +89,11 @@ public class CommentRecyclerView extends RecyclerView {
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         private List<Comment> commentList;
+
         public MyAdapter(List<Comment> commentList) {
             this.commentList = commentList;
         }
+
         @NonNull
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -102,82 +107,80 @@ public class CommentRecyclerView extends RecyclerView {
             final Comment comment = commentList.get(position);
             Glide.with(context).load(comment.getAuthorImageUrl()).into(holder.commenAuthorImage);
             holder.commenContent.setText(comment.getContent());
-
-            if (comment.getUserId()==ApplicationUtil.getUser().getId()){
+            if (comment.getUserId() == ApplicationUtil.getUser().getId()) {
                 holder.attentBtn.setText("删除评论");
-                holder.attentBtn.setOnClickListener(new OnClickListener() { // 删除评论
-                    @Override
-                    public void onClick(View v) {
-                        final Button view = (Button) v;
-                        if (comment.getId()==0)
-                            Log.d(TAG, "onClick:--------------------------- 删除请求 ");
+            }
+            holder.attentBtn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Button view = (Button) v;
+                    if (comment.getUserId() == ApplicationUtil.getUser().getId()) {  //  删除
                         JoyHttpUtil.deleteComment(comment.getId(), new JoyHttpUtil.JoyObjCallBack() {
                             @Override
                             public void analyticData(final JoyResult.JoyObj joyObj) {
-                                ((Activity)context).runOnUiThread(new Runnable() {
+                                ((Activity) context).runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (joyObj.getStatus()==200){
+                                        if (joyObj.getStatus() == 200) {
                                             int i;
-                                            for (i = 0;i<commentList.size();i++){
-                                                if (commentList.get(i).getId()==comment.getId()){
+                                            for (i = 0; i < commentList.size(); i++) {
+                                                if (commentList.get(i).getId() == comment.getId()) {
                                                     commentList.remove(i);
                                                     break;
                                                 }
                                             }
-                                           myAdapter.notifyItemRemoved(i);
-                                            Toast.makeText(context,"删除成功",Toast.LENGTH_SHORT).show();
-                                        }else {
-                                            Toast.makeText(context,"删除失败",Toast.LENGTH_SHORT).show();
+                                            myAdapter.notifyItemRemoved(i);
+                                            Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
                                         }
                                     }
-
 
                                 });
                             }
                         });
-                    }
-                });
-            }else {
-                holder.attentBtn.setOnClickListener(new OnClickListener() { // 关注
-                    @Override
-                    public void onClick(View v) {
-                        final Button view = (Button) v;
-                        if (view.getText().toString().equals(""))
-                            JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(),comment.getUserId(), new JoyHttpUtil.JoyObjCallBack() {
+                    }else { //  关注
+                        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), comment.getUserId(), new JoyHttpUtil.JoyObjCallBack() {
 
-                                @Override
-                                public void analyticData(final JoyResult.JoyObj joyObj) {
-                                    ((Activity)context).runOnUiThread(new Runnable() {
-                                        // Toast   必须放在  ui线程  不然会报错
+                            @Override
+                            public void analyticData(final JoyResult.JoyObj joyObj) {
+                                ((Activity) context).runOnUiThread(new Runnable() {
+                                    // Toast   必须放在  ui线程  不然会报错
 //                    java.lang.RuntimeException: Can't toast on a thread that has not called Looper.prepare()
-                                        @Override
-                                        public void run() {
-                                            if (joyObj.status==200) {
-                                                Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
-                                                view.setText("已关注");
-                                                view.setClickable(false);
-                                            }else {
-                                                Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
-                                            }
+                                    @Override
+                                    public void run() {
+                                        if (joyObj.status == 200) {
+                                            Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
+                                            view.setText("已关注");
+                                            view.setClickable(false);
+                                        } else {
+                                            Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
                                         }
-                                    });
+                                    }
+                                });
 
-                                }
-                            });
+                            }
+                        });
                     }
-                });
-            }
+                    }
+
+
+
+            });
+
 
         }
+
         @Override
         public int getItemCount() {
             return commentList.size();
         }
+
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView commenAuthorImage;
             TextView commenContent;
             Button attentBtn;
+
             public ViewHolder(View itemView) {
                 super(itemView);
                 commenAuthorImage = itemView.findViewById(R.id.commen_user);
