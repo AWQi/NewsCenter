@@ -2,8 +2,8 @@ package com.example.dell.newscenter.bean;
 
 public class Comment {
 private  int id ;
-private  int authorId;
-private  String authorImageURL;
+private  int userId;
+private  String authorImageUrl;
 private  String authorName;
 private  String content;
 private  String Date;
@@ -12,9 +12,23 @@ private  int dynamicId;
  public Comment() {
     }
 
+    public Comment(int authorId, String content, int dynamicId) {
+        this.userId = authorId;
+        this.content = content;
+        this.dynamicId = dynamicId;
+    }
+
+    public Comment(int userId, String authorImageURL, String authorName, String content, int dynamicId) {
+        this.userId = userId;
+        this.authorImageUrl = authorImageURL;
+        this.authorName = authorName;
+        this.content = content;
+        this.dynamicId = dynamicId;
+    }
+
     public Comment(int authorId, String authorImageURL, String authorName, String content, String date, int dynamicId) {
-        this.authorId = authorId;
-        this.authorImageURL = authorImageURL;
+        this.userId = authorId;
+        this.authorImageUrl = authorImageURL;
         this.authorName = authorName;
         this.content = content;
         Date = date;
@@ -23,8 +37,8 @@ private  int dynamicId;
 
     public Comment(int id, int authorId, String authorImageURL, String authorName, String content, String date, int dynamicId) {
         this.id = id;
-        this.authorId = authorId;
-        this.authorImageURL = authorImageURL;
+        this.userId = authorId;
+        this.authorImageUrl = authorImageURL;
         this.authorName = authorName;
         this.content = content;
         Date = date;
@@ -39,12 +53,12 @@ private  int dynamicId;
         this.id = id;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setUserId(int authorId) {
+        this.userId = authorId;
     }
 
-    public void setAuthorImageURL(String authorImageURL) {
-        this.authorImageURL = authorImageURL;
+    public void setAuthorImageUrl(String authorImageURL) {
+        this.authorImageUrl = authorImageURL;
     }
 
     public void setAuthorName(String authorName) {
@@ -67,12 +81,12 @@ private  int dynamicId;
         return id;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getAuthorImageURL() {
-        return authorImageURL;
+    public String getAuthorImageUrl() {
+        return authorImageUrl;
     }
 
     public String getAuthorName() {

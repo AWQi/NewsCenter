@@ -175,10 +175,16 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
          *   实际根据 id 做网络请求获取  先做代替
          *
          */
-        User user =  ApplicationUtil.getUser();
-        Intent intent = new Intent(context, UserInfoActivity.class);
-        intent.putExtra("user",user);
-        startActivity(intent);
+        JoyHttpUtil.quseryUseInfo(project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
+            @Override
+            public void analyticData(JoyResult.JoyObj joyObj) {
+                User user = (User) joyObj.getData();
+                Intent intent = new Intent(context, UserInfoActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+       ;
     }
 
     /**

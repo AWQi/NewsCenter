@@ -56,10 +56,9 @@ static  final  public String HOST = "10.0.2.2";
     }
     //    添加评论
     static final private String ADD_COMMENT = "http://"+HOST+":8080/addComment";
-    static  public void addComment(int projrctId,JoyHttpCallBack joyHttpCallBack){
-        Map param = new HashMap<String,String>();
-        param.put("dynamicId",String.valueOf(projrctId));
-        joyPostHttp(ADD_COMMENT,null,null,param,joyHttpCallBack);
+    static  public void addComment(Comment comment ,JoyHttpCallBack joyHttpCallBack){
+        String commentInfo = JsonUtil.ObjToStr(comment);
+        joyPostHttp(ADD_COMMENT,commentInfo,null,null,joyHttpCallBack);
     }
     //    删除评论
     static final private String  DELETE_COMMENT = "http://"+HOST+":8080/deleteComment";
@@ -164,13 +163,12 @@ static  final  public String HOST = "10.0.2.2";
         joyPostHttp(REGISTER,body,null,null,joyHttpCallBack);
     }
 
-
     //    动态作者信息
-    static  final  private  String    QUERY_DYNAMIC_AUTHOR =  "http://"+HOST+":8080/queryDynamicAuthor";
-    static  public void QUERY_DYNAMIC(int authorId,JoyHttpCallBack joyHttpCallBack){
+    static  final  private  String    QUERY_USER_INFO =  "http://"+HOST+":8080/queryUserInfo";
+    static  public void quseryUseInfo(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
-        param.put("authorId",String.valueOf(authorId));
-        joyPostHttp(QUERY_DYNAMIC_AUTHOR,null,null,param,joyHttpCallBack);
+        param.put("userId",String.valueOf(userId));
+        joyPostHttp(QUERY_USER_INFO,null,null,param,joyHttpCallBack);
     }
 
 

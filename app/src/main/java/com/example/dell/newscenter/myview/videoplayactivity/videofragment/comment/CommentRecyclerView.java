@@ -100,35 +100,75 @@ public class CommentRecyclerView extends RecyclerView {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             final Comment comment = commentList.get(position);
-            Glide.with(context).load(comment.getAuthorImageURL()).into(holder.commenAuthorImage);
+            Glide.with(context).load(comment.getAuthorImageUrl()).into(holder.commenAuthorImage);
             holder.commenContent.setText(comment.getContent());
-            holder.attentBtn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final Button view = (Button) v;
-                    JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(),comment.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
 
-                        @Override
-                        public void analyticData(final JoyResult.JoyObj joyObj) {
-                            ((Activity)context).runOnUiThread(new Runnable() {
-                                // Toast   必须放在  ui线程  不然会报错
-//                    java.lang.RuntimeException: Can't toast on a thread that has not called Looper.prepare()
-                                @Override
-                                public void run() {
-                                    if (joyObj.status==200) {
-                                        Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
-                                        view.setText("已关注");
-                                        view.setClickable(false);
-                                    }else {
-                                        Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
+            if (comment.getUserId()==ApplicationUtil.getUser().getId()){
+                holder.attentBtn.setText("删除评论");
+                holder.attentBtn.setOnClickListener(new OnClickListener() { // 删除评论
+                    @Override
+                    public void onClick(View v) {
+                        final Button view = (Button) v;
+                        if (comment.getId()==0)
+                            Log.d(TAG, "onClick:--------------------------- 删除请求 ");
+                        JoyHttpUtil.deleteComment(comment.getId(), new JoyHttpUtil.JoyObjCallBack() {
+                            @Override
+                            public void analyticData(final JoyResult.JoyObj joyObj) {
+                                ((Activity)context).runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (joyObj.getStatus()==200){
+                                            int i;
+                                            for (i = 0;i<commentList.size();i++){
+                                                if (commentList.get(i).getId()==comment.getId()){
+                                                    commentList.remove(i);
+                                                    break;
+                                                }
+                                            }
+                                           myAdapter.notifyItemRemoved(i);
+                                            Toast.makeText(context,"删除成功",Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            Toast.makeText(context,"删除失败",Toast.LENGTH_SHORT).show();
+                                        }
                                     }
+
+
+                                });
+                            }
+                        });
+                    }
+                });
+            }else {
+                holder.attentBtn.setOnClickListener(new OnClickListener() { // 关注
+                    @Override
+                    public void onClick(View v) {
+                        final Button view = (Button) v;
+                        if (view.getText().toString().equals(""))
+                            JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(),comment.getUserId(), new JoyHttpUtil.JoyObjCallBack() {
+
+                                @Override
+                                public void analyticData(final JoyResult.JoyObj joyObj) {
+                                    ((Activity)context).runOnUiThread(new Runnable() {
+                                        // Toast   必须放在  ui线程  不然会报错
+//                    java.lang.RuntimeException: Can't toast on a thread that has not called Looper.prepare()
+                                        @Override
+                                        public void run() {
+                                            if (joyObj.status==200) {
+                                                Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show();
+                                                view.setText("已关注");
+                                                view.setClickable(false);
+                                            }else {
+                                                Toast.makeText(context, "关注失败", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
                                 }
                             });
+                    }
+                });
+            }
 
-                        }
-                    });
-                }
-            });
         }
         @Override
         public int getItemCount() {
@@ -147,5 +187,11 @@ public class CommentRecyclerView extends RecyclerView {
         }
     }
 
+    public MyAdapter getMyAdapter() {
+        return myAdapter;
+    }
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
 }
