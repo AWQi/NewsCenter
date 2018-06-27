@@ -31,14 +31,4 @@ Joy
   （1）夜间模式          
   （2）分类订阅           <br/>
   
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/a.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/b.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/g.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/h.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/i.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/j.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/m.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/o.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/t.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/u.png)
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/v.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/main.png)
