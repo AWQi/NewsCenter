@@ -1,10 +1,14 @@
-Joy  一个  小视频动态 发表 ，推荐 ，浏览  ，一键开启直播，观看直播，  动漫番剧追看 的综合娱乐app。
+Joy 
+============
+
+    一个小视频动态 发表 ，推荐 ，浏览  ，一键开启直播，观看直播，  动漫番剧追看 的综合娱乐app。
+============
 
  
  主要功能：
  
 1、 用户操作        
-  （1）注册登录       </br>
+  （1）注册登录       <br/>
   （2）个人信息修改 ，支持头像上传  
   （3）用户关注      
   （4）用户分享（二维码）   
@@ -25,4 +29,16 @@ Joy  一个  小视频动态 发表 ，推荐 ，浏览  ，一键开启直播�
   （2）分类订阅          
 5、系统功能             
   （1）夜间模式          
-  （2）分类订阅           
+  （2）分类订阅           <br/>
+  
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/a.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/b.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/g.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/h.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/i.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/j.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/m.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/o.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/t.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/u.png)
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/v.png)
