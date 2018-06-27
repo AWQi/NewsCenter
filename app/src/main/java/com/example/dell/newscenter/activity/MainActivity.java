@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
 
+import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.myview.InfoActivity.attention.MyAttentionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.collection.MyCollectionActivity;
 import com.example.dell.newscenter.myview.InfoActivity.download.downloading.DownLoadProjectActivity;
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "NewCenter";
     static  final String  SERVRE_LIVE_APK = "http://140.143.16.51/live/apk/live.apk";
     static  final String LOCAL_LIVE_APK = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))+"/live.apk";//本地插件地址
-    /*  顶部的 布局*/
+    private User user = ApplicationUtil.getUser();
+      /*  顶部的 布局*/
     private CircleImageView main_toolbar_head = null;
     private  Toolbar toolbar = null;
 
@@ -234,15 +236,17 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             }
         });
+
         // 动态
-        navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
+        TextView myDynamicEntrance = navigationHeadView.findViewById(R.id.myDynamicEntrance);
+        myDynamicEntrance .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MyDynamicActivity.class);
                 startActivity(intent);
-            }
+                }
         });
-
+        myDynamicEntrance.setText(user.getMyDynamicNum()+"");
         navigationHeadView.findViewById(R.id.myDynamicEntrance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -251,22 +255,25 @@ public class MainActivity extends AppCompatActivity
             }
         });
         // 关注
-        navigationHeadView.findViewById(R.id.myAttentionEntrance).setOnClickListener(new View.OnClickListener() {
+        TextView myAttentionEntrance = navigationHeadView.findViewById(R.id.myAttentionEntrance);
+        myAttentionEntrance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MyAttentionActivity.class);
                 startActivity(intent);
             }
         });
+        myAttentionEntrance.setText(user.getMyAttentNum()+"");
         // 粉丝
-        navigationHeadView.findViewById(R.id.myFansEntrance).setOnClickListener(new View.OnClickListener() {
+        TextView myFansEntrance = navigationHeadView.findViewById(R.id.myFansEntrance);
+        myFansEntrance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MyFansActivity.class);
                 startActivity(intent);
             }
         });
-
+        myFansEntrance.setText(user.getMyFanNum()+"");
         /**
          *  标题栏
          */

@@ -37,6 +37,8 @@ import java.util.List;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
 import com.example.dell.newscenter.utils.ApplicationUtil;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 import com.example.dell.newscenter.utils.PermissionUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -87,17 +89,23 @@ public class LoginActivity extends AppCompatActivity  {
      */
     private void attemptLogin() {
         //
-        tel = telET.getText().toString();
-        pwd = pwdTV.getText().toString();
+//        tel = telET.getText().toString();
+//        pwd = pwdTV.getText().toString();
+        tel = "18734741443";
+        pwd = "000000";
         // 发送请求验证信息  返回 user 的json 字符
+        JoyHttpUtil.login(tel, pwd, new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.USER_OBJ_TYPE) {
+            @Override
+            public void analyticData(JoyResult.JoyObj joyObj) {
 
-        //  解析  user 到 bean
 
-        User user  = new User(1,"AWQI","18734741443"
-                ,"http://img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg"
-                ,1,1,5,6);
-        if (user.getId()!=0){  // 若正确  则获取到id不为0
+//                = new User(1,"AWQI","18734741443"
+//                ,"http://img2.woyaogexing.com/2018/05/20/4c21bd94d67c19b9!400x400_big.jpg"
+//                ,1,1,5,6);
+        if (joyObj.getStatus()==200){  // 若正确  则获取到id不为0
             //  存储到ApplicationUtil .user
+            //  解析  user 到 bean
+            User user  = (User) joyObj.getData();
             ApplicationUtil.setUser(user);
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
@@ -105,6 +113,9 @@ public class LoginActivity extends AppCompatActivity  {
         }else {//  不正确  报错
             Toast.makeText(LoginActivity.this,"账号或密码不正确",Toast.LENGTH_LONG).show();
         }
+
+            }
+        });
     }
 
 }

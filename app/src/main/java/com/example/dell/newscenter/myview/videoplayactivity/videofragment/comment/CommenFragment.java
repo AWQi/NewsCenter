@@ -61,7 +61,7 @@ private Project project = null;
                 final int dynammicId = project.getId();
                 final String content = addCommentET.getText().toString();
                 final Comment comment = new Comment(userId,content,dynammicId);
-                JoyHttpUtil.addComment(comment, new JoyHttpUtil.JoyObjCallBack() {
+                JoyHttpUtil.addComment(comment, new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.INTEGER_OBJ_TYPE) {
                     @Override
                     public void analyticData(final JoyResult.JoyObj joyObj) {
 
@@ -71,7 +71,7 @@ private Project project = null;
                                     if (joyObj.getStatus()==200){
 
                                         //  id  直接强转 会得到  double
-                                        int id= new Double((double) joyObj.getData()).intValue();
+                                        int id= (int) joyObj.getData();
                                         comment.setId(id);  //  获取返回的评论id
 
                                         comment.setAuthorImageUrl(userHeadUrl);

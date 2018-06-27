@@ -32,7 +32,7 @@ public class MyCollectionActivity extends AppCompatActivity {
 //        projectList.add(project);
 
 
-        JoyHttpUtil.queryDynamicCollect(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_TYPE) {
+        JoyHttpUtil.queryDynamicCollect(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 activity.runOnUiThread(new Runnable() {

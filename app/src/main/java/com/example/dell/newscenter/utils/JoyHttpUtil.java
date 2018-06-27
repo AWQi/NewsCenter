@@ -39,11 +39,14 @@ import okhttp3.Response;
 public class JoyHttpUtil {
 static  final  public String HOST = "10.0.2.2";
     private static final String TAG = "JoyHttpUtil";
-    static  public final  Type PROJECT_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
-    static  public final  Type COMMENT_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
-    static  public final  Type USER_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
+    static  public final  Type PROJECT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
+    static  public final  Type COMMENT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
+    static  public final  Type USER_LIST_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
 
-
+    static  public final  Type OBJECT_TTYPE =  new TypeToken<JoyResult.JoyObj<Object>>() {}.getType();
+    static  public final  Type INTEGER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<Integer>>() {}.getType();
+    static  public final  Type USER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<User>>() {}.getType();
+    static  public final  Type COMMENT_OBJ_TYPE = new TypeToken<JoyResult.JoyObj<Comment>>() {}.getType();
     /**   评论：
      *
      */
@@ -141,7 +144,7 @@ static  final  public String HOST = "10.0.2.2";
         joyPostHttp(ADD_ATTENTION,null,null,param,joyHttpCallBack);
     }
     //    取消关注
-    static  final  private  String DELETE_ATTENTION =  "http://"+HOST+":8080deleteAttention";
+    static  final  private  String DELETE_ATTENTION =  "http://"+HOST+":8080/deleteAttention";
     static  public void deleteAttention(int user1Id,int user2Id,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("user1Id",String.valueOf(user1Id));
@@ -158,8 +161,8 @@ static  final  public String HOST = "10.0.2.2";
     }
     //    注册
     static  final  private  String REGISTER = "http://"+HOST+":8080/register";
-    static  public void login(User user,JoyHttpCallBack joyHttpCallBack){
-       String body = JsonUtil.ObjToStr(user);
+    static  public void register(User user,JoyHttpCallBack joyHttpCallBack){
+        String body = JsonUtil.ObjToStr(user);
         joyPostHttp(REGISTER,body,null,null,joyHttpCallBack);
     }
 
@@ -261,7 +264,9 @@ static  final  public String HOST = "10.0.2.2";
 //                Log.d(TAG, "joyList: "+joyList.getData());
                 joyListCallBack.analyticData(joyList);
             }else {
-                JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, JoyResult.JoyObj.class);
+                Gson gson = new Gson();
+                JoyResult.JoyObj joyObj =gson.fromJson(jsonStr,type);
+//                JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, type);
                 joyObjCallBack.analyticData(joyObj);
             }
 
@@ -286,8 +291,9 @@ static  final  public String HOST = "10.0.2.2";
         abstract public  void analyticData(JoyResult.JoyList joyList);
     }
     static  abstract  public  class JoyObjCallBack extends  JoyHttpCallBack{
-        public JoyObjCallBack( ) {
+        public JoyObjCallBack(Type type) {
             joyObjCallBack = this;
+            this.type =type;
         }
         abstract public  void analyticData(JoyResult.JoyObj joyObj);
     }

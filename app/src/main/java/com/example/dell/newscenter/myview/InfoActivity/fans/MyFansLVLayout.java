@@ -45,7 +45,7 @@ public class MyFansLVLayout extends ListView {
 //        userList.add(user);
 //        userList.add(user);
 //        userList.add(user);
-        JoyHttpUtil.myFans(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.USER_TYPE) {
+        JoyHttpUtil.myFans(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.USER_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 ((Activity)context).runOnUiThread(new Runnable() {

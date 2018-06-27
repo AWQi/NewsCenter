@@ -69,7 +69,7 @@ public class CommentRecyclerView extends RecyclerView {
 //        commentList.add(comment);
 //        commentList.add(comment);
         Log.d(TAG, "projectId: ````````````````````````````````" + projectId);
-        JoyHttpUtil.queryComment(projectId, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.COMMENT_TYPE) {
+        JoyHttpUtil.queryComment(projectId, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.COMMENT_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 ((Activity) context).runOnUiThread(new Runnable() { //  开UI 线程
@@ -115,7 +115,8 @@ public class CommentRecyclerView extends RecyclerView {
                 public void onClick(View v) {
                     final Button view = (Button) v;
                     if (comment.getUserId() == ApplicationUtil.getUser().getId()) {  //  删除
-                        JoyHttpUtil.deleteComment(comment.getId(), new JoyHttpUtil.JoyObjCallBack() {
+                        JoyHttpUtil.deleteComment(comment.getId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.OBJECT_TTYPE) {
+
                             @Override
                             public void analyticData(final JoyResult.JoyObj joyObj) {
                                 ((Activity) context).runOnUiThread(new Runnable() {
@@ -140,7 +141,7 @@ public class CommentRecyclerView extends RecyclerView {
                             }
                         });
                     }else { //  关注
-                        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), comment.getUserId(), new JoyHttpUtil.JoyObjCallBack() {
+                        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), comment.getUserId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.OBJECT_TTYPE) {
 
                             @Override
                             public void analyticData(final JoyResult.JoyObj joyObj) {

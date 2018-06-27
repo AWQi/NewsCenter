@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.newscenter.R;
@@ -26,19 +27,21 @@ import com.example.dell.newscenter.utils.JoyResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAttentionLVLayout extends ListView{
+public class MyAttentionLVLayout extends ListView {
     private static final String TAG = "MyAttentionLVLayout";
     private List<User> userList = new ArrayList<>();
-    private MyAdapter myAdapter ;
-    private  Context context;
+    private MyAdapter myAdapter;
+    private Context context;
+
     public MyAttentionLVLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context =context;
+        this.context = context;
         getDate();
-        myAdapter = new MyAdapter(context,R.layout.myattention_item,userList);
+        myAdapter = new MyAdapter(context, R.layout.myattention_item, userList);
         this.setAdapter(myAdapter);
     }
-    private  void  getDate(){
+
+    private void getDate() {
 //        final User user = new User("AWQI","https://i03piccdn.sogoucdn.com/3c28af542f2d49f7-fe9c78d2ff4ac332-fb4a758922eafb9eb4eb9f41b34581da_qq");
 //        userList.add(user);
 //        userList.add(user);
@@ -46,27 +49,27 @@ public class MyAttentionLVLayout extends ListView{
 //        userList.add(user);
 //        userList.add(user);
 //        userList.add(user);
-        JoyHttpUtil.myAttention(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.USER_TYPE) {
+        JoyHttpUtil.myAttention(ApplicationUtil.getUser().getId(), new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.USER_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 Log.d(TAG, "analyticData: ");
-                ((Activity)context).runOnUiThread(new Runnable() {
+                ((Activity) context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         List list = joyList.getData();
-                        Log.d(TAG, "list.siez: ```````````````````"+list.size());
+                        Log.d(TAG, "list.siez: ```````````````````" + list.size());
                         userList.addAll(list);
                         myAdapter.notifyDataSetChanged();
                     }
                 });
             }
         });
-
-
     }
-    class  MyAdapter extends ArrayAdapter{
-        private  Context context ;
-        private  int resoureceId;
+
+    class MyAdapter extends ArrayAdapter {
+        private Context context;
+        private int resoureceId;
+
         public MyAdapter(@NonNull Context context, int resource, @NonNull List objects) {
             super(context, resource, objects);
             this.context = context;
@@ -75,33 +78,55 @@ public class MyAttentionLVLayout extends ListView{
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            User user = (User) getItem(position);
+        public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
+            final User user = (User) getItem(position);
             View view;
             ViewHolder viewHolder;
-            if (convertView==null){
-                view = LayoutInflater.from(context).inflate(resoureceId,parent,false);
+            if (convertView == null) {
+                view = LayoutInflater.from(context).inflate(resoureceId, parent, false);
                 viewHolder = new ViewHolder();
                 viewHolder.myAttentionHeadCV = view.findViewById(R.id.myAttentionHeadCV);
                 viewHolder.myAttentionTV = view.findViewById(R.id.myAttentionTV);
-                viewHolder.myAttentionBtn = view.findViewById(R.id.myAttentionBtn);
+                viewHolder.myAttentionBtn = view.findViewById(R.id.deleteMyAttentBtn);
                 view.setTag(viewHolder);
-            }else {
+            } else {
                 view = convertView;
                 viewHolder = (ViewHolder) view.getTag();
             }
-
             Glide.with(context).load(user.getHeadUrl())
-                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
+                    .override(ActivityUtil.getWidth(context), ActivityUtil.getHeight(context))
                     .fitCenter().into(viewHolder.myAttentionHeadCV);
-//            ActivityUtil.loadNetImage(context,user.getHeadUrl(),viewHolder.myAttentionHeadCV);
             viewHolder.myAttentionTV.setText(user.getName());
-//            viewHolder.myAttentionBtn.setText();
+            viewHolder.myAttentionBtn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    JoyHttpUtil.deleteAttention(ApplicationUtil.getUser().getId(), user.getId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.OBJECT_TTYPE) {
+                        @Override
+                        public void analyticData(final JoyResult.JoyObj joyObj) {
+
+                            ((Activity) context).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (joyObj.getStatus() == 200) {
+                                        userList.remove(position);
+                                        myAdapter.notifyDataSetChanged();
+                                        Toast.makeText(context,"取消关注成功",Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Toast.makeText(context,"取消关注失败",Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }
+            });
             return view;
 
         }
 
-        class  ViewHolder {
+        class ViewHolder {
             CircleImageView myAttentionHeadCV;
             TextView myAttentionTV;
             Button myAttentionBtn;

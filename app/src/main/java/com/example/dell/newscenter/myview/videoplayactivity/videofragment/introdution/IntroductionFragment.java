@@ -175,7 +175,8 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
          *   实际根据 id 做网络请求获取  先做代替
          *
          */
-        JoyHttpUtil.quseryUseInfo(project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
+        JoyHttpUtil.quseryUseInfo(project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.USER_OBJ_TYPE) {
+
             @Override
             public void analyticData(JoyResult.JoyObj joyObj) {
                 User user = (User) joyObj.getData();
@@ -192,7 +193,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      */
     public void attent(){
         // 发送网络请求关注
-        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack() {
+        JoyHttpUtil.addAttention(ApplicationUtil.getUser().getId(), project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.OBJECT_TTYPE) {
             @Override
             public void analyticData(final JoyResult.JoyObj joyObj) {
                 ((Activity)context).runOnUiThread(new Runnable() {

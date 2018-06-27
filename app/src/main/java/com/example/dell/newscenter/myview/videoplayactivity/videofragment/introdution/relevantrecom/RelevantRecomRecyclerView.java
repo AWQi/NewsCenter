@@ -59,7 +59,7 @@ public class RelevantRecomRecyclerView extends RecyclerView{
 //
 //        projectList.add(project2);
 
-        JoyHttpUtil.RelevantRecom(kind, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_TYPE) {
+        JoyHttpUtil.RelevantRecom(kind, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
 //               Log.d(TAG, "analyticData: "+joyResult.getData());

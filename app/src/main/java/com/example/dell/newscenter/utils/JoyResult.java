@@ -29,14 +29,14 @@ public class JoyResult<T>{
         this.msg = msg;
     }
 
-    static  public class  JoyObj  {
-        public Object data;
+    static  public class  JoyObj<T>{
+        public T data;
         // 响应业务状态
         public int status;
         // 响应消息
         public String msg;
 
-        public JoyObj(Object data, int status, String msg) {
+        public JoyObj(T data, int status, String msg) {
             this.data = data;
             this.status = status;
             this.msg = msg;
@@ -50,7 +50,7 @@ public class JoyResult<T>{
         public String getMsg() {
             return msg;
         }
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
         public void setStatus(int status) {

@@ -46,7 +46,7 @@ public class RecommendFragment extends Fragment{
 //        projectList.add(project);
 
 
-        JoyHttpUtil.commendDynamics(1, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_TYPE) {
+        JoyHttpUtil.commendDynamics(1, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 //               Log.d(TAG, "analyticData: "+joyResult.getData());
