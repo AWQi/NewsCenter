@@ -31,4 +31,10 @@ Joy
   （1）夜间模式          
   （2）分类订阅           <br/>
   
-  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/main.png)
+  
+  
+  
+部分截图    （更多查看ScreenShoys文件夹）
+========
+  
+  ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/main.jpg)
