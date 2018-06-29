@@ -15,6 +15,7 @@
         android:id="@+id/registerTelET"
         android:hint="请输入电话号码"
         android:layout_weight="1"
+        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
@@ -56,6 +57,7 @@
             android:layout_weight="1"
             android:maxLength="10"
             android:hint="输入6~16个范围内字符"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -72,6 +74,7 @@
             android:id="@+id/registerRePwdET"
             android:layout_weight="1"
             android:maxLength="10"
+            android:inputType="textPassword"
             android:hint="再次输入密码"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

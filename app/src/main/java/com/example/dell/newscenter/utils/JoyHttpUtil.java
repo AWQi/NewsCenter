@@ -1,6 +1,8 @@
 package com.example.dell.newscenter.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -37,13 +40,16 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 public class JoyHttpUtil {
-static  final  public String HOST = "10.0.2.2";
+static  final  public String HOST = "192.168.225.133";
+//    static  final  public String HOST = "10.0.2.2";
+//    static  final  public String HOST = "140.143.16.51";
     private static final String TAG = "JoyHttpUtil";
     static  public final  Type PROJECT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
     static  public final  Type COMMENT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
     static  public final  Type USER_LIST_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
 
     static  public final  Type OBJECT_TTYPE =  new TypeToken<JoyResult.JoyObj<Object>>() {}.getType();
+    static  public final  Type STRING_TYPE =  new TypeToken<JoyResult.JoyObj<String>>() {}.getType();
     static  public final  Type INTEGER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<Integer>>() {}.getType();
     static  public final  Type USER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<User>>() {}.getType();
     static  public final  Type COMMENT_OBJ_TYPE = new TypeToken<JoyResult.JoyObj<Comment>>() {}.getType();
@@ -159,11 +165,22 @@ static  final  public String HOST = "10.0.2.2";
         param.put("password",String.valueOf(password));
         joyPostHttp(LOGIN,null,null,param,joyHttpCallBack);
     }
+
+    //    注册
+    static  final  private  String PREREGISTER = "http://"+HOST+":8080/preRegister";
+    static  public void preRegister(String tel,JoyHttpCallBack joyHttpCallBack){
+       Map<String,String> param = new HashMap<>();
+       param.put("tel",tel);
+        joyPostHttp(PREREGISTER,null,null,param,joyHttpCallBack);
+    }
+
     //    注册
     static  final  private  String REGISTER = "http://"+HOST+":8080/register";
-    static  public void register(User user,JoyHttpCallBack joyHttpCallBack){
+    static  public void register(User user,String verificationCode,JoyHttpCallBack joyHttpCallBack){
         String body = JsonUtil.ObjToStr(user);
-        joyPostHttp(REGISTER,body,null,null,joyHttpCallBack);
+        Map<String ,String>  param = new HashMap();
+        param.put("verificationCode",verificationCode);
+        joyPostHttp(REGISTER,body,null,param,joyHttpCallBack);
     }
 
     //    动态作者信息
@@ -248,9 +265,13 @@ static  final  public String HOST = "10.0.2.2";
 //            JoyResult joyResult = new JoyResult(300,"请求失败");
 //            joyResultCallBack.analyticData(joyResult);
 
-            Context context = ApplicationUtil.getContext();
-            Toast.makeText(context,"网络连接错误",Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "onFailure: -------------------------"+"获取网络数据失败");
+            final Context context = ApplicationUtil.getContext();
+
+//                    Toast.makeText(context,"网络连接错误",Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onFailure: -------------------------"+"获取网络数据失败");
+            Log.d(TAG, "onFailure: "+e.getMessage());
+
+
         }
         @Override
         public void onResponse(Call call, Response response) throws IOException {
@@ -258,16 +279,22 @@ static  final  public String HOST = "10.0.2.2";
             Log.d(TAG, "onResponse: "+jsonStr);
             int a = jsonStr.indexOf("[");
 
-            if (a!=-1){// 传入泛型  解析Json
-                Gson gson = new Gson();
-                JoyResult.JoyList joyList =gson.fromJson(jsonStr,type);
-//                Log.d(TAG, "joyList: "+joyList.getData());
-                joyListCallBack.analyticData(joyList);
-            }else {
-                Gson gson = new Gson();
-                JoyResult.JoyObj joyObj =gson.fromJson(jsonStr,type);
-//                JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, type);
-                joyObjCallBack.analyticData(joyObj);
+            try {
+                if (a!=-1){// 传入泛型  解析Json
+                    Gson gson = new Gson();
+                    JoyResult.JoyList joyList =gson.fromJson(jsonStr,type);
+    //                Log.d(TAG, "joyList: "+joyList.getData());
+                    joyListCallBack.analyticData(joyList);
+                }else {
+                    Gson gson = new Gson();
+                    JoyResult.JoyObj joyObj =gson.fromJson(jsonStr,type);
+    //                JoyResult.JoyObj joyObj =  JsonUtil.StrToObj(jsonStr, type);
+                    joyObjCallBack.analyticData(joyObj);
+                }
+            } catch (JsonSyntaxException e) {
+                Log.d(TAG, "网络数据解析错误------------------------------------ ");
+                Log.d(TAG, e.getMessage());
+                e.printStackTrace();
             }
 
 

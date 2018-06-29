@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+        <solid android:color="@color/viewfinder_frame" /><!--内部颜色-->
+        <stroke
+            android:width="1dp"
+            android:color="#000000" /><!--边框颜色-->
+        <padding
+            android:bottom="1dp"
+            android:left="0.5dp"
+            android:right="0.5dp"
+            android:top="0dp" />
+        <corners android:radius="50dp"/><!--圆角-->
+    </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+            <solid android:color="@color/colorAccent" /><!--内部颜色-->
+            <stroke
+                android:width="1dp"
+                android:color="#000000" /><!--边框颜色-->
+            <padding
+                android:bottom="1dp"
+                android:left="0.5dp"
+                android:right="0.5dp"
+                android:top="0dp" />
+            <corners android:radius="50dp"/><!--圆角-->
+        </shape>
+    </item>
+</selector>
