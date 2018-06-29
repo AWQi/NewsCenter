@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.dell.newscenter.bean.Comment;
 import com.example.dell.newscenter.bean.Project;
+import com.example.dell.newscenter.bean.RegisterUser;
 import com.example.dell.newscenter.bean.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -40,9 +41,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 public class JoyHttpUtil {
-static  final  public String HOST = "192.168.225.133";
-//    static  final  public String HOST = "10.0.2.2";
-//    static  final  public String HOST = "140.143.16.51";
+//static  final  public String HOST = "192.168.225.133:8080";
+    static  final  public String HOST = "10.0.2.2:8080";
+//    static  final  public String HOST = "140.143.16.51:8080/joy";
     private static final String TAG = "JoyHttpUtil";
     static  public final  Type PROJECT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
     static  public final  Type COMMENT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
@@ -57,14 +58,14 @@ static  final  public String HOST = "192.168.225.133";
      *
      */
 //    查看评论
-    static final private String QUERY_COMMENT = " http://"+HOST+":8080/queryComment";
+    static final private String QUERY_COMMENT = " http://"+HOST+"/queryComment";
     static  public void queryComment(int projrctId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("dynamicId",String.valueOf(projrctId));
         joyPostHttp(QUERY_COMMENT,null,null,param,joyHttpCallBack);
     }
     //    添加评论
-    static final private String ADD_COMMENT = "http://"+HOST+":8080/addComment";
+    static final private String ADD_COMMENT = "http://"+HOST+"/addComment";
     static  public void addComment(Comment comment ,JoyHttpCallBack joyHttpCallBack){
         String commentInfo = JsonUtil.ObjToStr(comment);
         joyPostHttp(ADD_COMMENT,commentInfo,null,null,joyHttpCallBack);
@@ -77,21 +78,21 @@ static  final  public String HOST = "192.168.225.133";
         joyPostHttp(DELETE_COMMENT,null,null,param,joyHttpCallBack);
     }
     //    查看我的收藏 ：
-    static final private String QUERY_MYDYANAMIC = "http://"+HOST+":8080/queryMyDynamic";
+    static final private String QUERY_MYDYANAMIC = "http://"+HOST+"/queryMyDynamic";
     static  public void queryMyDynamic(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
         joyPostHttp(QUERY_MYDYANAMIC,null,null,param,joyHttpCallBack);
     }
     //    查看我的收藏 ：
-    static final private String QUERY_COLLECT = "http://"+HOST+":8080/queryDynamicCollect";
+    static final private String QUERY_COLLECT = "http://"+HOST+"/queryDynamicCollect";
     static  public void queryDynamicCollect(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
         joyPostHttp(QUERY_COLLECT,null,null,param,joyHttpCallBack);
     }
     //    添加收藏：
-    static final private String ADD_COLLECT = "http://"+HOST+":8080/addDynamicCollect";
+    static final private String ADD_COLLECT = "http://"+HOST+"/addDynamicCollect";
     static  public void addDynamicCollect(int dynamicId,int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("dynamicId",String.valueOf(dynamicId));
@@ -99,7 +100,7 @@ static  final  public String HOST = "192.168.225.133";
         joyPostHttp(ADD_COLLECT,null,null,param,joyHttpCallBack);
     }
     //    删除收藏：
-    static  final  private  String DELETE_COLLECT = "http://"+HOST+":8080/deleteDynamicCollect";
+    static  final  private  String DELETE_COLLECT = "http://"+HOST+"/deleteDynamicCollect";
     static  public void deleteDynamicCollect(int dynamicId,int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("dynamicId",String.valueOf(dynamicId));
@@ -107,20 +108,20 @@ static  final  public String HOST = "192.168.225.133";
         joyPostHttp(DELETE_COLLECT,null,null,param,joyHttpCallBack);
     }
     //    相关推荐
-    static  final  private  String RELEVANT_RECOM = "http://"+HOST+":8080/relevantRecom";
+    static  final  private  String RELEVANT_RECOM = "http://"+HOST+"/relevantRecom";
     static  public void RelevantRecom(String kind,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("kind",String.valueOf(kind));
         joyPostHttp(RELEVANT_RECOM,null,null,param,joyHttpCallBack);
     }
     //    推荐动态
-    static  final  private  String COMMENT_DYNAMIC = "http://"+HOST+":8080/commendDynamics";
+    static  final  private  String COMMENT_DYNAMIC = "http://"+HOST+"/commendDynamics";
     static  public void commendDynamics(int page,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("page",String.valueOf(page));
         joyPostHttp(COMMENT_DYNAMIC,null,null,param,joyHttpCallBack);
     }
-    static  final  private  String QUERY_ATTENT_DYNAMIC = "http://"+HOST+":8080/queryAttentDynamic";
+    static  final  private  String QUERY_ATTENT_DYNAMIC = "http://"+HOST+"/queryAttentDynamic";
     static  public void queryAttentDynamic(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
@@ -128,21 +129,21 @@ static  final  public String HOST = "192.168.225.133";
     }
 
     ///    查看粉丝
-    static  final  private  String  MYFANS = "http://"+HOST+":8080/myFans";
+    static  final  private  String  MYFANS = "http://"+HOST+"/myFans";
     static  public void myFans(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
         joyPostHttp(MYFANS,null,null,param,joyHttpCallBack);
     }
     //    查看关注
-    static  final  private  String MYATTENTION = "http://"+HOST+":8080/myAttention";
+    static  final  private  String MYATTENTION = "http://"+HOST+"/myAttention";
     static  public void myAttention(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
         joyPostHttp(MYATTENTION,null,null,param,joyHttpCallBack);
     }
     //    添加关注
-    static  final  private  String     ADD_ATTENTION = "http://"+HOST+":8080/addAttention";
+    static  final  private  String     ADD_ATTENTION = "http://"+HOST+"/addAttention";
     static  public void addAttention(int user1Id,int user2Id,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("user1Id",String.valueOf(user1Id));
@@ -150,7 +151,7 @@ static  final  public String HOST = "192.168.225.133";
         joyPostHttp(ADD_ATTENTION,null,null,param,joyHttpCallBack);
     }
     //    取消关注
-    static  final  private  String DELETE_ATTENTION =  "http://"+HOST+":8080/deleteAttention";
+    static  final  private  String DELETE_ATTENTION =  "http://"+HOST+"/deleteAttention";
     static  public void deleteAttention(int user1Id,int user2Id,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("user1Id",String.valueOf(user1Id));
@@ -158,7 +159,7 @@ static  final  public String HOST = "192.168.225.133";
         joyPostHttp(DELETE_ATTENTION,null,null,param,joyHttpCallBack);
     }
     //    登录
-    static  final  private  String  LOGIN = "http://"+HOST+":8080/login";
+    static  final  private  String  LOGIN = "http://"+HOST+"/login";
     static  public void login(String tel ,String password,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("tel",String.valueOf(tel));
@@ -167,7 +168,7 @@ static  final  public String HOST = "192.168.225.133";
     }
 
     //    注册
-    static  final  private  String PREREGISTER = "http://"+HOST+":8080/preRegister";
+    static  final  private  String PREREGISTER = "http://"+HOST+"/preRegister";
     static  public void preRegister(String tel,JoyHttpCallBack joyHttpCallBack){
        Map<String,String> param = new HashMap<>();
        param.put("tel",tel);
@@ -175,16 +176,16 @@ static  final  public String HOST = "192.168.225.133";
     }
 
     //    注册
-    static  final  private  String REGISTER = "http://"+HOST+":8080/register";
-    static  public void register(User user,String verificationCode,JoyHttpCallBack joyHttpCallBack){
-        String body = JsonUtil.ObjToStr(user);
+    static  final  private  String REGISTER = "http://"+HOST+"/register";
+    static  public void register(RegisterUser registerUser, String verificationCode, JoyHttpCallBack joyHttpCallBack){
+        String body = JsonUtil.ObjToStr(registerUser);
         Map<String ,String>  param = new HashMap();
         param.put("verificationCode",verificationCode);
         joyPostHttp(REGISTER,body,null,param,joyHttpCallBack);
     }
 
     //    动态作者信息
-    static  final  private  String    QUERY_USER_INFO =  "http://"+HOST+":8080/queryUserInfo";
+    static  final  private  String    QUERY_USER_INFO =  "http://"+HOST+"/queryUserInfo";
     static  public void quseryUseInfo(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
@@ -205,7 +206,7 @@ static  final  public String HOST = "192.168.225.133";
                 //10.0.2.2 shi 相对于模拟器来讲主机的地址 10.0.2.3是模拟器的地址
                 OkHttpClient client = new OkHttpClient.Builder()
                         .connectTimeout(15000L, TimeUnit.MILLISECONDS)
-                        .readTimeout(15000L, TimeUnit.MILLISECONDS)
+                        .readTimeout(30000L, TimeUnit.MILLISECONDS)
                         .addInterceptor(new Interceptor() {
                             @Override
                             public Response intercept(Chain chain) throws IOException { Request original = chain.request();

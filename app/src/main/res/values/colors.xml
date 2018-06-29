@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="windowBackground">#ffffff</color>
-
+    <color name="white">#ffffff</color>
     <!-- QRCode scanner color begin -->
         <color name="viewfinder_mask">#60000000</color>
         <color name="result_view">#B0000000</color>

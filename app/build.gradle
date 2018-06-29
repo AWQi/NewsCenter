@@ -85,4 +85,7 @@ dependencies {
     implementation files('libs/commons-net-3.3-sources.jar')
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+    // 顶部 Snackbar
+    implementation 'com.androidadvance:topsnackbar:1.1.1'
 }

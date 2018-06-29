@@ -35,7 +35,7 @@
         app:tabGravity="fill"
         app:tabIndicatorHeight="10dp"
         app:tabTextColor="@color/colorAccent"
-        app:tabSelectedTextColor="@android:color/white"
+        app:tabSelectedTextColor="@color/colorAccent"
         app:tabMode="scrollable"
         app:tabBackground="@drawable/main_center_mainpage_tablayout_tabbackground_selector" />
 
