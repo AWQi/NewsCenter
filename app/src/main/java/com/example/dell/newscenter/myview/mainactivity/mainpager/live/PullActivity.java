@@ -81,4 +81,6 @@ private Studio studio = null;
             IjkMediaPlayer.native_profileEnd();
 
         }
-    }
+
+
+}
