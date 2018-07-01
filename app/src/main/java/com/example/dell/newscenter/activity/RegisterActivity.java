@@ -129,6 +129,7 @@ private Activity activity = this;
 
                     //  封装信息到 Bean
                     RegisterUser registerUser = new RegisterUser(name,pwd,tel,gender);
+                     verificationCode = verificationCodeET.getText().toString();
                     // 发送信息到 服务端
                     JoyHttpUtil.register(registerUser,verificationCode, new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.OBJECT_TTYPE) {
                         @Override
@@ -138,7 +139,7 @@ private Activity activity = this;
                                 @Override
                                 public void run() {
                                     int status =joyObj.getStatus();
-                                    String data = (String) joyObj.data;
+                                    String data = (String) joyObj.getMsg();
                                     if (status==200){
                                         new AlertDialog.Builder(RegisterActivity.this)
                                                 .setTitle("成功")  //  ;

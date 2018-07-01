@@ -3,6 +3,8 @@ package com.example.dell.newscenter.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -43,6 +45,7 @@ import okhttp3.Response;
 public class JoyHttpUtil {
 //static  final  public String HOST = "192.168.225.133:8080";
     static  final  public String HOST = "10.0.2.2:8080";
+    static  final  public  int NETWORK_FAIL = 111;
 //    static  final  public String HOST = "140.143.16.51:8080/joy";
     private static final String TAG = "JoyHttpUtil";
     static  public final  Type PROJECT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
@@ -191,8 +194,14 @@ public class JoyHttpUtil {
         param.put("userId",String.valueOf(userId));
         joyPostHttp(QUERY_USER_INFO,null,null,param,joyHttpCallBack);
     }
-
-
+    static Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what==NETWORK_FAIL){
+                Toast.makeText(ApplicationUtil.getContext(),"获取网络数据失败",Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     /**
      *     Joy   发送http 并解析,返回数据 到  JoyResult  可以使用回调函数处理
@@ -266,10 +275,11 @@ public class JoyHttpUtil {
 //            JoyResult joyResult = new JoyResult(300,"请求失败");
 //            joyResultCallBack.analyticData(joyResult);
 
-            final Context context = ApplicationUtil.getContext();
-
+            Message msg  = new Message();
+            msg.what = NETWORK_FAIL;
+            handler.sendMessage(msg);
 //                    Toast.makeText(context,"网络连接错误",Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onFailure: -------------------------"+"获取网络数据失败");
+            Log.d(TAG, "onFailure: -------------------------"+"获取网络数据失败");
             Log.d(TAG, "onFailure: "+e.getMessage());
 
 
