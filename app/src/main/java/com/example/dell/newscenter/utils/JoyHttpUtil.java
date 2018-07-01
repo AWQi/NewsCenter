@@ -44,7 +44,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 public class JoyHttpUtil {
 //static  final  public String HOST = "192.168.225.133:8080";
-    static  final  public String HOST = "10.0.2.2:8080";
+//    static  final  public String HOST = "10.0.2.2:8080";
+    static  final  public String HOST = "10.0.161.106:8080";
     static  final  public  int NETWORK_FAIL = 111;
 //    static  final  public String HOST = "140.143.16.51:8080/joy";
     private static final String TAG = "JoyHttpUtil";
@@ -185,6 +186,20 @@ public class JoyHttpUtil {
         Map<String ,String>  param = new HashMap();
         param.put("verificationCode",verificationCode);
         joyPostHttp(REGISTER,body,null,param,joyHttpCallBack);
+    }
+    //    开启直播
+    static  final  private  String START_STUDIO = "http://"+HOST+"/startStudio";
+    static  public void startStudio(String userId, JoyHttpCallBack joyHttpCallBack){
+        Map<String ,String>  param = new HashMap();
+        param.put("userId",userId);
+        joyPostHttp(REGISTER,null,null,param,joyHttpCallBack);
+    }
+    //    开启直播
+    static  final  private  String STOP_STUDIO = "http://"+HOST+"/startStudio";
+    static  public void stopStudio(String userId, JoyHttpCallBack joyHttpCallBack){
+        Map<String ,String>  param = new HashMap();
+        param.put("userId",userId);
+        joyPostHttp(REGISTER,null,null,param,joyHttpCallBack);
     }
 
     //    动态作者信息

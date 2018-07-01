@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,14 +36,19 @@ import java.net.SocketException;
 public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncodeListener, RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, View.OnClickListener {
 
     static  final  private  String SERVER_URL = "rtmp://140.143.16.51/hls/";//推流服务器地址
+    static  final  private  int START_MSG_CODE =  101;
+    static  final  private  int STOP_MSG_CODE =  102;
+
     private int studioNum ;// 房间号
+
     private Button mPublishBtn;
     private Button mCameraSwitchBtn;
     private Button mEncoderBtn;
     private TextView mRempUrlTv;
     private SrsPublisher mPublisher;
     private String rtmpUrl;
-
+    private String  userId;
+    private Handler handler = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +83,7 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
         mPublisher.startCamera();
 
 
+
         // 获取推流完整地址
         Intent intent = getIntent();
         studioNum = intent.getIntExtra("StudioNum",0);//直播间号
@@ -84,34 +92,71 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
         }
         rtmpUrl = SERVER_URL+studioNum;
         mRempUrlTv.setText("直播间号为:"+studioNum);
+        userId = String.valueOf(studioNum);
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case START_MSG_CODE:
+//                        rtmpUrl = mRempUrlTv.getText().toString();
+                        rtmpUrl  =SERVER_URL+userId;
+                        if (TextUtils.isEmpty(rtmpUrl)) {
+                            Toast.makeText(getApplicationContext(), "地址不能为空！", Toast.LENGTH_SHORT).show();
+                        }
+                        mPublisher.startPublish(rtmpUrl);
+                        mPublisher.startCamera();
+
+                        if (mEncoderBtn.getText().toString().contentEquals("软编码")) {
+                            Toast.makeText(getApplicationContext(), "当前使用硬编码", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "当前使用软编码", Toast.LENGTH_SHORT).show();
+                        }
+                        mPublishBtn.setText("停止");
+                        mEncoderBtn.setEnabled(false);
+                        break;
+                    case  STOP_MSG_CODE:
+                        StudioHttpUtil.stopStudio(userId,null);  //发网络请求  直播
+                        mPublisher.stopPublish();
+                        mPublisher.stopRecord();
+                        mPublishBtn.setText("开始");
+                        mEncoderBtn.setEnabled(true);
+                        break;
+                    default:break;
+                }
+            }
+        };
+
 
     }
 
     @Override
     public void onClick(View v) {
+
         int id = v.getId();
         if (id== R.id.publish) {
-
+            //   开启直播间
             if (mPublishBtn.getText().toString().contentEquals("开始直播")) {
-//                rtmpUrl = mRempUrlTv.getText().toString();
-                if (TextUtils.isEmpty(rtmpUrl)) {
-                    Toast.makeText(getApplicationContext(), "地址不能为空！", Toast.LENGTH_SHORT).show();
-                }
-                mPublisher.startPublish(rtmpUrl);
-                mPublisher.startCamera();
-
-                if (mEncoderBtn.getText().toString().contentEquals("软编码")) {
-                    Toast.makeText(getApplicationContext(), "当前使用硬编码", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "当前使用软编码", Toast.LENGTH_SHORT).show();
-                }
-                mPublishBtn.setText("停止");
-                mEncoderBtn.setEnabled(false);
+                StudioHttpUtil.startStudio(userId,new StudioHttpUtil.JoyHttpCallBack() {
+                    @Override
+                    public void analyticData(StudioResult studioResult) {
+                        int status = studioResult.getStatus();
+//                        if (status==300){   //  没有注册  点击注册直播间
+//                            Studio studio = new Studio();
+//                            StudioHttpUtil.registerStudio(studio,null);
+//                        }
+                        if (status==200){ //  开启直播
+                            Message msg = new Message();
+                            msg.what = START_MSG_CODE;
+                            handler.sendMessage(msg);
+                        }
+                    }
+                });
             } else if (mPublishBtn.getText().toString().contentEquals("停止")) {
-                mPublisher.stopPublish();
-                mPublisher.stopRecord();
-                mPublishBtn.setText("开始");
-                mEncoderBtn.setEnabled(true);
+                Message msg = new Message();
+                msg.what = STOP_MSG_CODE;
+                handler.sendMessage(msg);
             }
         }
         //切换摄像头
