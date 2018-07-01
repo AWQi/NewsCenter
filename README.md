@@ -35,7 +35,7 @@ Joy
   
   
   
-部分截图    （更多查看ScreenShoys文件夹）
+部分截图    （更多查看ScreenShots文件夹）
 ========
   
   ![](https://github.com/AWQi/NewsCenter/blob/master/Screenshots/main.jpg)
