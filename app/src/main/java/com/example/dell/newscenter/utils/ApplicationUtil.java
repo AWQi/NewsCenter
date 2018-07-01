@@ -1,11 +1,16 @@
 package com.example.dell.newscenter.utils;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.User;
+import com.example.dell.newscenter.myview.base.ConnectionChangeReceiver;
 
 import org.litepal.LitePal;
 
@@ -21,6 +26,7 @@ public class ApplicationUtil extends Application{
         super.onCreate();
         context = getApplicationContext();
         LitePal.initialize(context);
+        registerReceiver();
     }
     static  public Context getContext(){
         return  context;
@@ -39,5 +45,12 @@ public class ApplicationUtil extends Application{
         nightMode = !nightMode;
         AppCompatDelegate.setDefaultNightMode(nightMode ?
                 AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+
+    public void registerReceiver() {
+       IntentFilter filter  = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+       ConnectionChangeReceiver mReceiver = new ConnectionChangeReceiver();
+        this.registerReceiver(mReceiver,filter);
     }
 }
