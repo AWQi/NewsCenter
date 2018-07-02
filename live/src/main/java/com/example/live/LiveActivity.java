@@ -49,6 +49,7 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
     private String rtmpUrl;
     private String  userId;
     private Handler handler = null;
+    private  boolean isStart = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +100,10 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 switch (msg.what){
+                    /**
+                     *
+                     *   开始直播
+                     */
                     case START_MSG_CODE:
 //                        rtmpUrl = mRempUrlTv.getText().toString();
                         rtmpUrl  =SERVER_URL+userId;
@@ -115,8 +120,30 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
                         }
                         mPublishBtn.setText("停止");
                         mEncoderBtn.setEnabled(false);
+                        Toast.makeText(LiveActivity.this,"开始直播",Toast.LENGTH_SHORT).show();
+
+                        //   开始线程 刷新时间   使直播时  不过期
+                        isStart = true;
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while (isStart){
+                                    try {
+                                        Thread.sleep(2*60*1000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    StudioHttpUtil.refreshStudio(userId,null);
+                                }
+                            }
+                        }).start();
                         break;
+                    /**
+                     *
+                     *    停止直播
+                     */
                     case  STOP_MSG_CODE:
+                        isStart=false;
                         StudioHttpUtil.stopStudio(userId,null);  //发网络请求  直播
                         mPublisher.stopPublish();
                         mPublisher.stopRecord();
@@ -150,6 +177,7 @@ public class LiveActivity extends Activity implements SrsEncodeHandler.SrsEncode
                             Message msg = new Message();
                             msg.what = START_MSG_CODE;
                             handler.sendMessage(msg);
+
                         }
                     }
                 });

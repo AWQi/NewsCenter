@@ -60,6 +60,13 @@ public class StudioHttpUtil {
        String body = gson.toJson(studio);
         joyPostHttp(REGISTER_STUDIO,body,null,null,joyHttpCallBack);
     }
+    //  刷新直播
+    static  final  private  String REFRESH_STUDIO = "http://"+HOST+"/refreshStudio";
+    static  public void refreshStudio(String userId , JoyHttpCallBack joyHttpCallBack){
+      Map<String,String>param  = new HashMap();
+      param.put("userId",userId);
+        joyPostHttp(REFRESH_STUDIO,null,null,param,joyHttpCallBack);
+    }
     static Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -73,8 +80,20 @@ public class StudioHttpUtil {
      *     Joy   发送http 并解析,返回数据 到  JoyResult  可以使用回调函数处理
      *
      */
-    static  public  void joyPostHttp(final String url,final String body,final Map<String,String>  head  ,final Map<String,String> params, final JoyHttpCallBack joyHttpCallBack){
+    static  public  void joyPostHttp(final String url,final String body,final Map<String,String>  head  ,final Map<String,String> params,  JoyHttpCallBack joyHttpCallBack){
 
+            // 不使用回调  就传  空回调
+        if (joyHttpCallBack==null){
+            joyHttpCallBack = new JoyHttpCallBack() {
+        @Override
+        public void analyticData(StudioResult studioResult) {
+
+        }
+    };
+       }
+
+
+        final JoyHttpCallBack finalJoyHttpCallBack = joyHttpCallBack;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -121,7 +140,7 @@ public class StudioHttpUtil {
                 //
                 Call call = client.newCall(request);
                 // 执行异步请求
-                call.enqueue(joyHttpCallBack);
+                call.enqueue(finalJoyHttpCallBack);
 
             }
         }).start();
