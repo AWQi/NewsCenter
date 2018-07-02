@@ -58,7 +58,6 @@ public class LiveFragment extends Fragment {
 //        Studio s3 = new Studio(3,c5,cctv5,"cctv5","电视");
 //        Studio s4 = new Studio(4,c6,cctv6,"cctv6","电视");
 //        Studio s5 = new Studio(4,imageUrl,aa,"直播","电视");
-//
 //        studioList.add(s1);
 //        studioList.add(s2);
 //        studioList.add(s3);
@@ -123,6 +122,7 @@ public class LiveFragment extends Fragment {
                                  *
                                  * //  重新获取数据
                                  */
+                                studioList.clear();
                                 getDate();
                                 Log.d(TAG, "runOnUiThread：run刷新中: ");
                                 adapter.notifyDataSetChanged();///   通知刷新  live_item

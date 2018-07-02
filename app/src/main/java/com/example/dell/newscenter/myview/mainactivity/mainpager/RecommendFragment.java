@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +23,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 public class RecommendFragment extends Fragment{
+    static  public  int page = 1;
     private static final String TAG = "RecommendFragment";
     private List<Project> projectList = new ArrayList<>();
     private ProjectRecyclerViewLayout reCommendCV;
     private  View recommendFragment;
+    private SwipeRefreshLayout swipeRefreshLayout = null;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //    加载fragment
         recommendFragment  = inflater.inflate(R.layout.recommend_fragment,container,false);
@@ -46,16 +50,21 @@ public class RecommendFragment extends Fragment{
 //        projectList.add(project);
 
 
-        JoyHttpUtil.commendDynamics(1, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
+        JoyHttpUtil.commendDynamics(page, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
             @Override
             public void analyticData(final JoyResult.JoyList joyList) {
                 //               Log.d(TAG, "analyticData: "+joyResult.getData());
                 activity.runOnUiThread(new Runnable() { //  开UI 线程
                     @Override
                     public void run() {
-                        List list = joyList.getData();
-                        projectList.addAll(list);
+                        List<Project> list = joyList.getData();
+//                        projectList.addAll(list);
+                        //  要  适配  刷新  不能 使用addAll
+                        for (Project p:list){
+                            projectList.add(0,p);
+                        }
                         reCommendCV.getDate(projectList);
+                        page++;
                     }
                 });
             }
@@ -73,6 +82,36 @@ public class RecommendFragment extends Fragment{
         getDate(getActivity());
         reCommendCV = recommendFragment.findViewById(R.id.reCommendCV);
         reCommendCV.getDate(projectList);
+        swipeRefreshLayout = getActivity().findViewById(R.id.reCommendRefresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            /**
+             *
+             *   重新获取数据  进行展示
+             */
+            @Override
+            public void onRefresh() {
+                JoyHttpUtil.commendDynamics(page, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.PROJECT_LIST_TYPE) {
+                    @Override
+                    public void analyticData(final JoyResult.JoyList joyList) {
+                        //               Log.d(TAG, "analyticData: "+joyResult.getData());
+                        getActivity().runOnUiThread(new Runnable() { //  开UI 线程
+                            @Override
+                            public void run() {
+                                List<Project> list = joyList.getData();
+//                        projectList.addAll(list);
+                                //  要  适配 刷新 不能 使用addAll  必须往前插
+                                for (Project p:list){
+                                    projectList.add(0,p);
+                                }
+                                reCommendCV.getDate(projectList);
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
 }

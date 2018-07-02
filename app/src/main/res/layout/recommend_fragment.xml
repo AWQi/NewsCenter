@@ -6,9 +6,15 @@
     android:id="@+id/recommendfragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout
-        android:id="@+id/reCommendCV"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/reCommendRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout>
+        <com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout
+            android:id="@+id/reCommendCV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

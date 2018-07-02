@@ -62,37 +62,37 @@ public class ProjectRecyclerViewLayout extends LinearLayout{
         adapter = new ProjectAdapter(projectList);
         recyclerView.setAdapter(adapter);
 
-        //  声明 下拉刷新框
-        swipeRefresh = this.findViewById(R.id.projectRecyclerLayoutSwiperedresh);
-        swipeRefresh.setColorSchemeResources(R.color.colorAccent);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            /**
-             *
-             *   重新获取数据  进行展示
-             */
-            @Override
-            public void onRefresh() {
-                Log.d(TAG, "onRefresh: 下拉刷新中");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ActivityUtil.scanForActivity(context).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                /**
-                                 *
-                                 * //  重新获取数据
-                                 */
-                                getDate(null);
-                                Log.d(TAG, "runOnUiThread：run刷新中: ");
-                                adapter.notifyDataSetChanged();///   通知刷新  live_item
-                                swipeRefresh.setRefreshing(false);
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
+//        //  声明 下拉刷新框
+//        swipeRefresh = this.findViewById(R.id.projectRecyclerLayoutSwiperedresh);
+//        swipeRefresh.setColorSchemeResources(R.color.colorAccent);
+//        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            /**
+//             *
+//             *   重新获取数据  进行展示
+//             */
+//            @Override
+//            public void onRefresh() {
+//                Log.d(TAG, "onRefresh: 下拉刷新中");
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ActivityUtil.scanForActivity(context).runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                /**
+//                                 *
+//                                 * //  重新获取数据
+//                                 */
+//                                getDate(null);
+//                                Log.d(TAG, "runOnUiThread：run刷新中: ");
+//                                adapter.notifyDataSetChanged();///   通知刷新  live_item
+//                                swipeRefresh.setRefreshing(false);
+//                            }
+//                        });
+//                    }
+//                }).start();
+//            }
+//        });
     }
 
     public ProjectAdapter getAdapter() {

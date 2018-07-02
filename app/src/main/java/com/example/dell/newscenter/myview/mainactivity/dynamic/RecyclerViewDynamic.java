@@ -75,6 +75,7 @@ public class RecyclerViewDynamic  extends RecyclerView {
                    @Override
                    public void run() {
                        List list = joyList.getData();
+                       // 要适配  刷新功能   所以要 一个个插入到  前面
                        projectList.addAll(list);
                        adapter.notifyDataSetChanged();//  刷新
                    }

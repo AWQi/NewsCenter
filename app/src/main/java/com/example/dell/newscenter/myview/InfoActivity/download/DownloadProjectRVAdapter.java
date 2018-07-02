@@ -102,47 +102,55 @@ public class DownloadProjectRVAdapter extends RecyclerView.Adapter{
                 h.downloadedItemTieleTV.setText("正在下载：");
             }
         }else if(holder instanceof DownloadedHolder) {
-            DownloadedHolder h = (DownloadedHolder) holder;
-            final DownloadProject downloadProject =  downloadedList.get(position-1);
-            final Project project = downloadProject.getObjProject();
-            Glide.with(context).load(project.getImageURL())
-                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
-                    .fitCenter().into(h.downloadedItemImageIV);
-            h.downloadedItemTitleTV.setText(project.getTitle());
-            h.downloadedItemAuthorTV.setText(project.getAuthorName());
+                if (downloadedList.size()>0){  //   如果存在 已下载项
+                    DownloadedHolder h = (DownloadedHolder) holder;
+                    final DownloadProject downloadProject =  downloadedList.get(position-1);
+                    final Project project = downloadProject.getObjProject();
+                    Glide.with(context).load(project.getImageURL())
+                            .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
+                            .fitCenter().into(h.downloadedItemImageIV);
+                    h.downloadedItemTitleTV.setText(project.getTitle());
+                    h.downloadedItemAuthorTV.setText(project.getAuthorName());
 //            h.downloadedItemSizeTV.setText(downloadedList.get(position-l1));
-            h.downloadedItemDetailsTV.setOnClickListener(new View.OnClickListener() {//点击详情跳转到播放页
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, VideoPlayActivity.class);
-                    intent.putExtra("live_item",project);
-                    context.startActivity(intent);
-                }
-            });
-            h.view.setOnClickListener(new View.OnClickListener() { //  点击整个布局，直接播放
-                 @Override
-                public void onClick(View v) {
-                     Intent intent = new Intent(context, FullScreenPlayActivity.class);
-                     intent.putExtra("url",downloadProject.getLocalUrl());
-                     context.startActivity(intent);
-                }
-            });
-        }else if(holder instanceof DownloadingHolder){ //正在下载页
-            DownloadingHolder h = (DownloadingHolder) holder;
-            DownloadProject downloadProject =  downloadedList.get(position-2-downloadedList.size());
-            final Project project = downloadProject.getObjProject();
-            Glide.with(context).load(project.getImageURL())
-                    .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
-                    .fitCenter().into(  h.downloadingItemImageIV);
-            h.downloadingItemTitleTV.setText(project.getTitle());
-            h.downloadingItemPB.setMax((int)downloadProject.getContentLength()/1024);
-            h.downloadingItemPB.setProgress((int)downloadProject.getBreakPoints()/1024);
-            h.downloadingItemControllIB.setOnClickListener(new View.OnClickListener() {// 下载控制 ，下载或暂停
-                @Override
-                public void onClick(View v) {
+                    h.downloadedItemDetailsTV.setOnClickListener(new View.OnClickListener() {//点击详情跳转到播放页
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, VideoPlayActivity.class);
+                            intent.putExtra("live_item",project);
+                            context.startActivity(intent);
+                        }
+                    });
+                    h.view.setOnClickListener(new View.OnClickListener() { //  点击整个布局，直接播放
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, FullScreenPlayActivity.class);
+                            intent.putExtra("url",downloadProject.getLocalUrl());
+                            context.startActivity(intent);
+                        }
+                    });
+
 
                 }
-            });
+        }else if(holder instanceof DownloadingHolder){ //正在下载页
+                    if (downloadingList.size()>0){ // 如果存在 正在下载项
+                        DownloadingHolder h = (DownloadingHolder) holder;
+                        DownloadProject downloadProject =  downloadedList.get(position-2-downloadedList.size());
+                        final Project project = downloadProject.getObjProject();
+                        Glide.with(context).load(project.getImageURL())
+                                .override(ActivityUtil.getWidth(context),ActivityUtil.getHeight(context))
+                                .fitCenter().into(  h.downloadingItemImageIV);
+                        h.downloadingItemTitleTV.setText(project.getTitle());
+                        h.downloadingItemPB.setMax((int)downloadProject.getContentLength()/1024);
+                        h.downloadingItemPB.setProgress((int)downloadProject.getBreakPoints()/1024);
+                        h.downloadingItemControllIB.setOnClickListener(new View.OnClickListener() {// 下载控制 ，下载或暂停
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+
+
+                    }
 
         }
     }
