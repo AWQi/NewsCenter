@@ -2,6 +2,8 @@ package com.example.dell.newscenter.myview.mainactivity.dynamic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
@@ -24,6 +26,7 @@ import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Part;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.base.CircleImageView;
+import com.example.dell.newscenter.myview.videoplayactivity.VideoPlayActivity;
 import com.example.dell.newscenter.utils.ActivityUtil;
 import com.example.dell.newscenter.utils.ApplicationUtil;
 import com.example.dell.newscenter.utils.HttpUtil;
@@ -114,6 +117,14 @@ public class RecyclerViewDynamic  extends RecyclerView {
                     .fitCenter()
                     .into(  holder.dynamicItemImageIV);
             holder.dynamicItemTitleTV.setText(project.getTitle());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, VideoPlayActivity.class);
+                    intent.putExtra("project_item",project);
+                    ActivityUtil.scanForActivity(context).startActivity(intent);
+                }
+            });
         }
         @Override
         public int getItemCount() {

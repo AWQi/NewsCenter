@@ -100,7 +100,7 @@ public class RelevantRecomRecyclerView extends RecyclerView{
               public void onClick(View view) {
                   Project project = projectList.get(holder.getAdapterPosition());
                   Intent intent = new Intent(context, VideoPlayActivity.class);
-                  intent.putExtra("live_item",project);
+                  intent.putExtra("project_item",project);
                   ActivityUtil.scanForActivity(context).startActivity(intent);
               }
           });
