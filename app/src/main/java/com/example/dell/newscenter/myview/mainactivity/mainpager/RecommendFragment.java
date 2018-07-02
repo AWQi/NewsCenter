@@ -106,6 +106,7 @@ public class RecommendFragment extends Fragment{
                                 }
                                 reCommendCV.getDate(projectList);
                                 swipeRefreshLayout.setRefreshing(false);
+                                page++;
                             }
                         });
                     }
