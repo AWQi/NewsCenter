@@ -1,4 +1,4 @@
-package com.example.dell.newscenter.myview.mainactivity.mainpager;
+package com.example.dell.newscenter.myview.mainactivity.mainpager.chase;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +12,7 @@ import com.example.dell.newscenter.R;
 
 
 public class ChaseFragment extends Fragment{
-private  int source;
+private   int source;
 public void setSource(int source) {
         this.source = source;
     }

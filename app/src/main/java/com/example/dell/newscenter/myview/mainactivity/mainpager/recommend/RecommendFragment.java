@@ -1,13 +1,11 @@
-package com.example.dell.newscenter.myview.mainactivity.mainpager;
+package com.example.dell.newscenter.myview.mainactivity.mainpager.recommend;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +15,7 @@ import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.myview.base.project.ProjectRecyclerViewLayout;
 import com.example.dell.newscenter.utils.JoyHttpUtil;
 import com.example.dell.newscenter.utils.JoyResult;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 public class RecommendFragment extends Fragment{
