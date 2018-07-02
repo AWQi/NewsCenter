@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.dell.newscenter.bean.Comment;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.RegisterUser;
+import com.example.dell.newscenter.bean.Studio;
 import com.example.dell.newscenter.bean.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -52,6 +53,8 @@ public class JoyHttpUtil {
     static  public final  Type PROJECT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Project>>() {}.getType();
     static  public final  Type COMMENT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
     static  public final  Type USER_LIST_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
+    static  public final  Type STUDIO_LIST_TYPE =  new TypeToken<JoyResult.JoyList<Studio>>() {}.getType();
+
 
     static  public final  Type OBJECT_TTYPE =  new TypeToken<JoyResult.JoyObj<Object>>() {}.getType();
     static  public final  Type STRING_TYPE =  new TypeToken<JoyResult.JoyObj<String>>() {}.getType();
@@ -187,20 +190,12 @@ public class JoyHttpUtil {
         param.put("verificationCode",verificationCode);
         joyPostHttp(REGISTER,body,null,param,joyHttpCallBack);
     }
-    //    开启直播
-    static  final  private  String START_STUDIO = "http://"+HOST+"/startStudio";
-    static  public void startStudio(String userId, JoyHttpCallBack joyHttpCallBack){
-        Map<String ,String>  param = new HashMap();
-        param.put("userId",userId);
-        joyPostHttp(REGISTER,null,null,param,joyHttpCallBack);
+    //    查询直播间
+    static  final  private  String QUERY_STUDIO = "http://"+HOST+"/queryStudio";
+    static  public void queryStudio( JoyHttpCallBack joyHttpCallBack){
+        joyPostHttp(QUERY_STUDIO,null,null,null,joyHttpCallBack);
     }
-    //    开启直播
-    static  final  private  String STOP_STUDIO = "http://"+HOST+"/startStudio";
-    static  public void stopStudio(String userId, JoyHttpCallBack joyHttpCallBack){
-        Map<String ,String>  param = new HashMap();
-        param.put("userId",userId);
-        joyPostHttp(REGISTER,null,null,param,joyHttpCallBack);
-    }
+
 
     //    动态作者信息
     static  final  private  String    QUERY_USER_INFO =  "http://"+HOST+"/queryUserInfo";

@@ -2,6 +2,7 @@ package com.example.dell.newscenter.myview.mainactivity.mainpager.live;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
@@ -39,6 +40,16 @@ private TextView liveToolBarTV=null;
 private  boolean  toolBarVisibility = true;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+            intent = getIntent();
+            studio = intent.getParcelableExtra("studio");
+            //设置   横屏
+            Log.d(TAG, "onCreate: ----------------------------------"+studio.getPremiere());
+            int n  = studio.getPremiere();
+            if (studio.getPremiere()==0){
+                if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
+            }
             //   全屏
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -56,8 +67,7 @@ private  boolean  toolBarVisibility = true;
 
 
 
-            intent = getIntent();
-            studio = intent.getParcelableExtra("studio");
+
             Log.d(TAG, "studioURL"+studio.getStudioUrl());
             IjkMediaPlayer.loadLibrariesOnce(null);
             IjkMediaPlayer.native_profileBegin("libijkplayer.so");

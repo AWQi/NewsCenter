@@ -19,6 +19,16 @@ public class Studio implements Parcelable {
     // 分类
     private String kind;
 
+    private Integer premiere;
+
+    public Integer getPremiere() {
+        return premiere;
+    }
+
+    public void setPremiere(Integer premiere) {
+        this.premiere = premiere;
+    }
+
     public Studio(int id, String imageUrl, String studioUrl, String title, String kind) {
         this.id = id;
         this.imageUrl = imageUrl;
@@ -86,7 +96,7 @@ public class Studio implements Parcelable {
         imageUrl = in.readString();
         studioUrl = in.readString();
         kind = in.readString();
-
+        premiere = in.readInt();
     }
     @Override
     public int describeContents() {
@@ -100,5 +110,6 @@ public class Studio implements Parcelable {
                 dest.writeString(imageUrl);
                 dest.writeString(studioUrl);
                 dest.writeString(kind);
+                dest.writeInt(premiere);
     }
 }

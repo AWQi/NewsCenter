@@ -124,7 +124,7 @@
         <!-- 接收直播流 -->
         <activity
             android:name=".myview.mainactivity.mainpager.live.PullActivity"
-            android:screenOrientation="landscape" />
+             />
         <!-- 动态上传-->
         <activity android:name=".myview.mainactivity.PublicationDynamicsActivity"></activity>
 

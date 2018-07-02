@@ -72,7 +72,9 @@ public class RecyclerViewPart extends RecyclerView {
 //            int MIN = 200;int MAX = 400;
 //            int size  =  (int)(Math.random()*(MAX-MIN)+MIN);
 //            view.setLayoutParams(new LayoutParams(size,size));
-            view.setForegroundGravity(TEXT_ALIGNMENT_CENTER);
+
+//            view.setForegroundGravity(TEXT_ALIGNMENT_CENTER);
+
             ViewHolder holder = new ViewHolder(view);
             return holder;
         }
