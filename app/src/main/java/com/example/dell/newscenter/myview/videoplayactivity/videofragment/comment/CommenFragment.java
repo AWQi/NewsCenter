@@ -96,7 +96,7 @@ private Project project = null;
     }
 
     public Project getProject(){
-       return activity.getIntent().getParcelableExtra("live_item");
+       return activity.getIntent().getParcelableExtra("project_item");
     }
 
 }

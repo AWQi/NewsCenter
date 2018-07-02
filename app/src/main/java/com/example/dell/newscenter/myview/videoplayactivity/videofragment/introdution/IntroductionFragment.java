@@ -113,7 +113,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
      */
     public void getDate(){
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
-        project = intent.getParcelableExtra("live_item");
+        project = intent.getParcelableExtra("project_item");
     }
 
     @Override
