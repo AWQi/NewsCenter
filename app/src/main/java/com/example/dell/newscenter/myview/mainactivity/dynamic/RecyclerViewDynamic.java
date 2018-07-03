@@ -120,7 +120,7 @@ public class RecyclerViewDynamic  extends RecyclerView {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, VideoPlayActivity.class);
-                    intent.putExtra("live_item",project);
+                    intent.putExtra("project_item",project);
                     ActivityUtil.scanForActivity(context).startActivity(intent);
                 }
             });

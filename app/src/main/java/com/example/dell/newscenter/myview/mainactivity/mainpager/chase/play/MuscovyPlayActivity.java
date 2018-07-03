@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -17,8 +18,8 @@ public class MuscovyPlayActivity extends AppCompatActivity {
 private VideoView muscovyVV;
 private ListView muscovyLV;
 private Muscovy muscovy;
-private  int n = 1; // 当前播放第几集
-
+private int n = 1; // 当前播放第几集
+private Integer[] data ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ private  int n = 1; // 当前播放第几集
         muscovy = getIntent().getParcelableExtra("muscovy");
         muscovyVV = findViewById(R.id.muscovyVV);
         muscovyLV = findViewById(R.id.muscovyLV);
-        loadView();
+        loadVideo();
         MediaController mediaController  = new MediaController(MuscovyPlayActivity.this);
         muscovyVV.setMediaController(mediaController);
         // 设置 播放控制
@@ -48,13 +49,23 @@ private  int n = 1; // 当前播放第几集
                      if (n>muscovy.getNum()){
                          n=1;
                      }
-                loadView();
+                loadVideo();
             }
         });
     }
-    public void loadView() {
+    public void loadVideo() {
         Uri uri = Uri.parse(muscovy.getVideoUrl()+n+".mp4");
         muscovyVV.setVideoURI(uri);
     }
+    public  void loadList(){
+         data = new Integer[muscovy.getNum()];
+         for (int i = 0;i<muscovy.getNum();i++){
+             data[i] = i;
+         }
+        ArrayAdapter<Integer> adapter;
+        adapter = new ArrayAdapter<Integer>(
+                MuscovyPlayActivity.this,android.R.layout.simple_list_item_1,data);
+        muscovyLV.setAdapter(adapter);
 
+    }
 }
