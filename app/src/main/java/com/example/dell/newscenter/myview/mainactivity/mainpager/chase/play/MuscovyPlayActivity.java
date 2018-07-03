@@ -1,11 +1,11 @@
-package com.example.dell.newscenter.myview.mainactivity.mainpager.chase;
+package com.example.dell.newscenter.myview.mainactivity.mainpager.chase.play;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -13,11 +13,9 @@ import android.widget.VideoView;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Muscovy;
 
-import retrofit2.http.Url;
-
 public class MuscovyPlayActivity extends AppCompatActivity {
 private VideoView muscovyVV;
-private RecyclerView muscovyRV;
+private ListView muscovyLV;
 private Muscovy muscovy;
 private  int n = 1; // 当前播放第几集
 
@@ -27,8 +25,12 @@ private  int n = 1; // 当前播放第几集
         setContentView(R.layout.activity_muscovy_play);
         muscovy = getIntent().getParcelableExtra("muscovy");
         muscovyVV = findViewById(R.id.muscovyVV);
-        muscovyRV = findViewById(R.id.muscovyRV);
+        muscovyLV = findViewById(R.id.muscovyLV);
         loadView();
+        MediaController mediaController  = new MediaController(MuscovyPlayActivity.this);
+        muscovyVV.setMediaController(mediaController);
+        // 设置 播放控制
+
          ///    加载监听
         muscovyVV.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -54,4 +56,5 @@ private  int n = 1; // 当前播放第几集
         Uri uri = Uri.parse(muscovy.getVideoUrl()+n+".mp4");
         muscovyVV.setVideoURI(uri);
     }
+
 }

@@ -137,7 +137,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <!-- 动漫播放-->
-        <activity android:name=".myview.mainactivity.mainpager.chase.MuscovyPlayActivity"
+        <activity android:name=".myview.mainactivity.mainpager.chase.play.MuscovyPlayActivity"
             android:screenOrientation="landscape"
             android:theme="@style/NoTitleFullscreen"></activity>
     </application>

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.dell.newscenter.myview.mainactivity.mainpager.chase.MuscovyPlayActivity;
+import com.example.dell.newscenter.myview.mainactivity.mainpager.chase.play.MuscovyPlayActivity;
 import com.example.dell.newscenter.R;
 import com.example.dell.newscenter.bean.Muscovy;
 

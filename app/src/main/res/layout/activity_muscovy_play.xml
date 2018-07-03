@@ -24,11 +24,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--只能由一个直接子布局-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/muscovyRV"
+    <ListView
+        android:id="@+id/muscovyLV"
         android:layout_width="400dp"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
 </LinearLayout>
 
