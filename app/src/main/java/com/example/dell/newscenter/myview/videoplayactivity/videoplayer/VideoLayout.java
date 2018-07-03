@@ -111,7 +111,7 @@ public class  VideoLayout extends LinearLayout {
      */
     public void getDate(){
         Intent intent = ActivityUtil.scanForActivity(context).getIntent();
-        project = (Project)intent.getParcelableExtra("live_item");
+        project = intent.getParcelableExtra("project_item");
     }
 
     /**
