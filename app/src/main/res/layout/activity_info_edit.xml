@@ -87,6 +87,7 @@
             android:textSize="20sp" />
 
         <com.example.dell.newscenter.myview.base.CircleImageView
+            android:id="@+id/infoEditGenderCV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
