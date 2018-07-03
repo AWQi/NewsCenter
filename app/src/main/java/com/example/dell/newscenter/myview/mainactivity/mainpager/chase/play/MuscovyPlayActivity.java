@@ -2,12 +2,19 @@ package com.example.dell.newscenter.myview.mainactivity.mainpager.chase.play;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -18,8 +25,12 @@ public class MuscovyPlayActivity extends AppCompatActivity {
 private VideoView muscovyVV;
 private ListView muscovyLV;
 private Muscovy muscovy;
-private int n = 1; // 当前播放第几集
-private Integer[] data ;
+private RelativeLayout playRL;
+    private DrawerLayout muscovyDrawer;
+    private int n = 1; // 当前播放第几集
+    private String[] data ;
+    private  float srcX = 0;
+    private float nowX = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +38,13 @@ private Integer[] data ;
         muscovy = getIntent().getParcelableExtra("muscovy");
         muscovyVV = findViewById(R.id.muscovyVV);
         muscovyLV = findViewById(R.id.muscovyLV);
-        loadVideo();
+        playRL = findViewById(R.id.playRL);
+        muscovyDrawer = findViewById(R.id.muscovyDrawer);
+
+        /**
+         *  加载  播放器
+         */
+        loadVideo(n);
         MediaController mediaController  = new MediaController(MuscovyPlayActivity.this);
         muscovyVV.setMediaController(mediaController);
         // 设置 播放控制
@@ -49,22 +66,51 @@ private Integer[] data ;
                      if (n>muscovy.getNum()){
                          n=1;
                      }
-                loadVideo();
+                loadVideo(n);
+            }
+        });
+        /**
+         *
+         *  加载抽屉
+         */
+        loadList();
+        muscovyLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                n=position+1;
+                loadVideo(n);
+            }
+        });
+        // VideoView 添加 controller后  会  拦截 videoview的  监听器事件
+        playRL.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                muscovyDrawer.openDrawer(GravityCompat.END);
+                if (event.getAction()==MotionEvent.ACTION_DOWN){
+                    srcX=event.getX();
+
+                    }
+                if (event.getAction()==MotionEvent.ACTION_MOVE){
+                       nowX = event.getX();
+                }
+                return false;
             }
         });
     }
-    public void loadVideo() {
+    public void loadVideo(int n) {
         Uri uri = Uri.parse(muscovy.getVideoUrl()+n+".mp4");
         muscovyVV.setVideoURI(uri);
     }
     public  void loadList(){
-         data = new Integer[muscovy.getNum()];
+         data = new String[muscovy.getNum()];
          for (int i = 0;i<muscovy.getNum();i++){
-             data[i] = i;
+             data[i] = "第"+(i+1)+"集";
          }
-        ArrayAdapter<Integer> adapter;
-        adapter = new ArrayAdapter<Integer>(
-                MuscovyPlayActivity.this,android.R.layout.simple_list_item_1,data);
+         //更改  字体颜色  仿照android.R.layout.simple_item_1
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<>(
+                MuscovyPlayActivity.this,R.layout.muscovy_num_item,data);
         muscovyLV.setAdapter(adapter);
 
     }
