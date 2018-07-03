@@ -210,6 +210,7 @@ public class JoyHttpUtil {
     static  final  private  String  QUERY_ONE_MUSCOVY =  "http://"+HOST+"/queryOneMuscovy";
     static  public void queryOneMuscovy(List<Integer> muuscvyIds,JoyHttpCallBack joyHttpCallBack){
         String body = JsonUtil.ListToStr(muuscvyIds);
+        Log.d(TAG, "body:------------------------------- "+body);
         joyPostHttp(QUERY_ONE_MUSCOVY,body,null,null,joyHttpCallBack);
     }
     //   刷新五个番剧

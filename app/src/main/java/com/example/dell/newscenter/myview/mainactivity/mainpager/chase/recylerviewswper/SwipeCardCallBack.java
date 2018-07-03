@@ -1,12 +1,16 @@
 package com.example.dell.newscenter.myview.mainactivity.mainpager.chase.recylerviewswper;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.example.dell.newscenter.bean.Muscovy;
+import com.example.dell.newscenter.utils.JoyHttpUtil;
+import com.example.dell.newscenter.utils.JoyResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,11 +53,29 @@ public class SwipeCardCallBack extends ItemTouchHelper.SimpleCallback {
     }
 
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+    public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
         //当已经滑动删除了的时候会被回掉--删除数据，循环的效果
-        Muscovy remove = mDatas.remove(viewHolder.getLayoutPosition());
-        mDatas.add(0, remove);
-        adapter.notifyDataSetChanged();
+        // 发送网络请求  替换
+        List<Integer> list = new ArrayList<>();
+        for (Muscovy m:mDatas){
+            list.add(m.getId());
+        }
+        JoyHttpUtil.queryOneMuscovy(list, new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.MUSCOVY_OBJ_TYPE) {
+            @Override
+            public void analyticData(JoyResult.JoyObj joyObj) {
+                    Muscovy muscovy = (Muscovy) joyObj.getData();
+                Muscovy remove = mDatas.remove(viewHolder.getLayoutPosition());
+                mDatas.add(viewHolder.getLayoutPosition(),muscovy);
+                ((Activity)adapter.getContext()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+            }
+        });
+
     }
 
     @Override

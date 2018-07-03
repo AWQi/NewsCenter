@@ -60,8 +60,8 @@ public class ChaseFragment extends Fragment{
         muscovyRefreshTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  发送请求  刷新
-
+                //  发送请求  刷新  就是重新获取数据  page++
+                    initData();
             }
         });
         muscovyMoreTV.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +75,6 @@ public class ChaseFragment extends Fragment{
 
 
     private void initData() {
-
         JoyHttpUtil.queryFiveMuscovy(page, new JoyHttpUtil.JoyListCallBack(JoyHttpUtil.MUSCOVY_LIST_TYPE) {
             @Override
             public void analyticData(JoyResult.JoyList joyList) {
@@ -86,16 +85,14 @@ public class ChaseFragment extends Fragment{
                     @Override
                     public void run() {
                         mAdatper.notifyDataSetChanged();
+                        page++;
                     }
                 });
-
-
             }
         });
     }
 
     private void setData() {
-
 
         SwipeCardLayoutManager swmanamger = new SwipeCardLayoutManager(getContext());
         mActivity_review.setLayoutManager(swmanamger);

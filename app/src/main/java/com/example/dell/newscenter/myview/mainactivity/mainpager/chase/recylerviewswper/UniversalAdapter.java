@@ -21,6 +21,10 @@ public class UniversalAdapter extends RecyclerView.Adapter<UniversalAdapter.Univ
     public ArrayList<Muscovy> mData;
     public Context context;
 
+    public Context getContext() {
+        return context;
+    }
+
     public UniversalAdapter(ArrayList<Muscovy> mData, Context context) {
         this.mData = mData;
         this.context = context;

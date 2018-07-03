@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dell.newscenter">
 
-    <!--  监听网络状况-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 监听网络状况 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -122,25 +122,22 @@
 
 
         <!-- 接收直播流 -->
-        <activity
-            android:name=".myview.mainactivity.mainpager.live.PullActivity"
-             />
-        <!-- 动态上传-->
-        <activity android:name=".myview.mainactivity.PublicationDynamicsActivity"></activity>
+        <activity android:name=".myview.mainactivity.mainpager.live.PullActivity" />
+        <!-- 动态上传 -->
+        <activity android:name=".myview.mainactivity.PublicationDynamicsActivity" />
 
-
-
-        <!--&lt;!&ndash;内容提供容器&ndash;&gt;-->
+        <!-- &lt;!&ndash;内容提供容器&ndash;&gt; -->
         <provider
-            android:authorities="Joy"
             android:name="android.support.v4.content.FileProvider"
-
+            android:authorities="Joy"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".MuscovyPlayActivity"></activity>
     </application>
 
 </manifest>
