@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/muscovyRefreshRL"
+        android:layout_weight="9"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/muscovyRefreshIV"
+            android:src="@drawable/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/muscovyRefreshTV"
+            android:text="换一批"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/muscovyRefreshIV"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/muscovyMoreTV"
+            android:text="查看更多>>"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_review"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chase"/>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

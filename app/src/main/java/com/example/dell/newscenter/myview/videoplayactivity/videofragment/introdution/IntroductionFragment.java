@@ -175,7 +175,7 @@ public class IntroductionFragment extends Fragment implements View.OnTouchListen
          *   实际根据 id 做网络请求获取  先做代替
          *
          */
-        JoyHttpUtil.quseryUseInfo(project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.USER_OBJ_TYPE) {
+        JoyHttpUtil.queryUseInfo(project.getAuthorId(), new JoyHttpUtil.JoyObjCallBack(JoyHttpUtil.USER_OBJ_TYPE) {
 
             @Override
             public void analyticData(JoyResult.JoyObj joyObj) {

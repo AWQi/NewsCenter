@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.dell.newscenter.bean.Comment;
+import com.example.dell.newscenter.bean.Muscovy;
 import com.example.dell.newscenter.bean.Project;
 import com.example.dell.newscenter.bean.RegisterUser;
 import com.example.dell.newscenter.bean.Studio;
@@ -54,13 +55,14 @@ public class JoyHttpUtil {
     static  public final  Type COMMENT_LIST_TYPE = new TypeToken<JoyResult.JoyList<Comment>>() {}.getType();
     static  public final  Type USER_LIST_TYPE =     new TypeToken<JoyResult.JoyList<User>>() {}.getType();
     static  public final  Type STUDIO_LIST_TYPE =  new TypeToken<JoyResult.JoyList<Studio>>() {}.getType();
-
+    static  public final  Type MUSCOVY_LIST_TYPE =  new TypeToken<JoyResult.JoyList<Muscovy>>() {}.getType();
 
     static  public final  Type OBJECT_TTYPE =  new TypeToken<JoyResult.JoyObj<Object>>() {}.getType();
     static  public final  Type STRING_TYPE =  new TypeToken<JoyResult.JoyObj<String>>() {}.getType();
     static  public final  Type INTEGER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<Integer>>() {}.getType();
     static  public final  Type USER_OBJ_TYPE =  new TypeToken<JoyResult.JoyObj<User>>() {}.getType();
     static  public final  Type COMMENT_OBJ_TYPE = new TypeToken<JoyResult.JoyObj<Comment>>() {}.getType();
+    static  public final  Type MUSCOVY_OBJ_TYPE = new TypeToken<JoyResult.JoyObj<Muscovy>>() {}.getType();
     /**   评论：
      *
      */
@@ -199,11 +201,30 @@ public class JoyHttpUtil {
 
     //    动态作者信息
     static  final  private  String    QUERY_USER_INFO =  "http://"+HOST+"/queryUserInfo";
-    static  public void quseryUseInfo(int userId,JoyHttpCallBack joyHttpCallBack){
+    static  public void queryUseInfo(int userId,JoyHttpCallBack joyHttpCallBack){
         Map param = new HashMap<String,String>();
         param.put("userId",String.valueOf(userId));
         joyPostHttp(QUERY_USER_INFO,null,null,param,joyHttpCallBack);
     }
+    //   查询某一个  番剧
+    static  final  private  String  QUERY_ONE_MUSCOVY =  "http://"+HOST+"/queryOneMuscovy";
+    static  public void queryOneMuscovy(List<Integer> muuscvyIds,JoyHttpCallBack joyHttpCallBack){
+        String body = JsonUtil.ListToStr(muuscvyIds);
+        joyPostHttp(QUERY_ONE_MUSCOVY,body,null,null,joyHttpCallBack);
+    }
+    //   刷新五个番剧
+    static  final  private  String  QUERY_FIVE_MUSCOVY =  "http://"+HOST+"/queryFiveMuscovy";
+    static  public void queryFiveMuscovy(int page,JoyHttpCallBack joyHttpCallBack){
+        Map<String ,String> param = new HashMap<>();
+        param.put("page",String.valueOf(page));
+        joyPostHttp(QUERY_FIVE_MUSCOVY,null,null,param,joyHttpCallBack);
+    }
+    // 查询所有番剧
+    static  final  private  String  QUERY_ALL_MUSCOVY =  "http://"+HOST+"/queryAllMuscovy";
+    static  public void queryAllMuscovy(JoyHttpCallBack joyHttpCallBack){
+        joyPostHttp(QUERY_FIVE_MUSCOVY,null,null,null,joyHttpCallBack);
+    }
+
     static Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
