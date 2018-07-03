@@ -364,8 +364,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.mainpage) {}
-
-            else if (id == R.id.night) {    // 夜间模式   动作不是跳转   特殊对待
+            else if (id==R.id.share){
+                shareText("推荐给朋友","subject","content");
+           } else if (id == R.id.night) {    // 夜间模式   动作不是跳转   特殊对待
                  ApplicationUtil.exchangeNightMode();
                  recreate();
             }else {
@@ -417,6 +418,27 @@ public class MainActivity extends AppCompatActivity
                 default:break;
             }
             return false;
+        }
+    }
+
+
+
+    private void shareText(String dlgTitle, String subject, String content) {
+        if (content == null || "".equals(content)) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        if (subject != null && !"".equals(subject)) {
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        }
+        intent.putExtra(Intent.EXTRA_TEXT, content);
+
+        // 设置弹出框标题
+        if (dlgTitle != null && !"".equals(dlgTitle)) { // 自定义标题
+            startActivity(Intent.createChooser(intent, dlgTitle));
+        } else { // 系统默认标题
+            startActivity(intent);
         }
     }
 
