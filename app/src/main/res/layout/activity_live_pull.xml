@@ -24,6 +24,7 @@
       android:layout_width="30dp"
       android:layout_height="40dp" />
     <TextView
+        android:id="@+id/bufferSpeedTV"
         android:text="玩儿命加载中..."
         android:textColor="@android:color/white"
         android:textSize="20sp"

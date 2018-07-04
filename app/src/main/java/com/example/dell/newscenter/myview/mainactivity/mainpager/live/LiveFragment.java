@@ -71,6 +71,7 @@ public class LiveFragment extends Fragment {
                     @Override
                     public void run() {
                         List list = joyList.getData();
+
                         studioList.addAll(list);
                         adapter.notifyDataSetChanged();//  刷新
                     }

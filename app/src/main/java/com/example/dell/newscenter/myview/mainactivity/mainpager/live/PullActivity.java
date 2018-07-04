@@ -26,6 +26,10 @@ import com.example.dell.newscenter.utils.ApplicationUtil;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
+import static tv.danmaku.ijk.media.player.IMediaPlayer.MEDIA_INFO_BUFFERING_END;
+import static tv.danmaku.ijk.media.player.IMediaPlayer.MEDIA_INFO_BUFFERING_START;
+import static tv.danmaku.ijk.media.player.IMediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START;
+
 
 public class PullActivity extends AppCompatActivity {
     private static final String TAG = "NewCenter";
@@ -37,6 +41,7 @@ private LinearLayout progressLayout = null;
 private Toolbar liveToolBar = null;
 private ImageView liveToolBarIV = null;
 private TextView liveToolBarTV=null;
+private  TextView bufferSpeedTV;
 private  boolean  toolBarVisibility = true;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,7 @@ private  boolean  toolBarVisibility = true;
             liveToolBar = findViewById(R.id.liveToolBar);
             liveToolBarIV = findViewById(R.id.liveToolBarIV);
             liveToolBarTV = findViewById(R.id.liveToolBarTV);
+            bufferSpeedTV = findViewById(R.id.bufferSpeedTV);
 
 
 
@@ -71,7 +77,6 @@ private  boolean  toolBarVisibility = true;
             Log.d(TAG, "studioURL"+studio.getStudioUrl());
             IjkMediaPlayer.loadLibrariesOnce(null);
             IjkMediaPlayer.native_profileBegin("libijkplayer.so");
-            //这里使用的是Demo中提供的AndroidMediaController类控制播放相关操作
             final  VideoPlayerIJK ijkPlayer =  findViewById(R.id.studioPalyer);
             ijkPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,7 +85,7 @@ private  boolean  toolBarVisibility = true;
                         if (toolBarVisibility){
                             liveToolBar.setVisibility(View.VISIBLE);
                         }else {
-                            liveToolBar.setVisibility(View.GONE);
+                            liveToolBar.setVisibility(View.INVISIBLE);
                         }
                 }
             });
@@ -99,11 +104,31 @@ private  boolean  toolBarVisibility = true;
                 @Override
                 public void onPrepared(IMediaPlayer iMediaPlayer) {
                     ijkPlayer.start();
-                    progressLayout.setVisibility(View.GONE);
+                    progressLayout.setAlpha(0);//使用GONE  去除后无法再显示
+//                    progressLayout.setVisibility(View.GONE);
                 }
 
                 @Override
                 public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
+                    Log.d(TAG, "onInfo: ----------------------------------------------------------");
+                    switch (i){
+                        case MEDIA_INFO_BUFFERING_START :  // 开始卡顿
+                            Log.d(TAG, "i:--------------------------- start");
+//                            progressLayout.setVisibility(View.VISIBLE);
+                            progressLayout.setAlpha(1);
+
+                        case MEDIA_INFO_BUFFERING_END : // 卡顿结束
+                            Log.d(TAG, "i:--------------------------- stop");
+                            progressLayout.setAlpha(0);
+//                        case IMediaPlayer.MEDIA_INFO_NETWORK_BANDWIDTH: //   下载速度
+//                            bufferSpeedTV.setText(i1);
+                            //显示下载速度
+//                      Toast.show("download rate:" + extra);
+                            break;
+//                            progressLayout.setVisibility(View.GONE);
+                        default:break;
+                    }
+
                     return false;
                 }
 
