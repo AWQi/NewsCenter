@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
@@ -26,7 +27,8 @@ private VideoView muscovyVV;
 private ListView muscovyLV;
 private Muscovy muscovy;
 private RelativeLayout playRL;
-    private DrawerLayout muscovyDrawer;
+private DrawerLayout muscovyDrawer;
+private LinearLayout muscovyProgress;
     private int n = 1; // 当前播放第几集
     private String[] data ;
     private  float srcX = 0;
@@ -40,6 +42,7 @@ private RelativeLayout playRL;
         muscovyLV = findViewById(R.id.muscovyLV);
         playRL = findViewById(R.id.playRL);
         muscovyDrawer = findViewById(R.id.muscovyDrawer);
+        muscovyProgress = findViewById(R.id.muscovyProgress);
 
         /**
          *  加载  播放器
@@ -49,13 +52,32 @@ private RelativeLayout playRL;
         muscovyVV.setMediaController(mediaController);
         // 设置 播放控制
 
-         ///    加载监听
+         ///    加载播放监听
         muscovyVV.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 Toast.makeText(MuscovyPlayActivity.this,"加载完成",Toast.LENGTH_SHORT).show();
                    muscovyVV.setBackground(null);
+                   muscovyProgress.setVisibility(View.GONE);
                     muscovyVV.start();
+            }
+        });
+        /**
+         *   卡顿监听
+         */
+        muscovyVV.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                switch (what){
+                    case MediaPlayer.MEDIA_INFO_BUFFERING_START:  // 开始卡顿
+                        muscovyProgress.setVisibility(View.VISIBLE);
+                        break;
+                    case MediaPlayer.MEDIA_INFO_BUFFERING_END: // 结束卡顿
+                        muscovyProgress.setVisibility(View.GONE);
+                        break;
+                    default:break;
+                }
+                return false;
             }
         });
         //  播放完成  监听
@@ -87,13 +109,13 @@ private RelativeLayout playRL;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 muscovyDrawer.openDrawer(GravityCompat.END);
-                if (event.getAction()==MotionEvent.ACTION_DOWN){
-                    srcX=event.getX();
-
-                    }
-                if (event.getAction()==MotionEvent.ACTION_MOVE){
-                       nowX = event.getX();
-                }
+//                if (event.getAction()==MotionEvent.ACTION_DOWN){
+//                    srcX=event.getX();
+//
+//                    }
+//                if (event.getAction()==MotionEvent.ACTION_MOVE){
+//                       nowX = event.getX();
+//                }
                 return false;
             }
         });
@@ -101,6 +123,7 @@ private RelativeLayout playRL;
     public void loadVideo(int n) {
         Uri uri = Uri.parse(muscovy.getVideoUrl()+n+".mp4");
         muscovyVV.setVideoURI(uri);
+        muscovyProgress.setVisibility(View.VISIBLE);
     }
     public  void loadList(){
          data = new String[muscovy.getNum()];
