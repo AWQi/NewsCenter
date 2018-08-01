@@ -22,7 +22,7 @@
             android:title="我的收藏" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="System">
         <menu>
             <item
                 android:id="@+id/exitLogin"

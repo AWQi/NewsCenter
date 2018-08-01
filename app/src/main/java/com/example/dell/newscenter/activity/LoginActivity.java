@@ -3,6 +3,7 @@ package com.example.dell.newscenter.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText pwdTV;
     private String tel ;
     private String pwd;
+    private Activity activity = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +113,13 @@ public class LoginActivity extends AppCompatActivity  {
             startActivity(intent);
             finish();// 关闭登录界面
         }else {//  不正确  报错
-            Toast.makeText(LoginActivity.this,"账号或密码不正确",Toast.LENGTH_LONG).show();
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(LoginActivity.this,"账号或密码不正确",Toast.LENGTH_LONG).show();
+
+                }
+            });
         }
 
             }
